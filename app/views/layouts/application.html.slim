@@ -14,14 +14,13 @@ html
     div data-controller="navbar"
       / Off-canvas menu for mobile, show/hide based on off-canvas menu state.
       .relative.z-50.hidden role="dialog" aria-modal="true" data-navbar-target="nav"
-        .fixed.inset-0.bg-gray-900/80.ease-linear.transition-opacity.duration-300 data-navbar-target="backdrop" data-action="click->navbar#close"
-        .fixed.inset-0.flex
+        .fixed.inset-0.bg-gray-900/80.ease-linear.transition-opacity.duration-300 data-navbar-target="backdrop"
+        .fixed.inset-0.flex data-action="click->navbar#backdropClose"
           .relative.mr-16.flex-w-full.max-w-xs.flex-1.ease-in-out.duration-300.transform data-navbar-target="menu"
             .absolute.left-full.top-0.flex.w-16.justify-center.pt-5 data-action="click->navbar#close"
               button type="button" class="-m-2.5 p-2.5" data-navbar-target="button"
                 span.sr-only Close sidebar
-                svg.h-6.w-6.text-white fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"
-                  path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"
+                = render 'shared/icons/x_mark', classes: 'h-6 w-6 text-white'
             / Sidebar component, swap this element with another sidebar if you like
             .flex.grow.flex-col.gap-y-5.overflow.y-auto.bg-white.px-6.py-2.h-screen
               .flex.h-15.shrink-0.items-center
@@ -42,7 +41,11 @@ html
                             path[stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"]
                           | Calendar
 
-      .hidden.lg:fixed.lg:inset-y-0.lg:z-50.lg:flex.lg:w-72.lg:flex-col
+      .hidden.lg:fixed.lg:inset-y-0.lg:z-50.lg:flex.lg:w-72.lg:flex-col.relative
+        .absolute.top-10 class="-right-2.5"
+          .w-5.h-5.rounded-full.border.bg-white.grid.place-items-center
+            svg.h-3.w-3 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+              path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"
         .flex.grow.flex-col.gap-y-5.overflow-y-auto.border-r.border-gray-200.bg-white.px-6
           .flex.h-16.shrink-0.items-center
             img.h-8.w-auto src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Recipes"

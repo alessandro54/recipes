@@ -35,6 +35,11 @@ export default class extends Controller {
     }, 290);
   }
 
+  public backdropClose(e : Event): void {
+    if (e.currentTarget !== e.target ) return;
+    this.close();
+  }
+
   private init(): void {
     this.backdropTarget.classList.add('animate-enter');
     this.buttonTarget.classList.add('animate-enter');

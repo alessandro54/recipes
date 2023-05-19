@@ -62,8 +62,6 @@ group :development do
   gem 'solargraph'
   gem 'web-console'
 
-  gem 'foreman'
-
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   gem "rack-mini-profiler"
 

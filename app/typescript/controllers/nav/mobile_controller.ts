@@ -35,8 +35,12 @@ export default class extends Controller {
     }, 290);
   }
 
-  public backdropClose(e : Event): void {
-    if (e.currentTarget !== e.target ) return;
+  public shrink(): void {
+    console.log('shrink');
+  }
+
+  public backdropClose(e: Event): void {
+    if (e.currentTarget !== e.target) return;
     this.close();
   }
 

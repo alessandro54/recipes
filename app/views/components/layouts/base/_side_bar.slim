@@ -16,7 +16,7 @@
               ul.-mx-2.space-y-1 role='list'
                 li
                   / bg-gray-50 text-indigo-600', Default: 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50
-                  a.bg-gray-50.text-indigo-600.group.flex.gap-x-3.rounded-md.p-2.text-sm.leading-6.font-semibold
+                  = link_to root_path , class: 'bg-gray-50 text-indigo-600 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold' do
                     = render 'shared/icons/home', classes: 'h-6 w-6 shrink-0 text-indigo-600'
                     | Dashboard
                 li
@@ -36,7 +36,7 @@
         li
           ul.space-y-1 class='-mx-2' role='list'
             li
-              a.bg-gray-50.text-indigo-600.group.flex.gap-x-3.rounded-md.p-2.text-sm.leading-6.font-semibold href=''
+              = link_to root_path, class: 'bg-gray-50 text-indigo-600 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold' do
                 = render 'shared/icons/home', classes: 'h-6 w-6 shrink-0 text-indigo-600'
                 | Dashboard
             li

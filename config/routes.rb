@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'calendar/index'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -14,5 +15,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  resources :calendars, only: [:index]
   root 'home#index'
 end

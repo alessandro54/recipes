@@ -38,7 +38,7 @@ ruby:
         ul.flex.flex-1.flex-col.gap-y-7 role='list'
           li
             ul.space-y-1 class='-mx-2' role='list'
-              = nav_options.each do |name, attributes|
+              - nav_options.each do |name, attributes|
                 li
                   = link_to attributes[:path], class: 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold', data: { 'nav--link-target': 'link' } do
                     = render "shared/icons/#{attributes[:icon]}", classes: 'h-6 w-6'

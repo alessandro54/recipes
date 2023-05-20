@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   }
 
   devise_scope :user do
-    get 'login', to: 'devise/sessions#new'
-    get 'register', to: 'devise/registrations#new'
+    get 'login', to: 'users/sessions#new'
+    get 'register', to: 'users/registrations#new'
     get 'profile', to: 'users/registrations#edit'
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

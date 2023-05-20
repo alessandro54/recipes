@@ -13,61 +13,9 @@ html
   body.w-screen.h-screen
     div data-controller='nav--mobile nav--desktop'
       / Off-canvas menu for mobile, show/hide based on off-canvas menu state.
-      .relative.z-50.hidden.lg:hidden role='dialog' aria-modal='true' data-nav--mobile-target='nav'
-        .fixed.inset-0.bg-gray-900/80.ease-linear.transition-opacity.duration-300 data-nav--mobile-target='backdrop'
-        / Mobile sidebar
-        .fixed.inset-0.flex data-action='click->nav--mobile#backdropClose'
-          .relative.mr-16.flex-w-full.max-w-xs.flex-1.ease-in-out.duration-300.transform data-nav--mobile-target='menu'
-            .absolute.left-full.top-0.flex.w-16.justify-center.pt-5 data-action='click->nav--mobile#close'
-              button type='button' class='-m-2.5 p-2.5' data-nav--mobile-target='button'
-                span.sr-only Close sidebar
-                = render 'shared/icons/x_mark', classes: 'h-6 w-6 text-white'
-            .flex.grow.flex-col.gap-y-5.overflow.y-auto.bg-white.px-6.py-2.h-screen
-              .flex.h-15.shrink-0.items-center
-                img.h-8.w-auto src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600' alt='Recipes'
-              nav.flex.flex-1.flex-col
-                ul.flex.flex-1.flex-col.gap-y-7 role='list'
-                  li
-                    ul.-mx-2.space-y-1 role='list'
-                      li
-                        / bg-gray-50 text-indigo-600', Default: 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50
-                        a.bg-gray-50.text-indigo-600.group.flex.gap-x-3.rounded-md.p-2.text-sm.leading-6.font-semibold
-                          = render 'shared/icons/home', classes: 'h-6 w-6 shrink-0 text-indigo-600'
-                          | Dashboard
-                      li
-                        a.text-gray-700.hover:text-indigo-600.hover:bg-gray-50.group.flex.gap-x-3.rounded-md.p-2.text-sm.leading-6.font-semibold
-                          = render 'shared/icons/calendar', classes: 'h-6 w-6'
-                          | Calendar
-      / Desktop sidebar
-      .hidden.lg:fixed.lg:inset-y-0.lg:z-50.lg:flex.lg:w-72.lg:flex-col.relative data-nav--desktop-target='nav'
-        .absolute.top-10 class='-right-2.5'
-          .w-5.h-5.rounded-full.border.bg-white.grid.place-items-center.cursor-ew-resize data-action='click->navbar#shrink'
-            = render 'shared/icons/chevron_left', classes: 'h-3 w-3 pr-[1px]'
-        .flex.grow.flex-col.gap-y-5.overflow-y-auto.border-r.border-gray-200.bg-white.px-6
-          .flex.h-16.shrink-0.items-center
-            img.h-8.w-auto src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600' alt='Recipes'
-          nav.flex.flex-1.flex-col
-            ul.flex.flex-1.flex-col.gap-y-7 role='list'
-              li
-                ul.space-y-1 class='-mx-2' role='list'
-                  li
-                    a.bg-gray-50.text-indigo-600.group.flex.gap-x-3.rounded-md.p-2.text-sm.leading-6.font-semibold href=''
-                      = render 'shared/icons/home', classes: 'h-6 w-6 shrink-0 text-indigo-600'
-                      | Dashboard
-                  li
-                    a.text-gray-700.hover:text-indigo-600.hover:bg-gray-50.group.flex.gap-x-3.rounded-md.p-2.text-sm.leading-6.font-semibold href='#'
-                      = render 'shared/icons/calendar', classes: 'h-6 w-6'
-                      | Calendar
-      / Mobile topbar
-      .sticky.top-0.z-40.flex.items-center.gap-x-6.bg-white.px-4.py-4.shadow-sm.sm:px-6.lg:hidden
-        button.text-gray-700.lg:hidden type='button' class='-m-2.5 p-2.5' data-action='click->nav--mobile#open'
-          span.sr-only Open sidebar
-          = render 'shared/icons/bars_3', classes: 'h-6 w-6 fill-current text-gray-400 hover:text-gray-500'
-        .flex-1.text-sm.font-semibold.leading-6.text-gray-900
-          | Welcome back, #{current_user.first_name}
-        a href='#'
-          span.sr-only Your profile
-          img.h-8.w-8.rounded-full.bg-gray-50 src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' alt=''
-      main.py-10.lg:pl-72
+      = render 'components/layouts/base/side_bar'
+      = render 'components/layouts/base/top_bar'
+      / Main content
+      main.py-10.lg:pl-72.bg-slate-100 class='h-[calc(100vh-64px)] lg:h-screen'
         .px-4.sm:px-6.lg:px-8
           == yield

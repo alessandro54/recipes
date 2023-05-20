@@ -1,0 +1,17 @@
+/ Only Visible on mobile
+.sticky.top-0.z-40.flex.items-center.gap-x-6.bg-white.px-4.py-4.shadow-sm.sm:px-6.lg:hidden
+  button.text-gray-700.lg:hidden type='button' class='-m-2.5 p-2.5' data-action='click->nav--mobile#open'
+    span.sr-only Open sidebar
+    = render 'shared/icons/bars_3', classes: 'h-6 w-6 fill-current text-gray-400 hover:text-gray-500'
+  .flex-1.text-sm.font-semibold.leading-6.text-gray-900
+    | Welcome back, #{current_user.first_name}
+  = link_to profile_path, class: 'flex items-center gap-x-4', data: { 'tooltip-target': 'tooltip-left', 'tooltip-placement': :left} do
+    span.sr-only Your profile
+    - if current_user.avatar.attached?
+      img
+    - else
+      .relative.inline-flex.items-center.justify-center.w-8.h-8.overwflow-hidden.bg-indigo-200.rounded-full
+        span.font-medium.text-gray-600.text-sm= current_user.mini_name
+  #tooltip-left.absolute.z-10.invisible.inline-block.px-3.py-2.text-sm.font-medium.text-white.bg-gray-900.rounded-lg.shadow-sm.opacity-0.tooltip.dark:bg-gray-700[role="tooltip"]
+    |  Go to profile
+    .tooltip-arrow[data-popper-arrow]

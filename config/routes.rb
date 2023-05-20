@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#new'
     get 'register', to: 'devise/registrations#new'
   end
+
+  get 'profile', to: 'users#show'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

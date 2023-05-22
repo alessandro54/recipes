@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :calendars, only: [:index] do
     collection do
+      post 'today'
       post 'next_month'
       post 'prev_month'
     end

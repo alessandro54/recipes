@@ -1,6 +1,5 @@
-.lg:flex.lg:h-full.lg:flex-col.px-5.py-40
-  turbo-frame#navigator.header.flex.items-center.justify-between.border-b.border-gray-200.py-4.lg:flex-none
-    = render 'components/calendars/navigator', day: Date.today
+.lg:flex.lg:h-full.lg:flex-col.px-5.py-6
+  = render 'components/calendars/navigator', day: Date.today
   .h-max.shadow.ring-1.ring-black.ring-opacity-5.lg:flex.lg:flex-auto.lg:flex-col
   .grid.grid-cols-7.gap-px.border-b.border-gray-300.bg-gray-200.text-center.text-xs.font-semibold.leading-6.text-gray-700.lg:flex-none
     .flex.justify-center.bg-white.py-2
@@ -38,6 +37,6 @@
         | S
       span.sr-only.sm:not-sr-only
         | un
-  turbo-frame#calendar.flex.h-full.bg-gray-200.items-center.text-xs.leading-6.text-gray-700.lg:flex-auto
+  bg-gray-200.items-center.text-xs.leading-6.text-gray-700.lg:flex-auto
     = render 'components/calendars/calendar', month: generate_month, override_day: false
 

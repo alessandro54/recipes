@@ -1,0 +1,6 @@
+turbo-stream action='replace' target='navigator'
+  template
+    = render 'components/calendars/calendar', day: @day
+turbo-stream action='replace' target='calendar'
+  template
+    = render 'components/calendars/calendar', month: @month, override_day: true

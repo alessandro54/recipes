@@ -1,0 +1,26 @@
+/ Desktop calendar
+.hidden.w-full.lg:grid.lg:grid-cols-7.lg:gap-px class="#{month.length == 7 ? 'grid-rows-7' : month.length == 6 ? 'grid-rows-6' : 'grid-rows-5'}"
+  - month.each do |week|
+    - week.each do |day|
+      - if day[:current_month]
+        .relative.bg-white.px-3.py-2.h-40.cursor-pointer.hover:bg-indigo-100
+          - if day[:today] && override_day == false
+            time.flex.h-8.w-8.text-md.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white[datetime='2022-01-12']
+              | #{day[:date].day}
+          - else
+            time[datetime='2022-01-01']
+              | #{day[:date].day}
+      - else
+        .relative.bg-gray-50.px-3.py-2.text-gray-500
+          time[datetime='2022-01-01']
+            | #{day[:date].day}
+/ Mobile calendar
+.isolate.grid.w-full.grid-cols-7.gap-px.lg:hidden class="#{month.length == 7 ? 'grid-rows-7' : month.length == 6 ? 'grid-rows-6' : 'grid-rows-5'}"
+  - month.each do |week|
+    - week.each do |day|
+      - if day[:current_month]
+        button.flex.h-24.bg-white.md:h-32.flex-col.px-3.py-2.hover:bg-gray-100.focus:z-10 class="#{day[:today] ? 'text-indigo-600 bg-indigo-100' : 'text-gray-500'}"
+          time.ml-auto datetime="2021-12-27"= day[:date].day
+      - else
+        button.flex.h-24.md:h-32.flex-col.bg-stone-50.px-3.py-2.text-gray-500.focus:z-10
+          time.ml-auto[datetime='2021-12-27']= day[:date].day

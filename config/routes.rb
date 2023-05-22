@@ -15,6 +15,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :calendars, only: [:index]
+  resources :calendars, only: [:index] do
+    collection do
+      post 'next_month'
+      post 'prev_month'
+    end
+  end
   root 'home#index'
 end

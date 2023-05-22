@@ -1,10 +1,11 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import { Config } from 'tailwindcss';
+export default {
   content: [
     './app/helpers/**/*.rb',
     './app/assets/stylesheets/**/*.css',
     './app/views/**/*.{html,slim,html.slim}',
-    './app/typescript/**/*.ts'
+    './app/typescript/**/*.ts',
+    './node_modules/flowbite/**/*.js'
   ],
   theme: {
     fontFamily: {
@@ -39,12 +40,12 @@ module.exports = {
       },
       keyframes: {
         enter: {
-          '0%': { opacity: 0 },
-          '100%': { opacity: 1 }
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
         },
         leave: {
-          '0%': { opacity: 1 },
-          '100%': { opacity: 0 }
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' }
         },
         navEnter: {
           '0%': { transform: 'translateX(-100%)' },
@@ -64,6 +65,7 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+
   ]
-};
+} satisfies Config;

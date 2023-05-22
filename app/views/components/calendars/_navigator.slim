@@ -1,19 +1,19 @@
 turbo-frame#navigator
   header.flex.items-center.justify-between.border-b.border-gray-200.py-4.lg:flex-none
     h1.text-base.font-semibold.leading-6.text-gray-900
-      time[datetime="#{day}"]= day.strftime('%B %Y')
+      time[datetime= day] = day.strftime('%B %Y')
     .flex.items-center
       .relative.flex.items-center.rounded-md.bg-white.shadow-sm.md:items-stretch
         .pointer-events-none.absolute.inset-0.rounded-md.ring-1.ring-inset.ring-gray-300[
           aria-hidden='true']
-        = button_to prev_month_calendars_path, method: :post, params: { day: day }, class: 'flex items-center justify-center rounded-r-md py-2 px-3 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50' do
+        = button_to prev_month_calendars_path, method: :post, params: { day: }, class: 'flex items-center justify-center rounded-r-md py-2 px-3 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50' do
           span.sr-only Previous month
-          .w-5.h-5= svg('chevron-left')
-        = button_to today_calendars_path, method: :post, params: { day: day }, class: 'hidden py-2 px-3.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:relative md:block' do
+          .w-5.h-5 = svg('chevron-left')
+        = button_to today_calendars_path, method: :post, params: { day: }, class: 'hidden py-2 px-3.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:relative md:block' do
           span.sr-not-only
             | Today
         span.relative.-mx-px.h-5.w-px.bg-gray-300.md:hidden
-        = button_to next_month_calendars_path, method: :post, params: { day: day }, class: 'flex items-center justify-center rounded-r-md py-2 px-3 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50' do
+        = button_to next_month_calendars_path, method: :post, params: { day: }, class: 'flex items-center justify-center rounded-r-md py-2 px-3 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50' do
           span.sr-only
             | Next month
-          .w-5.h-5= svg('chevron-right')
+          .w-5.h-5 = svg('chevron-right')

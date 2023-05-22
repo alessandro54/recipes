@@ -11,11 +11,10 @@ html
       == vite_typescript_tag 'application'
 
   body.w-screen.h-screen
-    div data-controller='nav--mobile nav--desktop'
+    aside data-controller='nav--mobile nav--desktop'
       / Off-canvas menu for mobile, show/hide based on off-canvas menu state.
       = render 'components/layouts/base/side_bar'
       = render 'components/layouts/base/top_bar'
       / Main content
-      main.py-10.lg:pl-72.bg-slate-100 class='min-h-[calc(100vh-64px)] lg:min-h-screen'
-        .px-4.sm:px-6.lg:px-8
-          == yield
+    main.w-full.lg:pl-72.lg:min-h-screen.bg-slate-100 class='min-h-[calc(100vh-64px)]'
+      == yield

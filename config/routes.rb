@@ -22,5 +22,6 @@ Rails.application.routes.draw do
       post 'prev_month'
     end
   end
+  resources :days, only: [:new]
   root 'home#index'
 end

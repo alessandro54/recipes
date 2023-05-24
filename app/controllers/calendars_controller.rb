@@ -3,7 +3,10 @@
 # Controller using turbo to change the calendar in the view
 class CalendarsController < BaseController
   include CalendarHelper
-  def index; end
+
+  def index
+    render locals: { calendar: current_user.calendar }
+  end
 
   def today
     render_for(Date.today)

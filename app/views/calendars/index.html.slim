@@ -11,11 +11,4 @@ ruby:
   .bg-gray-200.items-center.text-xs.leading-6.text-gray-700.lg:flex-auto
     = render 'components/calendars/calendar', month: generate_month, override_day: false
 
-#newDayModal.fixed.top-0.left-0.right-0.z-50.hidden.w-full.p-4.overflow-x-hidden.overflow-y-auto.md:inset-0.max-h-full[
-  tabindex='-1'
-  aria-hidden='true'
-  class='h-[calc(100%-1rem)]'
-]
-  .relative.w-full.max-w-2xl.max-h-full
-    .relative.bg-white.rounded-lg.shadow.dark:bg-gray-700
-      turbo-frame#new_day
+= render 'components/shared/modals/default', id: 'newDayModal', frame_id: 'new_day', title: 'Assign recipe'

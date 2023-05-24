@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_24_011755) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_24_074837) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,13 +42,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_011755) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "days", force: :cascade do |t|
-    t.date "when"
-    t.string "recipe_id", null: false
+  create_table "calendars", id: :string, force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["recipe_id"], name: "index_days_on_recipe_id"
-    t.index ["when"], name: "index_days_on_when", unique: true
+    t.index ["user_id"], name: "index_calendars_on_user_id"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "calendar_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["calendar_id", "user_id"], name: "index_follows_on_calendar_id_and_user_id", unique: true
+    t.index ["calendar_id"], name: "index_follows_on_calendar_id"
+    t.index ["user_id", "calendar_id"], name: "index_follows_on_user_id_and_calendar_id", unique: true
+    t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
   create_table "recipes", id: :string, force: :cascade do |t|
@@ -78,6 +88,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_011755) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "days", "recipes"
+  add_foreign_key "calendars", "users"
+  add_foreign_key "follows", "calendars"
+  add_foreign_key "follows", "users"
   add_foreign_key "recipes", "users"
 end

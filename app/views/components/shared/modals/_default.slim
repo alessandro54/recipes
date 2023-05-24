@@ -1,48 +1,9 @@
-.lg:flex.lg:h-full.lg:flex-col.px-5.py-6
-  = render 'components/calendars/navigator', day: Date.today
-  .h-max.shadow.ring-1.ring-black.ring-opacity-5.lg:flex.lg:flex-auto.lg:flex-col
-  .grid.grid-cols-7.gap-px.border-b.border-gray-300.bg-gray-200.text-center.text-xs.font-semibold.leading-6.text-gray-700.lg:flex-none
-    .flex.justify-center.bg-white.py-2
-      span
-        | M
-      span.sr-only.sm:not-sr-only
-        | on
-    .flex.justify-center.bg-white.py-2
-      span
-        | T
-      span.sr-only.sm:not-sr-only
-        | ue
-    .flex.justify-center.bg-white.py-2
-      span
-        | W
-      span.sr-only.sm:not-sr-only
-        | ed
-    .flex.justify-center.bg-white.py-2
-      span
-        | T
-      span.sr-only.sm:not-sr-only
-        | hu
-    .flex.justify-center.bg-white.py-2
-      span
-        | F
-      span.sr-only.sm:not-sr-only
-        | ri
-    .flex.justify-center.bg-white.py-2
-      span
-        | S
-      span.sr-only.sm:not-sr-only
-        | at
-    .flex.justify-center.bg-white.py-2
-      span
-        | S
-      span.sr-only.sm:not-sr-only
-        | un
-  .bg-gray-200.items-center.text-xs.leading-6.text-gray-700.lg:flex-auto
-    = render 'components/calendars/calendar', month: generate_month, override_day: false
-
-#defaultModal.fixed.top-0.left-0.right-0.z-50.hidden.w-full.p-4.overflow-x-hidden.overflow-y-auto.md:inset-0.max-h-full[ aria-hidden="true" class="h-[calc(100%-1rem)]"]
+#defaultModal.fixed.top-0.left-0.right-0.z-50.hidden.w-full.p-4.overflow-x-hidden.overflow-y-auto.md:inset-0.max-h-full[
+  tabindex="-1" aria-hidden="true" class="h-[calc(100%-1rem)]"]
   .relative.w-full.max-w-2xl.max-h-full
+    / Modal content
     .relative.bg-white.rounded-lg.shadow.dark:bg-gray-700
+      / Modal header
       .flex.items-start.justify-between.p-4.border-b.rounded-t.dark:border-gray-600
         h3.text-xl.font-semibold.text-gray-900.dark:text-white
           |  Terms of Service
@@ -51,8 +12,13 @@
             path[fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"]
           span.sr-only
             | Close modal
+      / Modal body
       .p-6.space-y-6
-        turbo-frame#new_day
+        p.text-base.leading-relaxed.text-gray-500.dark:text-gray-400
+          |  With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+        p.text-base.leading-relaxed.text-gray-500.dark:text-gray-400
+          |  The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+      / Modal footer
       .flex.items-center.p-6.space-x-2.border-t.border-gray-200.rounded-b.dark:border-gray-600
         button.text-white.bg-blue-700.hover:bg-blue-800.focus:ring-4.focus:outline-none.focus:ring-blue-300.font-medium.rounded-lg.text-sm.px-5.py-2.5.text-center.dark:bg-blue-600.dark:hover:bg-blue-700.dark:focus:ring-blue-800[data-modal-hide="defaultModal" type="button"]
           | I accept

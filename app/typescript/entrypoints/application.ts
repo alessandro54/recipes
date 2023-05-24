@@ -1,6 +1,7 @@
 import '../controllers';
 import '@hotwired/turbo-rails';
 import 'flowbite';
+import "flowbite/dist/flowbite.turbo.js"
 
 // To see this message, add the following to the `<head>` section in your
 // views/layouts/application.html.erb

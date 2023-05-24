@@ -15,27 +15,31 @@ turbo-frame#calendar.w-full
   .hidden.w-full.lg:grid.lg:grid-cols-7.lg:gap-px class="#{adaptive_styles(month.length)}"
     - month.each do |week|
       - week.each do |day|
-        - if day[:current_month]
-          .relative.bg-white.px-3.py-2.h-40.cursor-pointer.hover:bg-indigo-100
-            - if day[:today] && override_day == false
-              time.flex.h-8.w-8.text-md.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white[
-                datetime="#{day[:date].to_s}"
-              ]
-                | #{day[:date].day}
-            - else
+          - if day[:current_month]
+            = link_to new_day_path(date: day[:date]),
+                      data: { 'turbo-frame': 'new_day', 'modal-toggle': 'defaultModal' } do
+              .relative.bg-white.px-3.py-2.h-40.cursor-pointer.hover:bg-indigo-100
+                - if day[:today] && override_day == false
+                  time.flex.h-8.w-8.text-md.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white[
+                    datetime="#{day[:date].to_s}"
+                  ]
+                    | #{day[:date].day}
+                - else
+                  time datetime="#{day[:date].to_s}"
+                    | #{day[:date].day}
+          - else
+            .relative.bg-gray-50.px-3.py-2.text-gray-500.cursor-not-allowed
               time datetime="#{day[:date].to_s}"
                 | #{day[:date].day}
-        - else
-          .relative.bg-gray-50.px-3.py-2.text-gray-500
-            time datetime="#{day[:date].to_s}"
-              | #{day[:date].day}
   / Mobile calendar
   .isolate.grid.w-full.grid-cols-7.gap-px.lg:hidden class="#{adaptive_styles(month.length)}"
     - month.each do |week|
       - week.each do |day|
         - if day[:current_month]
-          button.flex.h-24.bg-white.md:h-32.flex-col.px-3.py-2.hover:bg-gray-100.focus:z-10 class="#{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
+          = link_to new_day_path(date: day[:date]),
+                    class: "flex h-24 bg-white md:h-32 flex-col px-3 py-2 hover:bg-gray-100 focus:z-10 #{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}",
+                    data: { 'turbo-frame': 'new_day', 'modal-toggle': 'defaultModal' } do
             time.ml-auto datetime="#{day[:date].to_s}" = day[:date].day
         - else
-          button.flex.h-24.md:h-32.flex-col.bg-stone-50.px-3.py-2.text-gray-500.focus:z-10
+          button.cursor-not-allowed.flex.h-24.md:h-32.flex-col.bg-stone-50.px-3.py-2.text-gray-500.focus:z-10
             time.ml-auto datetime="#{day[:date].to_s}" = day[:date].day

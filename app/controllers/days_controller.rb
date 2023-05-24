@@ -2,7 +2,6 @@
 
 class DaysController < BaseController
   def new
-    100.times { puts params }
-    render :new
+    render locals: { day: Date.parse(params.fetch(:date)) }
   end
 end

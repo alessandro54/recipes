@@ -58,6 +58,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bullet'
   gem 'ruby-lsp', require: false
   gem 'solargraph'
   gem 'web-console'

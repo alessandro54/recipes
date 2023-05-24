@@ -2,7 +2,7 @@
 
 # Helper to generate month days for the view
 module CalendarHelper
-  def generate_month(date = Date.today, starting_day = :monday)
+  def generate_month(date: Date.today, starting_day: :monday)
     first = date.beginning_of_month.beginning_of_week(starting_day)
     last = date.end_of_month.end_of_week(starting_day)
     (first..last).to_a.map do |d|

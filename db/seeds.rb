@@ -42,14 +42,10 @@ recipe2 = Recipe.create(
   author: user1
 )
 
-Day.create(
-  when: Date.today + 1,
-  recipe: recipe1,
-  calendar: user1.calendar
-)
-
-Day.create!(
-  when: Date.today + 2,
-  recipe: recipe2,
-  calendar: user1.calendar
-)
+(4.month.ago.to_date..Date.today.end_of_month).each do |date|
+  Day.create!(
+    when: date,
+    recipe: recipe2,
+    calendar: user1.calendar
+  )
+end

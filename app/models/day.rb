@@ -3,6 +3,13 @@
 class Day < ApplicationRecord
   self.primary_key = :digest
 
+  scope :from_date, lambda { |year, month|
+    date = Date.new(year, month)
+    where(when: date...date.next_month)
+  }
+
+  scope :from_this_month, -> { where(when: Date.today.all_month) }
+
   before_create :create_digest
 
   belongs_to :calendar
@@ -12,7 +19,7 @@ class Day < ApplicationRecord
 
   def create_digest
     loop do
-      self.digest = Digest::MD5.hexdigest("#{self.when}-#{calendar_id}")[8..15]
+      self.digest = SecureRandom.hex(8)
       break unless self.class.exists?(digest:)
     end
   end

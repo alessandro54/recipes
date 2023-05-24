@@ -5,7 +5,9 @@ class CalendarsController < BaseController
   include CalendarHelper
 
   def index
-    render locals: { calendar: current_user.calendar }
+    render locals: {
+      days: Calendar.includes(days: [:recipe]).find_by(owner: current_user).days
+    }
   end
 
   def today
@@ -25,7 +27,7 @@ class CalendarsController < BaseController
   def render_for(day)
     render :change_month, locals: {
       day:,
-      month: generate_month(day)
+      month: generate_month(date: day)
     }
   end
 end

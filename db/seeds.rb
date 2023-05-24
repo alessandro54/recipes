@@ -30,11 +30,26 @@ recipe1 = Recipe.create(
   title: 'Chicken with rice',
   description: 'Lorem ipsum',
   steps: ['Fry the chicken', 'Then put the rice'],
+  ingredients: ['1 Chicken', '1 kg of rice'],
+  author: user1
+)
+
+recipe2 = Recipe.create(
+  title: 'Chips and fish',
+  description: 'Lorem ipsum',
+  steps: ['Fry the chips', 'Then put the fish'],
+  ingredients: ['1 Fish', '1 kg of chips'],
   author: user1
 )
 
 Day.create(
   when: Date.today + 1,
   recipe: recipe1,
+  calendar: user1.calendar
+)
+
+Day.create!(
+  when: Date.today + 2,
+  recipe: recipe2,
   calendar: user1.calendar
 )

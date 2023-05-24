@@ -50,15 +50,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_202400) do
     t.index ["user_id"], name: "index_calendars_on_user_id"
   end
 
-  create_table "days", force: :cascade do |t|
+  create_table "days", id: false, force: :cascade do |t|
     t.date "when"
+    t.string "digest"
     t.string "calendar_id", null: false
     t.string "recipe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["calendar_id", "when"], name: "index_days_on_calendar_id_and_when", unique: true
     t.index ["calendar_id"], name: "index_days_on_calendar_id"
+    t.index ["digest"], name: "index_days_on_digest", unique: true
     t.index ["recipe_id"], name: "index_days_on_recipe_id"
+    t.index ["when", "calendar_id"], name: "index_days_on_when_and_calendar_id", unique: true
   end
 
   create_table "follows", force: :cascade do |t|
@@ -76,6 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_202400) do
     t.string "title"
     t.text "description"
     t.string "steps", default: [], array: true
+    t.string "ingredients", default: [], array: true
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

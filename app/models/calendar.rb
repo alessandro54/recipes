@@ -8,6 +8,7 @@ class Calendar < ApplicationRecord
 
   has_many :follows, dependent: :destroy
   has_many :followers, through: :follows, source: :follower
+  has_many :days, dependent: :destroy
 
   private
 

@@ -27,6 +27,8 @@ turbo-frame#calendar.w-full
                 - else
                   time datetime="#{day[:date].to_s}"
                     | #{day[:date].day}
+                  - if day[:recipe].present?
+                    span = day[:recipe].title
           - else
             .relative.bg-gray-50.px-3.py-2.text-gray-500.cursor-not-allowed
               time datetime="#{day[:date].to_s}"

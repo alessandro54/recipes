@@ -6,28 +6,33 @@ class CalendarsController < BaseController
 
   def index
     render locals: {
-      days: Calendar.includes(days: [:recipe]).find_by(owner: current_user).days
+      days: current_user.calendar.days.from_date
     }
   end
 
   def today
-    render_for(Date.today)
+    render_for_day
   end
 
   def prev_month
-    render_for(Date.parse(params[:day]).prev_month)
+    render_for_day(Date.parse(params[:day]).prev_month)
   end
 
   def next_month
-    render_for(Date.parse(params[:day]).next_month)
+    render_for_day(Date.parse(params[:day]).next_month)
   end
 
   private
 
-  def render_for(day)
+  def render_for_day(day = Date.today)
     render :change_month, locals: {
       day:,
-      month: generate_month(date: day)
+      month: generate_month(
+        date: day,
+        days: current_user.calendar.days.from_date(
+          day.year, day.month
+        )
+      )
     }
   end
 end

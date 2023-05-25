@@ -3,7 +3,7 @@
 class Day < ApplicationRecord
   self.primary_key = :digest
 
-  scope :from_date, lambda { |year, month|
+  scope :from_date, lambda { |year = Date.today.year, month = Date.today.month|
     date = Date.new(year, month)
     where(when: date...date.next_month)
   }

@@ -35,9 +35,6 @@ export default class extends Controller {
     }, 290);
   }
 
-  public shrink(): void {
-    console.log('shrink');
-  }
 
   public backdropClose(e: Event): void {
     if (e.currentTarget !== e.target) return;

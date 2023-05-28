@@ -4,11 +4,16 @@
 class Calendar < ApplicationRecord
   before_create :create_id
 
-  belongs_to :owner, class_name: :User, foreign_key: :user_id
+  has_and_belongs_to_many :owners, class_name: :User, join_table: :user_calendars
 
   has_many :follows, dependent: :destroy
   has_many :followers, through: :follows, source: :follower
   has_many :days, dependent: :destroy
+  has_many :recipes, -> { distinct }, through: :days, source: :recipe
+
+  def owner?(user:)
+    owners.include?(user)
+  end
 
   private
 

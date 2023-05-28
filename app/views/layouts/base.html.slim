@@ -10,11 +10,16 @@ html
       == vite_stylesheet_tag 'application', data: { 'turbo-track': 'reload' }
       == vite_typescript_tag 'application'
 
-  body.w-screen.h-screen
-    aside data-controller='nav--mobile nav--desktop'
+  body.w-screen.h-screen.lg:flex.select-none data-controller="nav--desktop"
+    nav data-controller='nav--mobile' data-nav--desktop-target='nav' class="lg:w-[288px]"
       / Off-canvas menu for mobile, show/hide based on off-canvas menu state.
       = render 'components/layouts/base/side_bar'
       = render 'components/layouts/base/top_bar'
+    / Sidebar handler
+    .h-full.cursor-ew-resize.hidden.lg:block[
+      data-action="mousedown->nav--desktop#shrink"
+      class="w-0.5 bg-gray-200"
+    ]
       / Main content
-    main.w-full.lg:pl-72.lg:min-h-screen.bg-slate-100 class='min-h-[calc(100vh-64px)]'
+    main.w-full.lg:min-h-screen.bg-slate-100.overflow-x-hidden class='min-h-[calc(100vh-64px)]'
       == yield

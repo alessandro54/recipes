@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_24_202400) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_27_193941) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,10 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_202400) do
 
   create_table "calendars", id: :string, force: :cascade do |t|
     t.string "title"
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_calendars_on_user_id"
   end
 
   create_table "days", id: false, force: :cascade do |t|
@@ -85,6 +83,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_202400) do
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
+  create_table "user_calendars", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "calendar_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["calendar_id", "user_id"], name: "index_user_calendars_on_calendar_id_and_user_id", unique: true
+    t.index ["calendar_id"], name: "index_user_calendars_on_calendar_id"
+    t.index ["user_id", "calendar_id"], name: "index_user_calendars_on_user_id_and_calendar_id", unique: true
+    t.index ["user_id"], name: "index_user_calendars_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -96,16 +105,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_202400) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "username"
+    t.string "calendar_id"
+    t.index ["calendar_id"], name: "index_users_on_calendar_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "calendars", "users"
   add_foreign_key "days", "calendars"
   add_foreign_key "days", "recipes"
   add_foreign_key "follows", "calendars"
   add_foreign_key "follows", "users"
   add_foreign_key "recipes", "users"
+  add_foreign_key "user_calendars", "calendars"
+  add_foreign_key "user_calendars", "users"
+  add_foreign_key "users", "calendars"
 end

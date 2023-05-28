@@ -2,11 +2,18 @@
 
 # Controller using turbo to change the calendar in the view
 class CalendarsController < BaseController
-  include CalendarHelper
+  # before_action :set_calendar, except: :new
 
   def index
+    calendar = current_user.main_calendar || current_user.calendars.first
     render locals: {
-      days: current_user.calendar.days.from_date
+      days: calendar.days.includes(:recipe).from_date
+    }
+  end
+
+  def new
+    render locals: {
+      calendar: Calendar.new
     }
   end
 
@@ -24,15 +31,19 @@ class CalendarsController < BaseController
 
   private
 
-  def render_for_day(day = Date.today)
-    render :change_month, locals: {
-      day:,
-      month: generate_month(
-        date: day,
-        days: current_user.calendar.days.from_date(
-          day.year, day.month
-        )
-      )
-    }
+  def set_calendar
+    @calendars = params[:id].present? ? Calendar.find(params[:id]) : current_user.calendar
+  rescue ActiveRecord::StatementInvalid
+    redirect_to new_calendar_path
   end
+
+  def render_for_day(day = Date.today)
+    render :change_month, locals: { day:, month: calendar_service.generate_for_day(date: day) }
+  end
+
+  def calendar_service
+    @calendar_service ||= DayService.new(calendar)
+  end
+
+  attr_reader :calendar
 end

@@ -24,7 +24,30 @@ user2 = User.create(
   username: 'abigabrielac'
 )
 
-user2.follow(calendar: user1.calendar)
+user3 = User.create(
+  first_name: 'Michael',
+  last_name: 'Campos',
+  email: 'michael@gmail.com',
+  password: 'test123',
+  username: 'crazyman'
+)
+
+calendar1 = Calendar.create(
+  title: 'Personal Calendar'
+)
+calendar2 = Calendar.create(
+  title: 'Personal Calendar'
+)
+calendar3 = Calendar.create(
+  title: 'Personal Calendar'
+)
+
+user1.calendars << calendar1
+user2.calendars << calendar1
+
+user1.update(main_calendar: calendar1)
+
+user3.follow(calendar: calendar1)
 
 recipe1 = Recipe.create(
   title: 'Chicken with rice',
@@ -45,7 +68,7 @@ recipe2 = Recipe.create(
 (4.month.ago.to_date..Date.today.end_of_month).each do |date|
   Day.create!(
     when: date,
-    recipe: recipe2,
-    calendar: user1.calendar
+    recipe: [recipe1, recipe2].sample,
+    calendar: calendar1
   )
 end

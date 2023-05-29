@@ -35,14 +35,15 @@ turbo-frame#calendar.w-full
             time datetime="#{day[:date].to_s}"
               | #{day[:date].day}
   / Mobile calendar
-  .isolate.grid.w-full.grid-cols-7.gap-px.lg:hidden class="#{adaptive_styles(calendar_days.length)}"
+  .isolate.grid.w-full.grid-cols-7.gap-px.lg:hidden.shadow-lg class="#{adaptive_styles(calendar_days.length)}"
     - calendar_days.each do |week|
       - week.each do |day|
         - if day[:current_month]
           = link_to new_day_path(date: day[:date]),
-                    class: "flex h-24 bg-white md:h-32 flex-col px-3 py-2 hover:bg-gray-100 focus:z-10 #{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}",
+                    class: "flex h-28 bg-white md:h-32 flex-col px-3 py-2 hover:bg-gray-100 focus:z-10 #{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}",
                     data: { 'turbo-frame': 'new_day', 'modal-target': 'newDayModal', 'modal-show': 'newDayModal' } do
             time.ml-auto datetime="#{day[:date].to_s}" = day[:date].day
+            = day[:recipe]&.title
         - else
-          button.cursor-not-allowed.flex.h-24.md:h-32.flex-col.bg-stone-50.px-3.py-2.text-gray-500.focus:z-10
+          button.cursor-not-allowed.flex.h-28.md:h-32.flex-col.bg-stone-50.px-3.py-2.text-gray-500.focus:z-10
             time.ml-auto datetime="#{day[:date].to_s}" = day[:date].day

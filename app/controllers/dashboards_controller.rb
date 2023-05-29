@@ -4,7 +4,8 @@
 class DashboardsController < BaseController
   def index
     if (@calendar = current_user.main_calendar)
-      render locals: {
+      render 'calendars/show', locals: {
+        calendar:,
         calendar_days: days_service.for_today
       }
     else

@@ -1,6 +1,6 @@
 ~replace~>navigator
   template
-    = render 'components/calendars/navigator', day:
+    = render 'components/calendars/navigator', date:
 ~replace~>calendar
   template
-    = render 'components/calendars/calendar', month:, override_day: day != Date.today
+    = render 'components/calendars/calendar', calendar_days:, override_day: date != Date.today

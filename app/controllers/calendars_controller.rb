@@ -2,12 +2,12 @@
 
 # Controller using turbo to change the calendar in the view
 class CalendarsController < BaseController
-  # before_action :set_calendar, except: :new
+  before_action :set_calendar, except: :new
+  before_action :set_date, only: %i[prev_month next_month]
 
   def index
-    calendar = current_user.main_calendar || current_user.calendars.first
     render locals: {
-      days: calendar.days.includes(:recipe).from_date
+      calendars: calendars_service.all
     }
   end
 
@@ -17,33 +17,56 @@ class CalendarsController < BaseController
     }
   end
 
+  def show
+    render locals: {
+      calendar:,
+      date:,
+      calendar_days: days_service.for_today
+    }
+  end
+
   def today
-    render_for_day
+    render :change_month, locals: {
+      calendar:,
+      date:,
+      calendar_days: days_service.for_today
+    }
   end
 
   def prev_month
-    render_for_day(Date.parse(params[:day]).prev_month)
+    render :change_month, locals: {
+      calendar:,
+      date: date.prev_month,
+      calendar_days: days_service.prev_month(date)
+    }
   end
 
   def next_month
-    render_for_day(Date.parse(params[:day]).next_month)
+    render :change_month, locals: {
+      calendar:,
+      date: date.next_month,
+      calendar_days: days_service.next_month(date)
+    }
   end
 
   private
 
   def set_calendar
-    @calendars = params[:id].present? ? Calendar.find(params[:id]) : current_user.calendar
-  rescue ActiveRecord::StatementInvalid
-    redirect_to new_calendar_path
+    @calendar = calendars_service.find(id: params[:id])
+    redirect_to calendars_path if @calendar.nil?
   end
 
-  def render_for_day(day = Date.today)
-    render :change_month, locals: { day:, month: calendar_service.generate_for_day(date: day) }
+  def set_date
+    @date = params[:date].present? ? Date.parse(params[:date]) : Date.today
   end
 
-  def calendar_service
-    @calendar_service ||= DayService.new(calendar)
+  def days_service
+    @days_service ||= DaysService.new(calendar:)
   end
 
-  attr_reader :calendar
+  def calendars_service
+    @calendars_service ||= CalendarsService.new(user: current_user)
+  end
+
+  attr_reader :calendar, :date
 end

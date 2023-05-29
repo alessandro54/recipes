@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   draw(:users)
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :calendars, only: %i[index new create] do
+  root 'dashboards#index'
+  resources :calendars do
     collection do
       post 'today'
       post 'next_month'
@@ -13,6 +14,4 @@ Rails.application.routes.draw do
     end
   end
   resources :days, only: [:new]
-
-  root 'home#index'
 end

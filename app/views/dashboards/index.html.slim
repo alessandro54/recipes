@@ -1,0 +1,14 @@
+ruby:
+  weekdays = %w[Mon Tue Wed Thu Fri Sat Sun]
+.lg:flex.lg:h-full.lg:flex-col.px-5.py-6
+  .h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-center
+    = render 'components/calendars/navigator', date: Date.today
+    .grid.grid-cols-7.gap-px.border-b.border-gray-300.bg-gray-200.text-center.text-xs.font-semibold.leading-6.text-gray-700.lg:flex-none
+        - weekdays.each do |d|
+          .flex.justify-center.bg-white.py-2
+            span = d[0]
+            span.sr-only.sm:not-sr-only = d[1..]
+    .bg-slate-100.text-xs.leading-6.text-gray-700.lg:flex.shadow.ring-1.ring-black.ring-opacity-5
+      = render 'components/calendars/calendar', calendar_days:, override_day: false
+
+= render 'components/shared/modals/default', id: 'newDayModal', frame_id: 'new_day', title: 'Assign recipe'

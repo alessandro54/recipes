@@ -10,10 +10,11 @@ ruby:
       'grid-rows-4'
     end
   end
+
 turbo-frame#calendar.w-full
   / Desktop calendar
-  .hidden.w-full.lg:grid.lg:grid-cols-7.lg:gap-px class="#{adaptive_styles(month.length)}"
-    - month.each do |week|
+  .hidden.w-full.lg:grid.lg:grid-cols-7.lg:gap-px class="#{adaptive_styles(calendar_days.length)}"
+    - calendar_days.each do |week|
       - week.each do |day|
           - if day[:current_month]
             = link_to new_day_path(date: day[:date]),
@@ -34,8 +35,8 @@ turbo-frame#calendar.w-full
               time datetime="#{day[:date].to_s}"
                 | #{day[:date].day}
   / Mobile calendar
-  .isolate.grid.w-full.grid-cols-7.gap-px.lg:hidden class="#{adaptive_styles(month.length)}"
-    - month.each do |week|
+  .isolate.grid.w-full.grid-cols-7.gap-px.lg:hidden class="#{adaptive_styles(calendar_days.length)}"
+    - calendar_days.each do |week|
       - week.each do |day|
         - if day[:current_month]
           = link_to new_day_path(date: day[:date]),

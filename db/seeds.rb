@@ -33,21 +33,26 @@ user3 = User.create(
 )
 
 calendar1 = Calendar.create(
-  title: 'Personal Calendar'
+  title: 'Calendar for oriental food'
 )
 calendar2 = Calendar.create(
   title: 'Personal Calendar'
 )
 calendar3 = Calendar.create(
-  title: 'Personal Calendar'
+  title: 'Calendar for party'
 )
 
 user1.calendars << calendar1
 user2.calendars << calendar1
 
+user1.calendars << calendar2
+
+user1.calendars << calendar3
+
 user1.update(main_calendar: calendar1)
 
 user3.follow(calendar: calendar1)
+user3.follow(calendar: calendar3)
 
 recipe1 = Recipe.create(
   title: 'Chicken with rice',

@@ -26,7 +26,7 @@ export default class extends Controller {
     const newWidth = this.startWidth + e.pageX - this.startX;
     if (newWidth > 90 && newWidth < 288) {
       this.navTargets.forEach((nt) => {
-        nt.classList.remove('w-[288px]')
+        nt.classList.remove('lg:w-[249px]')
         nt.style.width = `${newWidth}px`
       })
     }

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root 'dashboards#index'
   resources :calendars do
     collection do
+      get 'my_calendar'
       post 'today'
       post 'next_month'
       post 'prev_month'

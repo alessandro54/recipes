@@ -1,7 +1,7 @@
 ruby:
   nav_options = {
     dashboard: { icon: 'home', path: root_path },
-    calendar: { icon: 'calendar', path: calendars_path }
+    calendars: { icon: 'calendar', path: calendars_path }
   }
 
 nav.w-full data-controller="nav--link"
@@ -27,8 +27,10 @@ nav.w-full data-controller="nav--link"
                         .w-6.h-6 = svg(attributes[:icon])
                         | #{name.capitalize}
   / Desktop sidebar
-  .hidden.lg:fixed.lg:inset-y-0.lg:z-20.lg:flex.lg:w-max.lg:flex-col.relative data-nav--desktop-target='nav'
-
+  .hidden.lg:fixed.lg:inset-y-0.lg:z-20.lg:flex.lg:flex-col.relative[
+    data-nav--desktop-target='nav'
+    class='lg:w-[249px]'
+    ]
     .flex.grow.flex-col.gap-y-5.overflow-y-auto.bg-white.px-6
       .flex.h-16.shrink-0.items-center
         img.h-8.w-auto src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600' alt='Recipes'

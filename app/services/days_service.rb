@@ -2,7 +2,7 @@
 
 # Service layer for days
 class DaysService
-  include CalendarHelper
+  include DayHelper
 
   def initialize(calendar:)
     @calendar = calendar

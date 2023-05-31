@@ -3,4 +3,4 @@
     = render 'components/calendars/navigator', date:
 ~replace~>calendar
   template
-    = render 'components/calendars/calendar', calendar_days:, override_day: date != Date.today
+    = render 'components/calendars/calendar', calendar_id: calendar.id, calendar_days:, override_day: date != Date.today

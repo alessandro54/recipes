@@ -15,6 +15,6 @@ ruby:
             span = day[0]
             span.sr-only.sm:not-sr-only = day[1..]
     .bg-slate-100.text-xs.leading-6.text-gray-700.lg:flex.shadow.ring-1.ring-black.ring-opacity-5
-      = render 'components/calendars/calendar', calendar_days:, override_day: false
+      = render 'components/calendars/calendar', calendar_id: calendar.id, calendar_days:, override_day: false
 
-= render 'components/shared/modals/default', id: 'newDayModal', frame_id: 'new_day', title: 'Assign recipe'
+= render 'components/shared/modals/default', id: 'dayModal', frame_id: 'day-modal'

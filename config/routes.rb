@@ -13,6 +13,6 @@ Rails.application.routes.draw do
       post 'next_month'
       post 'prev_month'
     end
+    resources :days, only: %i[new edit update], param: :date
   end
-  resources :days, only: [:new]
 end

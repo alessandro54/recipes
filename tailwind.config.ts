@@ -1,4 +1,5 @@
 import { Config } from 'tailwindcss';
+
 export default {
   content: [
     './app/helpers/**/*.rb',
@@ -8,29 +9,6 @@ export default {
     './node_modules/flowbite/**/*.js'
   ],
   theme: {
-    fontFamily: {
-      sans: [
-        'BlinkMacSystemFont',
-        'Avenir Next',
-        'Avenir',
-        'Nimbus Sans L',
-        'Roboto',
-        'Noto Sans',
-        'Segoe UI',
-        'Arial',
-        'Helvetica',
-        'Helvetica Neue',
-        'sans-serif'
-      ],
-      mono: [
-        'Consolas',
-        'Menlo',
-        'Monaco',
-        'Andale Mono',
-        'Ubuntu Mono',
-        'monospace'
-      ]
-    },
     extend: {
       animation: {
         enter: 'enter 0.3s',

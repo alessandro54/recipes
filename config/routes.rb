@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   root 'dashboards#index'
+  get 'my_calendar', to: 'calendars#show'
   resources :calendars do
     resources :days, only: %i[new edit update], param: :date
   end
+  resources :recipes, only: %i[index new]
 end

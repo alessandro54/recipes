@@ -1,17 +1,15 @@
-ruby:
-  weekdays = %w[Mon Tue Wed Thu Fri Sat Sun]
 .lg:flex.lg:h-full.lg:flex-col.px-8.py-6
   - if params[:controller] == 'calendars'
     h1.text-4xl = calendar.title
     span.pl-2.text-xs.text-gray-400
       | by #{calendar.owners.pluck(:first_name).join(', ')}
   - else
-    h1.text-4xl My calendar
+    h1.text-4xl.font-bold My calendar
   @calendar.h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-center
     = render 'components/calendars/navigator', calendar_id: calendar.id, date:
     .grid.grid-cols-7.gap-px.border-b.border-gray-300.bg-gray-200.text-center.text-xs.font-semibold.leading-6.text-gray-700.lg:flex-none
-        - weekdays.each do |day|
-          .flex.justify-center.bg-slate-500.py-2.text-white
+        - %w[Mon Tue Wed Thu Fri Sat Sun].each do |day|
+          .flex.justify-center.bg-slate-300.py-2.text-black.font-bold.text-sm
             span = day[0]
             span.sr-only.sm:not-sr-only = day[1..]
     .bg-slate-100.text-xs.leading-6.text-gray-700.lg:flex.shadow.ring-1.ring-black.ring-opacity-5

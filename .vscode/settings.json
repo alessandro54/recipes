@@ -2,15 +2,4 @@
   "prettier.singleQuote": true,
   "prettier.trailingComma": "none",
   "prettier.semi": true,
-  "sqltools.connections": [
-    {
-      "previewLimit": 50,
-      "server": "localhost",
-      "port": 5432,
-      "driver": "PostgreSQL",
-      "name": "alessandro",
-      "database": "recipes_development",
-      "username": "alessandro"
-    }
-  ]
 }

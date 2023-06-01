@@ -3,7 +3,7 @@
 # Controller using turbo to change the calendar in the view
 class CalendarsController < BaseController
   before_action :set_calendar, except: :new
-  before_action :set_date, only: %i[today prev_month next_month]
+  before_action :set_date, only: :show
 
   def index
     render locals: {
@@ -21,20 +21,8 @@ class CalendarsController < BaseController
     render locals: {
       calendar:,
       date:,
-      calendar_days: days_service.for_today
+      calendar_days: days_service.generate_for(date:)
     }
-  end
-
-  def today
-    render_calendar(days_service.for_today)
-  end
-
-  def prev_month
-    render_calendar(days_service.prev_month(date), date.prev_month)
-  end
-
-  def next_month
-    render_calendar(days_service.next_month(date), date.next_month)
   end
 
   private

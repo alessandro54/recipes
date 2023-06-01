@@ -7,12 +7,6 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'dashboards#index'
   resources :calendars do
-    collection do
-      get 'my_calendar'
-      post 'today'
-      post 'next_month'
-      post 'prev_month'
-    end
     resources :days, only: %i[new edit update], param: :date
   end
 end

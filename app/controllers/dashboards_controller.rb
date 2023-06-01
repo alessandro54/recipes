@@ -5,6 +5,7 @@ class DashboardsController < BaseController
   def index
     if (@calendar = current_user.main_calendar)
       render 'calendars/show', locals: {
+        date: Date.today,
         calendar:,
         calendar_days: days_service.for_today
       }

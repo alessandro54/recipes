@@ -7,14 +7,13 @@ ruby:
       | by #{calendar.owners.pluck(:first_name).join(', ')}
   - else
     h1.text-4xl My calendar
-  .h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-center
-    = render 'components/calendars/navigator', date: Date.today
+  @calendar.h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-center
+    = render 'components/calendars/navigator', calendar_id: calendar.id, date:
     .grid.grid-cols-7.gap-px.border-b.border-gray-300.bg-gray-200.text-center.text-xs.font-semibold.leading-6.text-gray-700.lg:flex-none
         - weekdays.each do |day|
           .flex.justify-center.bg-slate-500.py-2.text-white
             span = day[0]
             span.sr-only.sm:not-sr-only = day[1..]
     .bg-slate-100.text-xs.leading-6.text-gray-700.lg:flex.shadow.ring-1.ring-black.ring-opacity-5
-      = render 'components/calendars/calendar', calendar_id: calendar.id, calendar_days:, override_day: false
-
+      = render 'components/calendars/calendar', calendar_id: calendar.id, calendar_days:, override_day: date != Date.today
 = render 'components/shared/modals/default', id: 'dayModal', frame_id: 'day-modal'

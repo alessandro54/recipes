@@ -1,21 +1,12 @@
 ruby:
-  def adaptive_styles(length)
-    if length == 7
-      'grid-rows-7'
-    elsif length == 6
-      'grid-rows-6'
-    elsif length == 5
-      'grid-rows-5'
-    else
-      'grid-rows-4'
-    end
-  end
-
   def link_params
-    { 'turbo-frame': 'day-modal', 'modal-target': 'dayModal', 'modal-show': 'dayModal' }
+    { 'turbo-frame': 'day-modal',
+      'modal-target': 'dayModal',
+      'modal-show': 'dayModal'
+    }
   end
 
-turbo-frame#calendar.w-full
+.w-full
   / Desktop calendar
   .hidden.w-full.lg:grid.lg:grid-cols-7.lg:gap-px class="#{adaptive_styles(calendar_days.length)}"
     - calendar_days.each do |week|

@@ -6,5 +6,7 @@ module SvgHelper
     File.open("app/assets/svg/#{type}/#{path}.svg", 'rb') do |file|
       raw file.read
     end
+  rescue Errno::ENOENT
+    raw 'none'
   end
 end

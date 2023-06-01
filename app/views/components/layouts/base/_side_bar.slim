@@ -1,9 +1,9 @@
 ruby:
   nav_options = {
-    dashboard: { icon: 'home', path: root_path },
-    my_calendar: { icon: 'home', path: my_calendar_path },
-    recipes: { icon: 'home', path: recipes_path },
-    calendars: { icon: 'calendar', path: calendars_path }
+    dashboard: { icon: 'rectangle-group', path: root_path },
+    my_calendar: { icon: 'calendar-days', path: my_calendar_path },
+    recipes: { icon: 'book', path: recipes_path },
+    calendars: { icon: 'rectangle-stack', path: calendars_path }
   }
 
 nav.w-full data-controller="nav--link"
@@ -44,7 +44,8 @@ nav.w-full data-controller="nav--link"
                 li
                   = link_to attributes[:path], class: 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold', data: { 'nav--link-target': 'link' } do
                     .w-6.h-6 = svg(attributes[:icon])
-                    | #{name.capitalize.to_s.gsub('_', ' ')}
+                    .font-extrabold
+                      | #{name.capitalize.to_s.gsub('_', ' ')}
         = link_to profile_path, class: 'flex items-center gap-x-4 px-6 py-4 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50', data: { 'tooltip-target': 'tooltip-bottom', 'tooltip-placement': :bottom } do
           - if current_user.avatar.attached?
             = image_tag current_user.avatar, class: 'h-8 w-8 rounded-full bg-gray-50', alt: current_user.full_name

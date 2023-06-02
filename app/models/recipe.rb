@@ -4,6 +4,8 @@
 class Recipe < ApplicationRecord
   before_create :create_id
 
+  scope :with_photos, -> { includes image_attachment: :blob }
+
   has_one_attached :image
 
   belongs_to :author, class_name: :User, foreign_key: :user_id

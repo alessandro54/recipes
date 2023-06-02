@@ -2,7 +2,7 @@
 
 class RecipesController < BaseController
   def index
-    recipes = Recipe.where(author: current_user)
+    recipes = Recipe.with_photos.where(author: current_user)
     render locals: {
       recipes:
     }

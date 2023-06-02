@@ -2,7 +2,17 @@
 
 class RecipesController < BaseController
   def index
-    @recipes = []
+    recipes = Recipe.where(author: current_user)
+    render locals: {
+      recipes:
+    }
+  end
+
+  def show
+    recipe = Recipe.find(params[:id])
+    render locals: {
+      recipe:
+    }
   end
 
   def new

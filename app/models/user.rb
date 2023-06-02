@@ -14,6 +14,7 @@ class User < ApplicationRecord
 
   has_many :follows, dependent: :destroy
   has_many :followed_calendars, through: :follows, source: :calendar
+  has_many :recipes, dependent: :nullify
 
   def full_name
     "#{first_name} #{last_name}"

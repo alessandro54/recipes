@@ -12,7 +12,7 @@ ruby:
   .hidden.w-full.lg:grid.lg:grid-cols-7.lg:gap-px class="#{adaptive_styles(calendar_days.length)}"
     - calendar_days.each do |week|
       - week.each do |day|
-        - link_path = day[:recipe] ? edit_calendar_day_path(calendar_id:, date: day[:date]) : new_calendar_day_path(calendar_id:, date: day[:date])
+        - link_path = day[:recipe] ? calendar_day_path(calendar_id:, date: day[:date]) : new_calendar_day_path(calendar_id:, date: day[:date])
         - if day[:current_month]
           = link_to link_path, data: link_params do
             .relative.bg-white.px-3.py-2.h-40.cursor-pointer.hover:bg-indigo-100
@@ -31,7 +31,7 @@ ruby:
   .isolate.grid.w-full.grid-cols-7.gap-px.lg:hidden.shadow-lg class="#{adaptive_styles(calendar_days.length)}"
     - calendar_days.each do |week|
       - week.each do |day|
-        - link_path = day[:recipe] ? edit_calendar_day_path(calendar_id:, date: day[:date]) : new_calendar_day_path(calendar_id:, date: day[:date])
+        - link_path = day[:recipe] ? calendar_day_path(calendar_id:, date: day[:date]) : new_calendar_day_path(calendar_id:, date: day[:date])
         - if day[:current_month]
             = link_to link_path,
                       class: "flex h-28 bg-white md:h-32 flex-col px-3 py-2 hover:bg-gray-100 focus:z-10 #{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}",

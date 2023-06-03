@@ -2,13 +2,12 @@ ruby:
   def show_params
     {
       'turbo-frame': 'day-modal',
-      'modal-target': 'dayModal',
-      'modal-show': 'dayModal'
+      'action': 'modals--day#show'
     }
   end
 
   def new_params
-    show_params.merge({ 'action': 'day#prepareModal' })
+    show_params
   end
 
 .w-full

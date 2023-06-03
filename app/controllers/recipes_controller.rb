@@ -17,7 +17,7 @@ class RecipesController < BaseController
   end
 
   def new
-    recipe = []
-    render :new, recipe:
+    @params = params
+    render :new
   end
 end

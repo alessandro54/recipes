@@ -1,4 +1,4 @@
-.lg:flex.lg:h-full.lg:flex-col.px-8.py-6 data-controller="day"
+.lg:flex.lg:h-full.lg:flex-col.px-8.py-6 data-controller="day recipe"
   - if params[:controller] == 'calendars'
     h1.text-4xl = calendar.title
     span.pl-2.text-xs.text-gray-400
@@ -15,8 +15,11 @@
     .bg-slate-100.text-xs.leading-6.text-gray-700.lg:flex.shadow.ring-1.ring-black.ring-opacity-5
       = render 'components/calendars/calendar', calendar_id: calendar.id, calendar_days:, override_day: date != Date.today
 
-= render 'components/shared/modals/default',
-          id: 'dayModal',
-          frame_id: 'day-modal',
-          size: :large,
-          static: true
+  = render 'components/shared/modals/default',
+            id: 'dayModal',
+            frame_id: 'day-modal',
+            size: :large
+
+  = render 'components/shared/modals/isolated',
+            id: 'newRecipeModal',
+            frame_id: 'new-recipe-modal'

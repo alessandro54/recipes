@@ -6,7 +6,8 @@ class DaysController < BaseController
   def new
     render locals: {
       day: Date.parse(params.fetch(:date)),
-      recipe_count: current_user.recipes.count
+      recipe_count: current_user.recipes.count,
+      calendar_id: params[:calendar_id]
     }
   end
 

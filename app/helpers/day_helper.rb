@@ -20,4 +20,14 @@ module DayHelper
       recipe: days_with_recipe[day]&.recipe
     }
   end
+
+  def display_date(date)
+    if date == Date.today
+      'today'
+    elsif date == Date.tomorrow
+      'tomorrow'
+    else
+      date.strftime('%e %b')
+    end
+  end
 end

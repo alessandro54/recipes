@@ -9,4 +9,9 @@
   html {
     font-family: 'Nunito', sans-serif;
   }
+
+  turbo-frame {
+    width: 100%;
+    height: 100%;
+  }
 }

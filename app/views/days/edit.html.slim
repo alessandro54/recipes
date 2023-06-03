@@ -1,7 +1,8 @@
-turbo-frame#day-modal
-  h1.text-2xl.px-4.mb-3.pt-3 Editing #{day.when}
-  .px-6.pb-6
-    = form_for [:calendar, day], method: :patch do |f|
-      = f.text_field :when
-      = fields_for day.recipe do |fr|
-        = fr.text_field :title
+turbo-frame.w-full#day-modal
+  .w-full
+    h1.text-2xl.px-4.mb-3.pt-3 Editing #{day.when}
+    .px-6.pb-6
+      = form_for [:calendar, day], method: :patch do |f|
+        = f.text_field :when
+        = fields_for day.recipe do |fr|
+          = fr.text_field :title

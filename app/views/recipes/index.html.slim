@@ -1,34 +1,7 @@
-turbo-frame id="recipes"
-  .container.mx-auto.px-4.sm:px-6.lg:px-8.pt-10
-    - recipes.each do |recipe|
-      ul.grid.grid-cols-1.gap-6.sm:grid-cols-2.md:grid-cols-3.lg:grid-cols-4 role='list'
-        li.col-span-1.flex.flex-col.divide-y.divide-gray-200.rounded-lg.bg-white.text-center.shadow
-          .flex.flex-1.flex-col.p-8
-            - if recipe.image.attached?
-              = image_tag recipe.image, class: 'mx-auto h-32 w-32 flex-shrink-0 rounded-full'
-            .w-full
-              | dsad
-            h3.mt-6.text-sm.font-medium.text-gray-900 = recipe.title
-            dl.mt-1.flex.flex-grow.flex-col.justify-between
-              dt.sr-only Title
-              dd.text-sm.text-gray-500 = recipe.description
-              dt.sr-only Role
-  .px-auto
-    ul.divide-y.divide-gray-100 role='list'
-      - recipes.each do |recipe|
-        li.relative.flex.justify-between.gap-x-6.py-5
-          .flex.gap-x-4
-            - if recipe.image.attached?
-              = image_tag recipe.image, class: 'h-12 w-12 flex-none rounded-full bg-gray-50'
-            .min-w-0.flex-auto
-              p.text-sm.font-semibold.leading-6.text-gray-900
-                span.absolute.inset-x-0.-top-px.bottom-0 = recipe.title
-              p.mt-1.flex.text-xs.leading-5.text-gray-500 = recipe.description
-          .flex.items-center.gap-x-4
-            .hidden.sm:flex.sm:flex-col.sm:items-end
-              p.text-sm.leading-6.text-gray-900
-                | tags here
-              p.mt-1.text-xs.leading-5.text-gray-500
-                = time_ago_in_words(recipe.created_at)
-            svg.h-5.w-5.flex-none.text-gray-400 viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
-              path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"
+.p-10
+  h1.text-3xl.mb-10 My recipes
+  turbo-frame#recipes
+    - if mode == 'grid'
+      = render 'components/recipes/index/grid'
+    - else
+      = render 'components/recipes/index/list', recipes:

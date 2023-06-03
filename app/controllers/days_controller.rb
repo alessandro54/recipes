@@ -4,7 +4,10 @@ class DaysController < BaseController
   before_action :set_day, except: :new
 
   def new
-    render locals: { day: Date.parse(params.fetch(:date)) }
+    render locals: {
+      day: Date.parse(params.fetch(:date)),
+      recipe_count: current_user.recipes.count
+    }
   end
 
   def show

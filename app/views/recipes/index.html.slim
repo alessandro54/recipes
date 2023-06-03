@@ -1,14 +1,15 @@
-.container.mx-auto.px-4.sm:px-6.lg:px-8.pt-10
-  - recipes.each do |recipe|
-    ul.grid.grid-cols-1.gap-6.sm:grid-cols-2.md:grid-cols-3.lg:grid-cols-4 role='list'
-      li.col-span-1.flex.flex-col.divide-y.divide-gray-200.rounded-lg.bg-white.text-center.shadow
-        .flex.flex-1.flex-col.p-8
-          - if recipe.image.attached?
-            = image_tag recipe.image, class: 'mx-auto h-32 w-32 flex-shrink-0 rounded-full'
-          .w-full
-            | dsad
-          h3.mt-6.text-sm.font-medium.text-gray-900 = recipe.title
-          dl.mt-1.flex.flex-grow.flex-col.justify-between
-            dt.sr-only Title
-            dd.text-sm.text-gray-500 = recipe.description
-            dt.sr-only Role
+turbo-frame id="recipes"
+  .container.mx-auto.px-4.sm:px-6.lg:px-8.pt-10
+    - recipes.each do |recipe|
+      ul.grid.grid-cols-1.gap-6.sm:grid-cols-2.md:grid-cols-3.lg:grid-cols-4 role='list'
+        li.col-span-1.flex.flex-col.divide-y.divide-gray-200.rounded-lg.bg-white.text-center.shadow
+          .flex.flex-1.flex-col.p-8
+            - if recipe.image.attached?
+              = image_tag recipe.image, class: 'mx-auto h-32 w-32 flex-shrink-0 rounded-full'
+            .w-full
+              | dsad
+            h3.mt-6.text-sm.font-medium.text-gray-900 = recipe.title
+            dl.mt-1.flex.flex-grow.flex-col.justify-between
+              dt.sr-only Title
+              dd.text-sm.text-gray-500 = recipe.description
+              dt.sr-only Role

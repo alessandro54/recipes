@@ -1,4 +1,4 @@
-.lg:flex.lg:h-full.lg:flex-col.px-8.py-6
+.lg:flex.lg:h-full.lg:flex-col.px-8.py-6 data-controller="day"
   - if params[:controller] == 'calendars'
     h1.text-4xl = calendar.title
     span.pl-2.text-xs.text-gray-400
@@ -16,4 +16,3 @@
       = render 'components/calendars/calendar', calendar_id: calendar.id, calendar_days:, override_day: date != Date.today
 
 = render 'components/shared/modals/default', id: 'dayModal', frame_id: 'day-modal'
-= render 'components/shared/modals/static/large', id: 'newDayModal', frame_id: 'new-day-modal'

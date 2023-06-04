@@ -1,25 +1,27 @@
-ruby:
-  def show_params
-    {
-      'turbo-frame': 'day-modal',
-      'modal-target': 'dayModal',
-      'modal-show': 'dayModal'
-    }
-  end
-
-  def new_params
-    show_params.merge({ 'action': 'day#prepareModal' })
-  end
-
 .w-full
   / Desktop calendar
   .hidden.w-full.lg:grid.lg:grid-cols-7.lg:gap-px class="#{adaptive_styles(calendar_days.length)}"
     - calendar_days.each do |week|
       - week.each do |day|
-        - link_path = day[:recipe] ? calendar_day_path(calendar_id:, date: day[:date]) : new_calendar_day_path(calendar_id:, date: day[:date])
         - if day[:current_month]
-          = link_to link_path, data: day[:recipe] ? show_params : new_params do
-            .relative.bg-white.px-3.py-2.h-40.cursor-pointer.hover:bg-indigo-100
+          - if day[:recipe]
+            .relative.bg-white.px-3.py-2.h-40.cursor-pointer.hover:bg-indigo-100[
+              class="#{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
+              data-action='click->modals--day#show click->calendar#loadShowDayContent'
+              data-calendar-url-param = calendar_day_path(calendar_id:, date: day[:date])
+            ]
+              - if day[:today] && !override_day
+                time.flex.h-8.w-8.text-md.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white datetime=day[:date].to_s
+                  = day[:date].day
+              - else
+                time datetime=day[:date].to_s
+                  = day[:date].day
+          - else
+            .relative.bg-white.px-3.py-2.h-40.cursor-pointer.hover:bg-indigo-100[
+              class="#{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
+              data-action='click->modals--day#show click->calendar#loadNewDayContent'
+              data-calendar-url-param = new_calendar_day_path(calendar_id:, date: day[:date])
+            ]
               - if day[:today] && !override_day
                 time.flex.h-8.w-8.text-md.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white datetime=day[:date].to_s
                   = day[:date].day
@@ -35,17 +37,24 @@ ruby:
   .isolate.grid.w-full.grid-cols-7.gap-px.lg:hidden.shadow-lg class="#{adaptive_styles(calendar_days.length)}"
     - calendar_days.each do |week|
       - week.each do |day|
-        - link_path = day[:recipe] ? calendar_day_path(calendar_id:, date: day[:date]) : new_calendar_day_path(calendar_id:, date: day[:date])
         - if day[:current_month]
-            = link_to link_path,
-                      class: "flex h-28 bg-white md:h-32 flex-col px-3 py-2 hover:bg-gray-100 focus:z-10 #{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}",
-                      data: day[:recipe] ? show_params : new_params do
-              - if day[:recipe]
-                .flex.flex-col
-                  time.ml-auto datetime="#{day[:date].to_s}" = day[:date].day
-                  span.text-xs.scale-90 = day[:recipe].title
-              - else
-                time.ml-auto datetime="#{day[:date]}" = day[:date].day
+          - if day[:recipe]
+            button.flex.h-28.bg-white.md:h-32.flex-col.px-3.py-2.hover:bg-gray-100.focus:z-10[
+              class="#{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
+              data-action='modals--day#show calendar#loadShowDayContent'
+              data-calendar-url-param = calendar_day_path(calendar_id:, date: day[:date])
+            ]
+              .flex.flex-col
+                time.ml-auto datetime="#{day[:date].to_s}" = day[:date].day
+                span.text-xs.scale-90 = day[:recipe].title
+          - else
+            button.flex.h-28.bg-white.md:h-32.flex-col.px-3.py-2.hover:bg-gray-100.focus:z-10[
+              class="#{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
+              data-action='modals--day#show calendar#loadNewDayContent'
+              data-calendar-url-param = new_calendar_day_path(calendar_id:, date: day[:date])
+            ]
+              .flex.flex-col
+                time.ml-auto datetime="#{day[:date].to_s}" = day[:date].day
         - else
           button.cursor-not-allowed.flex.h-28.md:h-32.flex-col.bg-stone-50.px-3.py-2.text-gray-500.focus:z-10
             time.ml-auto datetime="#{day[:date].to_s}" = day[:date].day

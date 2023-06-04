@@ -1,4 +1,4 @@
-.lg:flex.lg:h-full.lg:flex-col.px-8.py-6 data-controller="day recipe"
+.lg:flex.lg:h-full.lg:flex-col.px-8.py-6 data-controller="modals--day modals--recipe calendar"
   - if params[:controller] == 'calendars'
     h1.text-4xl = calendar.title
     span.pl-2.text-xs.text-gray-400
@@ -18,8 +18,10 @@
   = render 'components/shared/modals/default',
             id: 'dayModal',
             frame_id: 'day-modal',
+            close_action: 'modals--day#close',
             size: :large
 
   = render 'components/shared/modals/isolated',
             id: 'newRecipeModal',
-            frame_id: 'new-recipe-modal'
+            frame_id: 'new-recipe-modal',
+            close_action: 'modals--recipe#close'

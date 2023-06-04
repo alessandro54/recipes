@@ -6,7 +6,8 @@ ruby:
       'max-w-2xl'
     end
   end
-.fixed.top-0.left-0.right-0.z-50.hidden.w-full.p-4.overflow-x-hidden.overflow-y-auto.md:inset-0.max-h-full[
+
+.fixed.top-0.left-0.right-0.z-50.hidden.w-full.p-4.overflow-x-hidden.overflow-y-auto.h-full[
   id="#{id}"
   tabindex='-1'
   aria-hidden='true'
@@ -15,9 +16,13 @@ ruby:
     .relative.bg-white.rounded-lg.shadow.dark:bg-gray-700
       .w-full.relative.flex.items-start.justify-between.pt-2.px-4.rounded-t
         button.right-1.absolute.text-gray-400.bg-transparent.hover:bg-gray-200.hover:text-gray-900.rounded-lg.text-sm.p-1.5.ml-auto.inline-flex.items-center.dark:hover:bg-gray-600.dark:hover:text-white[
-          type="button" data-modal-hide="#{id}"
+          type="button"
+          data-action="#{close_action}"
         ]
           .w-5.h-5 = svg('x-mark')
             span.sr-only
               | Close modal
-        turbo-frame id="#{frame_id}"
+        .w-full.hidden.lg:block
+          turbo-frame id="#{frame_id}"
+        .w-full.lg:hidden
+          turbo-frame id="mobile-#{frame_id}"

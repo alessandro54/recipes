@@ -16,6 +16,11 @@ class User < ApplicationRecord
   has_many :followed_calendars, through: :follows, source: :calendar
   has_many :recipes, dependent: :nullify
 
+  validates :first_name, presence: true, format: { with: /\A[a-zA-Z']+\z/ }
+  validates :last_name, presence: true, format: { with: /\A[a-zA-Z']+\z/ }
+  validates :email, uniqueness: true
+  validates :username, allow_blank: true, uniqueness: true, format: { with: /\A\w+\z/ }
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -24,7 +29,7 @@ class User < ApplicationRecord
     full_name.split.map(&:first).join
   end
 
-  def owns?(calendar:)
+  def owner?(calendar:)
     calendar.owners.include?(self)
   end
 
@@ -32,7 +37,7 @@ class User < ApplicationRecord
     followed_calendars << calendar
   end
 
-  def following?(calendar:)
+  def follower?(calendar:)
     calendar.followers.include?(self)
   end
 end

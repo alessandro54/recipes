@@ -21,7 +21,7 @@ class CalendarsService
   private
 
   def check_ownership(calendar)
-    return calendar if current_user.owns?(calendar:)
+    return calendar if current_user.owner?(calendar:)
 
     flash[:alert] = 'You are not an owner of that'
     redirect_to calendars_path

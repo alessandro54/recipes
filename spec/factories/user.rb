@@ -7,6 +7,9 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { Faker::Internet.password }
 
+    trait :with_username do
+      username { Faker::Internet.username(separators: '_') }
+    end
     trait :with_calendars do
       calendars { build_list :calendar, 3 }
     end

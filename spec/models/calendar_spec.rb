@@ -12,7 +12,7 @@ RSpec.describe Calendar, type: :model do
   end
 
   describe '#owned?' do
-    subject { create :calendar }
+    subject { create :calendar, :with_owners }
     let(:user) { subject.owners.first }
     let(:user2) { create :user }
 

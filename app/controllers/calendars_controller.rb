@@ -2,7 +2,7 @@
 
 # Controller using turbo to change the calendar in the view
 class CalendarsController < BaseController
-  before_action :set_calendar, except: :new
+  before_action :set_calendar, except: %i[index new]
   before_action :set_date, only: :show
 
   def index

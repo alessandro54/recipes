@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DaysService do
+RSpec.describe DaysService, type: :service do
   describe '#generate_for' do
     let(:calendar) { create :calendar }
     it 'returns an array of 5 weeks' do

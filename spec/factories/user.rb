@@ -10,6 +10,11 @@ FactoryBot.define do
     trait :with_username do
       username { Faker::Internet.username(separators: '_') }
     end
+
+    trait :with_main_calendar do
+      main_calendar { create :calendar }
+    end
+
     trait :with_calendars do
       calendars { build_list :calendar, 3 }
     end

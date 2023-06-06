@@ -6,7 +6,6 @@ class CalendarsController < BaseController
   before_action :set_date, only: :show
 
   def index
-    flash[:simple_warn] = 'warning'
     render locals: {
       calendars: calendars_service.all
     }

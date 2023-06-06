@@ -1,0 +1,6 @@
+.z-50.pointer-events-none.fixed.inset-0.flex.items-end.px-4.py-6.sm:items-start.sm:p-6 aria-live="assertive"
+  .flex.flex-col.w-full
+    - flash.each do |type, metadata|
+      - metadata[:type] ||= :simple
+      turbo-frame#notification
+        = render "components/shared/notifications/#{metadata[:type]}", type:, content: metadata[:content], title: metadata[:title]

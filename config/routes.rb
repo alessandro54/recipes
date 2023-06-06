@@ -11,4 +11,8 @@ Rails.application.routes.draw do
     resources :days, only: %i[show new edit update], param: :date
   end
   resources :recipes
+
+  resources :notifications, only: :create, format: :turbo_stream
+
+  resource :playground if Rails.env.development?
 end

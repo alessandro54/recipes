@@ -29,3 +29,5 @@ html
       / Main content
     main.w-full.lg:min-h-screen.bg-slate-100.overflow-x-hidden class='min-h-[calc(100vh-64px)]'
       == yield
+
+  = render 'components/layouts/notifications', flash:

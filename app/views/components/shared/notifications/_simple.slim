@@ -1,4 +1,4 @@
-.flex.w-full.flex-col.items-center.space-y-4.sm:items-end.mt-2
+.flex.w-full.flex-col.items-center.space-y-4.sm:items-end.mt-2.transform.ease-out.duration-300.transition.animate-mobile-notification-enter.sm:animate-notification-enter
   .pointer-events-auto.w-full.max-w-sm.overflow-hidden.rounded-lg.shadow-lg.ring-1.ring-black.ring-opacity-5.simple-notification class="#{simple_notification_background(mode)}"
     .p-4
       .flex.items-start
@@ -16,7 +16,10 @@
             - elsif message.instance_of?(String)
               = message
         .ml-4.flex.flex-shrink-0
-          button.inline-flex.rounded-md.text-gray-400.hover:text-gray-500.focus:outline-none.focus:ring-2.focus:ring-indigo-500.focus:ring-offset-2.bg-transparent[type="button" data-action="notifications--simple#removeSelf"]
+          button.inline-flex.rounded-md.text-gray-400.hover:text-gray-500.focus:outline-none.focus:ring-2.focus:ring-indigo-500.focus:ring-offset-2.bg-transparent[
+            type="button"
+            data-action="notifications--simple#removeSelf"
+          ]
             span.sr-only
               | Close
             .w-5.h-5

@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     get 'login', to: 'users/sessions#new'
     get 'register', to: 'users/registrations#new'
     get 'profile', to: 'users/registrations#edit'
+    delete 'logout', to: 'users/sessions#destroy'
   end
 end

@@ -1,42 +1,23 @@
-ruby:
-  def styles(type)
-    if type == 'alert'
-      'text-rose-400'
-    elsif type == 'success'
-      'text-emerald-400'
-    elsif type == 'info'
-      'text-sky-500'
-    elsif type == 'warn'
-      'text-yellow-500'
-    end
-  end
-
-  def icons(type)
-    if type == 'alert'
-      'x-circle'
-    elsif type == 'success'
-      'check-circle'
-    elsif type == 'info'
-      'information-circle'
-    elsif type == 'warn'
-      'exclamation-triangle'
-    end
-  end
-
 .flex.w-full.flex-col.items-center.space-y-4.sm:items-end.mt-2
-  .pointer-events-auto.w-full.max-w-sm.overflow-hidden.rounded-lg.bg-white.shadow-lg.ring-1.ring-black.ring-opacity-5
+  .pointer-events-auto.w-full.max-w-sm.overflow-hidden.rounded-lg.shadow-lg.ring-1.ring-black.ring-opacity-5.simple-notification class="#{simple_notification_background(mode)}"
     .p-4
       .flex.items-start
         .flex-shrink-0
-          .w-6.h-6 class="#{styles(type)}"
-            = svg(icons(type))
+
+          .w-6.h-6 class="#{simple_notification_icon_styles(mode)}"
+            = svg(simple_notification_icon(mode))
         .ml-3.w-0.flex-1 class="pt-0.5"
-          .text-sm.font-bold.text-gray-900 = title
+          .text-sm.font-bold class="#{simple_notification_icon_styles(mode)}" = simple_notification_title(mode)
           .mt-1.text-sm.text-gray-500
-            = content
+            - if message.instance_of?(Array)
+              ul.list-disc
+                - message.each do |m|
+                  li = m
+            - elsif message.instance_of?(String)
+              = message
         .ml-4.flex.flex-shrink-0
-          button.inline-flex.rounded-md.bg-white.text-gray-400.hover:text-gray-500.focus:outline-none.focus:ring-2.focus:ring-indigo-500.focus:ring-offset-2[type="button"]
+          button.inline-flex.rounded-md.text-gray-400.hover:text-gray-500.focus:outline-none.focus:ring-2.focus:ring-indigo-500.focus:ring-offset-2.bg-transparent[type="button" data-action="notifications--simple#removeSelf"]
             span.sr-only
               | Close
-            svg.h-5.w-5[viewbox="0 0 20 20" fill="currentColor" aria-hidden="true"]
-              path[d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"]
+            .w-5.h-5
+              = svg('x-mark')

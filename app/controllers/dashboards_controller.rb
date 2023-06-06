@@ -4,8 +4,6 @@
 class DashboardsController < BaseController
   def index
     if (@calendar = current_user.main_calendar)
-      flash[:alert] = { title: 'delo', content: 'tu vieja' }
-      flash[:info] = { title: 'oidi', content: 'delodelo pero delo' }
       render 'calendars/show', locals: {
         date: Date.today,
         calendar:,

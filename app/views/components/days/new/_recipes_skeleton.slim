@@ -1,28 +1,16 @@
 .w-full.p-2.space-y-4.border-gray-200.divide-y.divide-gray-200.rounded.animate-pulse.dark:divide-gray-700.dark:border-gray-700[role="status"]
-  .flex.items-center.justify-between
-    div
-      .h-2.5.bg-gray-300.rounded-full.dark:bg-gray-600.w-24.mb-2.5
-      .w-32.h-2.bg-gray-200.rounded-full.dark:bg-gray-700
-    .h-2.5.bg-gray-300.rounded-full.dark:bg-gray-700.w-12
-  .flex.items-center.justify-between.pt-4
-    div
-      .h-2.5.bg-gray-300.rounded-full.dark:bg-gray-600.w-24.mb-2.5
-      .w-32.h-2.bg-gray-200.rounded-full.dark:bg-gray-700
-    .h-2.5.bg-gray-300.rounded-full.dark:bg-gray-700.w-12
-  .flex.items-center.justify-between.pt-4
-    div
-      .h-2.5.bg-gray-300.rounded-full.dark:bg-gray-600.w-24.mb-2.5
-      .w-32.h-2.bg-gray-200.rounded-full.dark:bg-gray-700
-    .h-2.5.bg-gray-300.rounded-full.dark:bg-gray-700.w-12
-  .flex.items-center.justify-between.pt-4
-    div
-      .h-2.5.bg-gray-300.rounded-full.dark:bg-gray-600.w-24.mb-2.5
-      .w-32.h-2.bg-gray-200.rounded-full.dark:bg-gray-700
-    .h-2.5.bg-gray-300.rounded-full.dark:bg-gray-700.w-12
-  .flex.items-center.justify-between.pt-4
-    div
-      .h-2.5.bg-gray-300.rounded-full.dark:bg-gray-600.w-24.mb-2.5
-      .w-32.h-2.bg-gray-200.rounded-full.dark:bg-gray-700
-    .h-2.5.bg-gray-300.rounded-full.dark:bg-gray-700.w-12
-  span.sr-only
-    | Loading...
+  - 4.times do
+    .flex.items-center.justify-between
+      div.flex.flex-col.scale-110.px-5.py-3
+        .h-3.bg-gray-300.rounded-full.dark:bg-gray-600.w-24.mb-2.5
+        .flex
+          .w-10.h-10.bg-gray-300.rounded-full
+          .flex.flex-col.ml-4
+            .w-32.h-2.bg-gray-200.rounded-full.dark:bg-gray-700.mt-2.mb-1
+            .w-32.h-2.bg-gray-200.rounded-full.dark:bg-gray-700.mb-1
+            .w-32.h-2.bg-gray-200.rounded-full.dark:bg-gray-700
+      .flex.flex-col
+        .h-2.5.bg-gray-300.rounded-full.dark:bg-gray-700.w-12.mb-2.mt-8
+        .h-2.5.bg-gray-300.rounded-full.dark:bg-gray-700.w-12.mb-2
+        .h-2.5.bg-gray-300.rounded-full.dark:bg-gray-700.w-12.mb-2
+        .h-2.5.bg-gray-300.rounded-full.dark:bg-gray-700.w-12

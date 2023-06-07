@@ -2,7 +2,7 @@ ul role='list'
   / Desktop view
   .hidden.lg:block.divide-y.divide-gray-100
     - @recipes.each do |recipe|
-      = link_to recipe_path(recipe), data: { 'turbo-frame': 'recipe-details' }, class: ' relative flex justify-between p-4 rounded-md cursor-pointer hover:bg-indigo-100' do
+      = link_to recipe_path(recipe), data: { 'turbo-frame': 'recipe-details' }, class: ' relative flex justify-between p-4 cursor-pointer hover:bg-indigo-100' do
         .flex.w-3/4.mt-5
           - if recipe.image.attached?
             = image_tag recipe.image, class: 'h-12 w-12 flex-none object-cover rounded-full bg-gray-50 mr-3'

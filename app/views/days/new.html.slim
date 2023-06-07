@@ -5,11 +5,22 @@ turbo-frame#day-modal
       | Assign recipe for #{display_date(day)}
     .flex.flex-col-reverse.w-full.p-10.mb-10.lg:flex-row
       - if recipe_count.positive?
-        .w-full.flex.flex-col.lg:pr-4.mb-5.lg:mb-0
+        .w-full.flex.flex-col.lg:pr-4.mb-5.lg:mb-0 class="h-[60vh]"
           h2.text-2xl.mb-6 Recipes
-          turbo-frame#recipes src = recipes_path(mode: :list)
-            = render 'components/days/new/recipes_skeleton'
+          div.pb-2
+            .relative.mt-2.rounded-md.shadow-sm
+              .pointer-events-none.absolute.inset-y-0.left-0.flex.items-center.pl-3
+                .w-5.h-5.text-gray-500
+                  = svg('magnifying-glass')
+              input.block.w-full.rounded-md.border-0.py-1.5.pl-10.text-gray-900.ring-1.ring-inset.ring-gray-300.placeholder:text-gray-400.focus:ring-2.focus:ring-inset.focus:ring-indigo-600.sm:text-sm.sm:leading-6[
+                type="text" name="search" placeholder="Filter by name"
+              ]
+          .overflow-y-auto
+            / Recipes list
+            turbo-frame#recipes src = recipes_path(mode: :list)
+              = render 'components/days/new/recipes_skeleton'
       .hidden.lg:block.w-full.flex.flex-col.pl-4 class="#{recipe_count.positive? ? 'w-1/2' : 'w-full'}"
+        / Selected recipe
         turbo-frame#recipe-details
           .text-center.border-2.py-4.border-dashed.border-gray-300.rounded-xl.h-full.flex.flex-col.justify-center
             .mx-auto.h-12.w-12.text-gray-400
@@ -32,6 +43,7 @@ turbo-frame#mobile-day-modal
       - if recipe_count.positive?
         .w-full.flex.flex-col.lg:pr-4.mb-5.lg:mb-0
           h2.text-2xl.mb-6 Recipes
+          / Recipes list
           turbo-frame#recipes src = recipes_path(mode: :list)
             = render 'components/days/new/recipes_skeleton'
       .hidden.lg:block.w-full.flex.flex-col.pl-4 class="#{recipe_count.positive? ? 'w-1/2' : 'w-full'}"

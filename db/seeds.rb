@@ -7,6 +7,8 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'factory_bot_rails'
+include FactoryBot::Syntax::Methods
 
 user1 = User.create(
   first_name: 'Alessandro',
@@ -54,26 +56,8 @@ user1.update(main_calendar: calendar1)
 user3.follow(calendar: calendar1)
 user3.follow(calendar: calendar3)
 
-recipe1 = Recipe.create(
-  title: 'Chicken with rice',
-  description: 'Lorem ipsum',
-  steps: ['Fry the chicken', 'Then put the rice'],
-  ingredients: ['1 Chicken', '1 kg of rice'],
-  author: user1
-)
+recipes = create_list(:recipe, 30, author: user1)
 
-recipe2 = Recipe.create(
-  title: 'Chips and fish',
-  description: 'Lorem ipsum',
-  steps: ['Fry the chips', 'Then put the fish'],
-  ingredients: ['1 Fish', '1 kg of chips'],
-  author: user1
-)
-
-(4.month.ago.to_date..Date.today.end_of_month).each do |date|
-  Day.create!(
-    when: date,
-    recipe: [recipe1, recipe2].sample,
-    calendar: calendar1
-  )
+(Date.today..Date.today.next_month.end_of_month).each do |date|
+  create(:day, when: date, calendar: calendar1, recipe: recipes.sample)
 end

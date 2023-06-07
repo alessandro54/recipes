@@ -12,12 +12,12 @@ RSpec.describe DashboardsController, type: :controller do
   describe 'GET index' do
     it 'renders the index template' do
       get :index
-      expect(response).to render_template(:show)
+      expect(response).to render_template(:index)
     end
 
     it 'renders with the base layout' do
       get :index
-      expect(response).to render_template(:show, layout: 'layouts/base')
+      expect(response).to render_template(:index, layout: 'layouts/base')
     end
   end
 end

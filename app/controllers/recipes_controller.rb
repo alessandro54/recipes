@@ -2,22 +2,14 @@
 
 class RecipesController < BaseController
   def index
-    recipes = Recipe.with_photos.where(author: current_user)
-    render locals: {
-      recipes:,
-      mode: params.fetch(:mode, 'grid')
-    }
+    @recipes = Recipe.with_photos.where(author: current_user)
   end
 
   def show
-    recipe = Recipe.find(params[:id])
-    render locals: {
-      recipe:
-    }
+    @recipe = Recipe.find(params[:id])
   end
 
   def new
-    @params = params
-    render :new
+    @recipe = Recipe.new
   end
 end

@@ -6,19 +6,20 @@ FactoryBot.define do
   factory :recipe do
     title { Faker::Food.dish }
     description { Faker::Food.description }
+    duration { rand(1..12) * 10 }
     steps { Array.new(8) { Faker::Lorem.sentence } }
     ingredients { Array.new(4) { Faker::Food.unique.ingredient } }
+
     transient do
-      image { Faker::LoremFlickr.image(size: '500x300', search_terms: %w[dish food]) }
+      image_path { Faker::LoremFlickr.image(size: '500x300', search_terms: %w[dish food]) }
     end
+
     association :author, factory: :user
 
-    after(:build) do |image, evaluator|
-      image.image.attach(
-        io: URI.open(evaluator.image),
-        filename: 'image.jpg',
-        content_type: 'image/jpeg'
-      )
+    after(:create) do |recipe, evaluator|
+      recipe.image.attach(io: URI.parse(evaluator.image_path).open,
+                          filename: 'recipe_image.jpg',
+                          content_type: 'image/jpg')
     end
   end
 end

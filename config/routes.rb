@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   draw(:users)
   # Defines the root path route ("/")
   # root "articles#index"
-  root 'dashboards#index'
-  get 'my_calendar', to: 'calendars#show'
+  root to: 'home#index'
+
+  get 'dashboard', to: 'dashboards#index'
+  get 'my_calendar', to: 'main_calendars#index'
+
+  resources :main_calendars, only: :create3
   resources :calendars do
     resources :days, only: %i[show new edit update], param: :date
   end

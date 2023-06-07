@@ -6,23 +6,15 @@ class CalendarsController < BaseController
   before_action :set_date, only: :show
 
   def index
-    render locals: {
-      calendars: calendars_service.all
-    }
+    @calendars = calendars_service.all
   end
 
   def new
-    render locals: {
-      calendar: Calendar.new
-    }
+    @calendar = Calendar.new
   end
 
   def show
-    render locals: {
-      calendar:,
-      date:,
-      calendar_days: days_service.generate_for(date:)
-    }
+    @calendar_days = days_service.generate_for(date:)
   end
 
   private
@@ -34,14 +26,6 @@ class CalendarsController < BaseController
 
   def set_date
     @date = params[:date].present? ? Date.parse(params[:date]) : Date.today
-  end
-
-  def render_calendar(calendar_days, new_date = date)
-    render :change_month, locals: {
-      calendar:,
-      date: new_date,
-      calendar_days:
-    }
   end
 
   def days_service

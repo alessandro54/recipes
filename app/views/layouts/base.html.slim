@@ -16,7 +16,7 @@ html
       == vite_stylesheet_tag 'application', data: { 'turbo-track': 'reload' }
       == vite_typescript_tag 'application'
 
-  body.w-screen.h-screen.lg:flex.select-none data-controller="nav--desktop"
+  body.w-screen.h-screen.lg:flex.select-none.scrollbar data-controller="nav--desktop"
     nav data-controller='nav--mobile' data-nav--desktop-target='nav' class="lg:w-[288px]"
       / Off-canvas menu for mobile, show/hide based on off-canvas menu state.
       = render 'components/layouts/base/side_bar'

@@ -15,3 +15,10 @@
     height: 100%;
   }
 }
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 0px;
+    height: 13px;
+  }
+}

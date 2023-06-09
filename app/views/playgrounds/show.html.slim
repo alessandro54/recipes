@@ -8,12 +8,12 @@
     ]
       .flex.items-center.mb-5
         h4.text-base.mr-4 Without JS
-        = button_to notifications_path(mode: 'alert', message: 'This is an alert'), method: :post, class: 'rounded-md bg-rose-500 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50' do
+        = button_to notifications_path(mode: 'alert', message: 'This is an alert'), method: :post, class: 'rounded-md bg-rose-500 px-3.5 py-2.5 text(sm gray-900) font-semibold shadow-sm ring-1 ring(inset gray-300) hover:bg-rose-200' do
           | Trigger alert
       .flex.items-center
         h4.text-base.mr-4 With JS
-        button.rounded-md.bg-rose-500.text-sm.font-semibold.text-gray-900.shadow-sm.ring-1.ring-inset.ring-gray-300.hover:bg-gray-50[
-          class = "px-3.5 py-2.5"
+        button.rounded-md.bg-rose-500.font-semibold.shadow-sm.hover:bg-gray-50[
+          class = "px-3.5 py-2.5 text(sm gray-900) ring(1 inset gray-300)"
           data-action="notifications--simple#create"
           data-notifications--simple-mode-param="alert"
           data-notifications--simple-message-param="This is an alert"

@@ -11,7 +11,7 @@
               data-calendar-url-param = calendar_day_path(calendar_id: @calendar.id, date: day[:date])
             ]
               - if day[:today] && !override_day
-                time.flex.h-8.w-8.text-md.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white datetime=day[:date].to_s
+                time.flex.h-8.w-8.text-base.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white datetime=day[:date].to_s
                   = day[:date].day
               - else
                 time datetime=day[:date].to_s
@@ -24,7 +24,7 @@
               data-calendar-url-param = new_calendar_day_path(calendar_id: @calendar.id, date: day[:date])
             ]
               - if day[:today] && !override_day
-                time.flex.h-8.w-8.text-md.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white datetime=day[:date].to_s
+                time.flex.h-8.w-8.text-base.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white datetime=day[:date].to_s
                   = day[:date].day
               - else
                 time datetime=day[:date].to_s

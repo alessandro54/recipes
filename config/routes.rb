@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboards#index'
   get 'my_calendar', to: 'main_calendars#index'
 
-  resources :main_calendars, only: :create3
+  resources :main_calendars, only: :create
   resources :calendars do
     resources :days, only: %i[show new edit update], param: :date
   end

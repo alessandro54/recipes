@@ -13,7 +13,7 @@
     - if current_user.avatar.attached?
       img
     - else
-      .relative.inline-flex.items-center.justify-center.w-8.h-8.overwflow-hidden.bg-indigo-200.rounded-full
+      .relative.inline-flex.items-center.justify-center.w-8.h-8.overflow-hidden.bg-indigo-200.rounded-full
         span.font-medium.text-gray-600.text-sm = current_user.mini_name
   #tooltip-left.absolute.z-10.invisible.inline-block.px-3.py-2.text-sm.font-medium.text-white.bg-gray-900.rounded-lg.shadow-sm.opacity-0.tooltip.dark:bg-gray-700.transition-opacity.duration-300[role="tooltip"]
     |  Go to profile

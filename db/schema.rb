@@ -79,7 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_194658) do
     t.string "ingredients", default: [], array: true
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
-    t.datetime "updated_axt", null: false
+    t.datetime "updated_at", null: false
     t.integer "duration"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end

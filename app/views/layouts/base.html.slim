@@ -13,10 +13,14 @@ html
       == csp_meta_tag
 
       == vite_client_tag
-      /== vite_stylesheet_tag 'application', data: { 'turbo-track': 'reload' }
+      == vite_stylesheet_tag 'application', data: { 'turbo-track': 'reload' }
       == vite_typescript_tag 'application'
 
-  body.w-screen.h-screen.select-none.scrollbar data-controller="nav--desktop" class="!block !lg:flex" style="display: none"
+  body.w-screen.h-screen.select-none.scrollbar[
+    data-controller="nav--desktop"
+    class = ('!block !lg:flex' unless Rails.env.test?)
+    style = ('display: none' unless Rails.env.test?)
+  ]
     nav data-controller='nav--mobile' data-nav--desktop-target='nav' class="lg:w-[288px]"
       / Off-canvas menu for mobile, show/hide based on off-canvas menu state.
       = render 'components/layouts/base/side_bar'

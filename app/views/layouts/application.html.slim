@@ -15,6 +15,9 @@ html
       == vite_client_tag
       == vite_stylesheet_tag 'application', data: { 'turbo-track': 'reload' }
       == vite_typescript_tag 'application'
-  body
+  body[
+    class = ('!block' unless Rails.env.test?)
+    style = ('display: none' unless Rails.env.test?)
+  ]
     == yield
   = render 'components/layouts/notifications', flash:

@@ -6,7 +6,8 @@ Given('the following user exists:') do |table|
 end
 
 And('I am on the login page') do
-  visit root_path
+  visit login_path
+  expect(page).to have_current_path('/login')
 end
 
 When('I fill in the following:') do |table|

@@ -11,22 +11,22 @@ turbo-frame#recipe-details
           dt.text-sm.font-medium.leading-6.text-gray-900
             | Title
           dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
-            | #{@recipe.title}
+            = @recipe.title
     .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
       dt.text-sm.font-medium.leading-6.text-gray-900
         | Author
       dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
-        | #{@recipe.author.full_name}
+        = @recipe.author.full_name
     .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
       dt.text-sm.font-medium.leading-6.text-gray-900
         | Preparation time
       dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
-        | #{minutes_to_hours_and_minutes(@recipe.duration)}
+        = minutes_to_hours_and_minutes(@recipe.duration)
     .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
       dt.text-sm.font-medium.leading-6.text-gray-900
         | Description
       dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0
-        | #{@recipe.description}
+        = @recipe.description
     .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
       dt.text-sm.font-medium.leading-6.text-gray-900
         | Ingredients

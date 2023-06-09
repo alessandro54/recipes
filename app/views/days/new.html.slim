@@ -5,15 +5,19 @@ turbo-frame#day-modal
       | Assign recipe for #{display_date(day)}
     .flex.flex-col-reverse.w-full.p-10.mb-10.lg:flex-row
       - if recipe_count.positive?
-        .w-full.flex.flex-col.lg:pr-4.mb-5.lg:mb-0 class="h-[60vh]"
+        .w-full.flex.flex-col.lg:pr-4.mb-5.lg:mb-0 class='h-[60vh]'
           h2.text-2xl.mb-6 Recipes
           div.pb-2
             .relative.mt-2.rounded-md.shadow-sm
               .pointer-events-none.absolute.inset-y-0.left-0.flex.items-center.pl-3
                 .w-5.h-5.text-gray-500
-                  = svg('magn')
+                  = svg('magnifying-glass')
               input.block.w-full.rounded-md.border-0.py-1.5.pl-10.text-gray-900.ring-1.ring-inset.ring-gray-300.placeholder:text-gray-400.focus:ring-2.focus:ring-inset.focus:ring-indigo-600.sm:text-sm.sm:leading-6[
-                type="text" name="search" placeholder="Filter by name"
+                type='text'
+                name='search'
+                placeholder='Filter by name'
+                data-recipe-target='input'
+                data-action='recipe#change'
               ]
           .overflow-y-auto
             / Recipes list
@@ -43,6 +47,18 @@ turbo-frame#mobile-day-modal
       - if recipe_count.positive?
         .w-full.flex.flex-col.lg:pr-4.mb-5.lg:mb-0
           h2.text-2xl.mb-6 Recipes
+          div.pb-2
+            .relative.mt-2.rounded-md.shadow-sm
+              .pointer-events-none.absolute.inset-y-0.left-0.flex.items-center.pl-3
+                .w-5.h-5.text-gray-500
+                  = svg('magnifying-glass')
+              input.block.w-full.rounded-md.border-0.py-1.5.pl-10.text-gray-900.ring-1.ring-inset.ring-gray-300.placeholder:text-gray-400.focus:ring-2.focus:ring-inset.focus:ring-indigo-600.sm:text-sm.sm:leading-6[
+                type='text'
+                name='search'
+                placeholder='Filter by name'
+                data-recipe-target='input'
+                data-action='recipe#change'
+              ]
           / Recipes list
           turbo-frame#recipes src = recipes_path(mode: :list)
             = render 'components/days/new/recipes_skeleton'

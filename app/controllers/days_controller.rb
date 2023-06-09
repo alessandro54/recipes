@@ -11,15 +11,9 @@ class DaysController < BaseController
     }
   end
 
-  def show
-    render locals: { day: }
-  end
+  def show; end
 
-  def edit
-    render locals: {
-      day:
-    }
-  end
+  def edit; end
 
   private
 

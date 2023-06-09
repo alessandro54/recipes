@@ -1,22 +1,22 @@
-.lg:flex.lg:h-full.lg:flex-col.px-8.py-6 data-controller="modals--day modals--recipe calendar"
+.lg:flex.lg:h-full.lg:flex-col.px-8.py-6 data-controller="modals--day modals--recipe calendar recipe"
   h1.text-4xl.font-bold My calendar
-  @calendar.h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-center
+  turbo-frame#calendar.h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-center
     = render 'components/calendars/navigator'
     .grid.grid-cols-7.gap-px.border-b.border-gray-300.bg-gray-200.text-center.text-xs.font-semibold.leading-6.text-gray-700.lg:flex-none
-        - %w[Mon Tue Wed Thu Fri Sat Sun].each do |day|
-          .flex.justify-center.bg-slate-300.py-2.text-black.font-bold.text-sm
-            span = day[0]
-            span.sr-only.sm:not-sr-only = day[1..]
+      - %w[Mon Tue Wed Thu Fri Sat Sun].each do |day|
+        .flex.justify-center.bg-slate-300.py-2.text-black.font-bold.text-sm
+          span = day[0]
+          span.sr-only.sm:not-sr-only = day[1..]
     .bg-slate-100.text-xs.leading-6.text-gray-700.lg:flex.shadow.ring-1.ring-black.ring-opacity-5
       = render 'components/calendars/calendar', override_day: @date != Date.today
 
   = render 'components/shared/modals/default',
-            id: 'dayModal',
-            frame_id: 'day-modal',
-            close_action: 'modals--day#close',
-            size: :large
+          id: 'dayModal',
+          frame_id: 'day-modal',
+          close_action: 'modals--day#close',
+          size: :large
 
   = render 'components/shared/modals/isolated',
-            id: 'newRecipeModal',
-            frame_id: 'new-recipe-modal',
-            close_action: 'modals--recipe#close'
+          id: 'newRecipeModal',
+          frame_id: 'new-recipe-modal',
+          close_action: 'modals--recipe#close'

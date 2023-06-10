@@ -15,7 +15,8 @@ Given('I am on the calendar page') do
 end
 
 When('I click on an empty calendar day') do
-  click_button 'empty-day-1'
+  @date = Date.today.beginning_of_month
+  click_button "empty-day-#{@date.day}"
 end
 
 Then('I should see the recipe list') do
@@ -23,16 +24,26 @@ Then('I should see the recipe list') do
   @recipes.each do |recipe|
     expect(page).to have_text(recipe.title)
   end
-  screenshot_and_open_image
-
 end
 
 When('I select a recipe from the list') do
+  @clicked = @recipes.first
   within '#recipes' do
-    click_link @recipes.first.id
+    click_link @clicked.id
   end
 end
 
 Then('I should see the recipe details displayed') do
-  screenshot_and_open_image
+  within '#details-mobile' do
+    expect(page).to have_text(@clicked.title)
+    expect(page).to have_text(@clicked.description)
+  end
+end
+
+And('I select the {string} button') do |button|
+  click_button button
+end
+
+Then('the recipe should be assigned to the calendar day') do
+  expect(page).to have_text @clicked.title
 end

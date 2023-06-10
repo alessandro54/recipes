@@ -53,7 +53,7 @@ turbo-frame#recipe-details
 turbo-frame#mobile-day-modal
   /actions
   .block.lg:hidden
-    .container
+    #details-mobile.container
       / If is mobile turbo driving
       - if params[:calendar_id].present? && params[:date].present?
         .flex.p-3
@@ -114,4 +114,7 @@ turbo-frame#mobile-day-modal
 
     - if params[:calendar_id].present? && params[:date].present?
       .container
-        /# TODO ASSIGN BUTTON
+        = button_to calendar_days_path(calendar_id: params[:calendar_id]), class: 'w-32 items-center rounded-md bg-indigo-600 px-3 py-2 text(sm white) font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 gap-x-3 flex justify-center', data: { 'turbo-frame': :calendar, action: 'modals--recipe#close modals--day#close', 'turbo-method': :post}, params: { day: { recipe_id: @recipe.id, when: params[:date], calendar_id: params[:calendar_id] } } do
+          .w-5.h-5
+            = svg('plus')
+          | Assign recipe

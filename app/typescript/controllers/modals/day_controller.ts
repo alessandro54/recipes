@@ -1,4 +1,4 @@
-import { Controller } from '@hotwired/stimulus';
+import Controller from '@/support/controller';
 import { Modal } from 'flowbite';
 import type { ModalOptions, ModalInterface } from 'flowbite'
 
@@ -20,10 +20,12 @@ export default class extends Controller {
   }
 
   show(): void {
-    this.modal.show();
+    this.modal.show()
+    this.removeClass(this.modal._targetEl as HTMLElement, 'hidden')
   }
 
   close(): void {
     this.modal.hide();
+    this.addClass(this.modal._targetEl as HTMLElement, 'hidden')
   }
 }

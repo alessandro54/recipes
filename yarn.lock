@@ -390,6 +390,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@twind/preset-ext@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "@twind/preset-ext@npm:1.0.7"
+  peerDependencies:
+    "@twind/core": ^1.1.0
+    typescript: ^4.8.4
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 3e5e107255d632155be6bc5b49a6bec4a2c8332767ad2334cc2bad230a9565d6e0f953b61fcd86b19a0c232b8c71ba972772045cb5a57d7a78b994a971f8fde0
+  languageName: node
+  linkType: hard
+
 "@twind/preset-tailwind-forms@npm:^1.1.2":
   version: 1.1.2
   resolution: "@twind/preset-tailwind-forms@npm:1.1.2"
@@ -2956,6 +2969,7 @@ __metadata:
     "@rails/ujs": ^7.0.5
     "@twind/core": ^1.1.3
     "@twind/intellisense": ^1.1.3
+    "@twind/preset-ext": ^1.0.7
     "@twind/preset-tailwind": ^1.1.4
     "@twind/preset-tailwind-forms": ^1.1.2
     "@twind/typography": ^0.0.2

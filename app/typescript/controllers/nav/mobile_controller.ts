@@ -1,4 +1,4 @@
-import { Controller } from '@hotwired/stimulus';
+import Controller from '@/support/controller'
 
 export default class extends Controller {
   static targets = ['nav', 'backdrop', 'menu', 'button'];
@@ -13,28 +13,28 @@ export default class extends Controller {
   }
 
   public open(): void {
-    this.navTarget.classList.remove('hidden');
+    this.removeClass(this.navTarget, 'hidden')
     setTimeout(() => {
-      this.backdropTarget.classList.remove('animate-enter');
-      this.buttonTarget.classList.remove('animate-enter');
-      this.menuTarget.classList.remove('animate-nav-enter');
-    }, 300);
+      this.removeClass(this.backdropTarget, 'animate-enter');
+      this.removeClass(this.buttonTarget, 'animate-enter');
+      this.removeClass(this.menuTarget, 'animate-nav-enter');
+
+    }, 250);
   }
 
   public close(): void {
-    this.backdropTarget.classList.add('animate-leave');
-    this.buttonTarget.classList.add('animate-leave');
-    this.menuTarget.classList.add('animate-nav-leave');
+    this.addClass(this.backdropTarget, 'animate-leave');
+    this.addClass(this.buttonTarget, 'animate-leave');
+    this.addClass(this.menuTarget, 'animate-nav-leave');
 
     setTimeout(() => {
-      this.navTarget.classList.add('hidden');
+      this.addClass(this.navTarget, 'hidden')
       this.init();
-      this.backdropTarget.classList.remove('animate-leave');
-      this.buttonTarget.classList.remove('animate-leave');
-      this.menuTarget.classList.remove('animate-nav-leave');
-    }, 290);
+      this.removeClass(this.backdropTarget, 'animate-leave');
+      this.removeClass(this.buttonTarget, 'animate-leave');
+      this.removeClass(this.menuTarget, 'animate-nav-leave');
+    }, 250);
   }
-
 
   public backdropClose(e: Event): void {
     if (e.currentTarget !== e.target) return;
@@ -42,8 +42,8 @@ export default class extends Controller {
   }
 
   private init(): void {
-    this.backdropTarget.classList.add('animate-enter');
-    this.buttonTarget.classList.add('animate-enter');
-    this.menuTarget.classList.add('animate-nav-enter');
+    this.addClass(this.backdropTarget, 'animate-enter');
+    this.addClass(this.buttonTarget, 'animate-enter');
+    this.addClass(this.menuTarget, 'animate-nav-enter');
   }
 }

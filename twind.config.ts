@@ -1,13 +1,22 @@
 import { defineConfig, injectGlobal } from '@twind/core';
 import presetTailwind from '@twind/preset-tailwind';
 import presetTailwindForms from '@twind/preset-tailwind-forms';
+import presetExt from '@twind/preset-ext';
 export default defineConfig({
   presets: [
     presetTailwind(),
     presetTailwindForms(),
+    presetExt()
   ],
   theme: {
     extend: {
+      content: [
+        './app/helpers/**/*.rb',
+        './app/assets/stylesheets/**/*.css',
+        './app/views/**/*.{html,slim,html.slim}',
+        './app/typescript/**/*.ts',
+        './node_modules/flowbite/**/*.js'
+      ],
       animation: {
         enter: 'enter 0.3s',
         leave: 'leave 0.3s',

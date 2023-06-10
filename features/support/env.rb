@@ -82,3 +82,5 @@ Capybara.configure do |config|
   config.javascript_driver = :selenium
   config.asset_host = 'http://localhost:3037'
 end
+
+# screenshot: screenshot_and_open_image

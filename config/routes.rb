@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :main_calendars, only: :create
   resources :calendars do
-    resources :days, only: %i[show new edit update], param: :date
+    resources :days, param: :date
   end
   resources :recipes
 

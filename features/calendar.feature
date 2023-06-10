@@ -14,4 +14,7 @@ Feature: Calendar
     When I visit the calendar index page
     Then I should see my main calendar
 
-
+  Scenario: Calendar List
+    Given I have calendars title 'Test test' and 'Test2 test2'
+    When I go to the list of calendars
+    Then I should see 'Test test' and 'Test2 test2' titles

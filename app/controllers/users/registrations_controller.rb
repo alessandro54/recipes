@@ -14,9 +14,11 @@ module Users
     # end
 
     # POST /resource
-    # def create
-    #   super
-    # end
+    def create
+      super do |resource|
+        flash[:simple_alert] = resource.errors.full_messages if resource.errors.any?
+      end
+    end
 
     # GET /resource/edit
     # def edit

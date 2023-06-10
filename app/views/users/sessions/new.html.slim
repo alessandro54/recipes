@@ -9,6 +9,7 @@
   .mt-10.sm:mx-auto.sm:w-full class='sm:max-w-[480px]'
     .bg-white.px-6.py-12.shadow.sm:rounded-lg.sm:px-12
       = form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'space-y-6' } do |f|
+        = render "devise/shared/error_messages", resource: resource
         div
           = f.label :email, autofocus: true, class: 'block text-sm font-medium leading-6 text-gray-900'
           .mt-2
@@ -31,7 +32,7 @@
             = link_to 'Forgot password?', '/', class: 'font-medium text-indigo-600 hover:text-indigo-500'
         div
           = f.submit 'Sign in',
-                    class: 'w-full flex justify-center py-1.5 px-3 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'
+                    class: 'cursor-pointer w-full flex justify-center py-1.5 px-3 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'
       div
         .relative.mt-10
           .absolute.inset-0.flex.items-center aria-hidden='true'

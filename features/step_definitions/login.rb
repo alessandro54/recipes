@@ -22,5 +22,5 @@ And('I click on the {string} button') do |button_text|
 end
 
 Then('I should be logged in') do
-  expect(page).to have_content('Logged in succesfully.')
+  expect(page).to have_content('Logged in successfully.')
 end

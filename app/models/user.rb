@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true, format: { with: /\A[a-zA-Z']+\z/ }
   validates :last_name, presence: true, format: { with: /\A[a-zA-Z']+\z/ }
   validates :email, uniqueness: true
-  validates :username, allow_blank: true, uniqueness: true, format: { with: /\A\w+\z/ }
+  validates :username, uniqueness: true, format: { with: /\A\w+\z/, allow_blank: true }
 
   def full_name
     "#{first_name} #{last_name}"

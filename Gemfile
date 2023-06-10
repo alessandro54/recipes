@@ -63,6 +63,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'i18n-tasks', '~> 1.0.12'
   gem 'ruby-lsp', require: false
   gem 'solargraph'
   gem 'web-console'

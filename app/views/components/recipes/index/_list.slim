@@ -22,7 +22,7 @@ ul role='list'
     / Mobile view
   .lg:hidden.divide-y.divide-gray-100
     - @recipes.each do |recipe|
-      = link_to recipe_path(recipe, date: params[:date], calendar_id: params[:calendar_id]), data: { 'turbo-frame': 'mobile-day-modal', 'recipe-target': 'recipe', 'title': recipe.title }, class: 'relative flex justify-between gap(x-2 sm:x-6) pr-0 pl-4 lg:px-4 py-3 mt-2 cursor-pointer' do
+      = link_to recipe_path(recipe, date: params[:date], calendar_id: params[:calendar_id]), id: recipe.id ,data: { 'turbo-frame': 'mobile-day-modal', 'recipe-target': 'recipe', 'title': recipe.title }, class: 'relative flex justify-between gap(x-2 sm:x-6) pr-0 pl-4 lg:px-4 py-3 mt-2 cursor-pointer' do
         .flex.gap-x-4.mt-6.w-11/12.sm:w-3/4
           - if recipe.image.attached?
             = image_tag recipe.image.variant(resize_to_limit: [100, 50]), class: 'h-12 w-12 object-cover flex-none rounded-full bg-gray-50'

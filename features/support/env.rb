@@ -4,8 +4,10 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
-require 'cucumber/rails'
 require 'capybara-screenshot/cucumber'
+require 'cucumber/rails'
+require 'capybara/cucumber'
+require 'selenium/webdriver'
 
 # frozen_string_literal: true
 
@@ -60,5 +62,23 @@ end
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
-Cucumber::Rails::Database.javascript_strategy = :truncation
-Capybara.asset_host = 'http://localhost:3037/'
+Cucumber::Rails::Database.javascript_strategy = :transaction
+
+Capybara.register_driver :selenium do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('--headless')
+  options.add_argument('--no-sandbox')
+  options.add_argument('--disable-gpu')
+  options.add_argument('--disable-dev-shm-usage')
+
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :chrome,
+    options:
+  )
+end
+
+Capybara.configure do |config|
+  config.javascript_driver = :selenium
+  config.asset_host = 'http://localhost:3037'
+end

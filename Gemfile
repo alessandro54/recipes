@@ -66,7 +66,6 @@ end
 group :development do
   gem 'i18n-tasks', '~> 1.0.12'
   gem 'ruby-lsp', require: false
-  gem 'solargraph'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   gem 'rack-mini-profiler'
   gem 'rubocop', require: false

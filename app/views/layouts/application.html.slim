@@ -16,7 +16,7 @@ html
       == vite_stylesheet_tag 'application', data: { 'turbo-track': 'reload' }
       == vite_typescript_tag 'application'
   body[
-    class = ('!block' unless Rails.env.test?)
+    class = '!block'
     style = ('display: none' unless Rails.env.test?)
   ]
     == yield

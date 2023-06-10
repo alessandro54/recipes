@@ -18,7 +18,7 @@ html
 
   body.w-screen.h-screen.select-none.scrollbar[
     data-controller="nav--desktop"
-    class = ('!block !lg:flex' unless Rails.env.test?)
+    class ='!block !lg:flex'
     style = ('display: none' unless Rails.env.test?)
   ]
     nav data-controller='nav--mobile' data-nav--desktop-target='nav' class="lg:w-[288px]"

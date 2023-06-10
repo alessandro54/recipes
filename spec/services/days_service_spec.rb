@@ -31,5 +31,6 @@ RSpec.describe DaysService, type: :service do
         }
       )
     end
+
   end
 end

@@ -11,7 +11,6 @@ Given('I am logged in as {string} with password {string}') do |email, password|
   click_on 'Sign in'
 
   expect(page).to have_text('Logged in successfully.')
-  screenshot_and_open_image
 end
 
 Given('I have calendars title {string} and {string}') do |title1, title2|

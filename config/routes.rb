@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :notifications, only: :create, format: :turbo_stream
 
-  if Rails.env.development?
+  unless Rails.env.production?
     mount Rswag::Ui::Engine => '/api-docs'
     mount Rswag::Api::Engine => '/api-docs'
     get 'docs', to: 'redoc#index'

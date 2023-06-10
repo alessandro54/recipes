@@ -1,0 +1,22 @@
+---
+es:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              bad_email: debe tener el formato correcto
+              blank: debe de estar presente
+            first_name:
+              blank: needs to be provided
+              invalid: format is invalid
+            last_name:
+              blank: needs to be provided
+              invalid: format is invalid
+            password:
+              blank: must be provided
+  errors:
+    messages:
+      not_saved: Not saved
+  hello: Hello world

@@ -60,17 +60,18 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails', '~> 6.0.0'
+  gem 'rswag'
 end
 
 group :development do
   gem 'i18n-tasks', '~> 1.0.12'
   gem 'ruby-lsp', require: false
   gem 'solargraph'
-  gem 'web-console'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   gem 'rack-mini-profiler'
-
+  gem 'rubocop', require: false
   gem 'slim_lint'
+  gem 'web-console'
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"

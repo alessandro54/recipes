@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Given('I am logged in as {string} with password {string}') do |email, password|
-
   @user = FactoryBot.create(:user, email:, password:)
 
   visit login_path
@@ -16,7 +15,6 @@ Given('I am logged in as {string} with password {string}') do |email, password|
 end
 
 Given('I have calendars title {string} and {string}') do |title1, title2|
-
   @user.calendars << @calendar1 = FactoryBot.create(:calendar, title: title1)
   @user.calendars << @calendar2 = FactoryBot.create(:calendar, title: title2)
 

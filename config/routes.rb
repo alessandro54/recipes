@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   draw(:users)
   # Defines the root path route ("/")
-  # root "articles#index"
   root to: 'home#index'
 
   get 'dashboard', to: 'dashboards#index'
@@ -18,5 +17,10 @@ Rails.application.routes.draw do
 
   resources :notifications, only: :create, format: :turbo_stream
 
-  resource :playground if Rails.env.development?
+  if Rails.env.development?
+    mount Rswag::Ui::Engine => '/api-docs'
+    mount Rswag::Api::Engine => '/api-docs'
+    get 'docs', to: 'redoc#index'
+    resource :playground
+  end
 end

@@ -4,7 +4,7 @@
 class Calendar < ApplicationRecord
   before_create :create_id
 
-  has_and_belongs_to_many :owners, class_name: :User, join_table: :user_calendars
+  has_and_belongs_to_many :owners, class_name: 'User', join_table: 'user_calendars'
 
   has_many :follows, dependent: :destroy
   has_many :followers, through: :follows, source: :follower

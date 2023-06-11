@@ -11,6 +11,13 @@ RSpec.describe Calendar, type: :model do
     it { should have_many(:recipes) }
   end
 
+  describe 'validations' do
+    it { should validate_presence_of(:title) }
+    it { should allow_value('valid title').for(:title) }
+    it { should allow_value('title with spaces!').for(:title) }
+    it { should_not allow_value('title with @#$%').for(:title) }
+  end
+
   describe '#owned?' do
     subject { create :calendar, :with_owners }
     let(:user) { subject.owners.first }

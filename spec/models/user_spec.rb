@@ -16,6 +16,9 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:first_name) }
     it { should validate_presence_of(:last_name) }
     it { should validate_uniqueness_of(:email).case_insensitive }
+    it { should validate_uniqueness_of(:username).allow_blank }
+    it { should allow_value('sanity44').for(:username) }
+    it { should_not allow_value('sanity goes to a park').for(:username) }
   end
 
   describe '#full_name' do

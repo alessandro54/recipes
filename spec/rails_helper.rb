@@ -35,10 +35,13 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
   DatabaseCleaner.allow_remote_database_url = true
-  DatabaseCleaner.clean_with(:deletion)
-  DatabaseCleaner.strategy = :transaction
+
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
 
   config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
   end
 

@@ -31,10 +31,4 @@ RSpec.describe RecipesController, type: :controller do
       expect(response).to render_template(:new)
     end
   end
-
-  describe 'POST #create' do
-    it 'saves a new recipe into the database' do
-      raise 'Not Implemented'
-    end
-  end
 end

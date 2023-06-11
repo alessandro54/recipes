@@ -1,0 +1,6 @@
+~append~>notifications
+  template
+    = render 'components/shared/notifications/simple', mode: :success, message: 'Successfully created'
+~replace~>calendar
+  template
+    = render 'components/calendars/calendar', override_day: @date != Date.today

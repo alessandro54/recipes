@@ -16,15 +16,17 @@ class DaysController < BaseController
   def edit; end
 
   def create
-    @day = Day.new(day_params)
+    @calendar = Calendar.find(day_params.fetch(:calendar_id))
+    @date = Date.parse(day_params.fetch(:when))
 
-    if @day.valid?
-      @day.save
-    else
-      flash[:simple_alert] = 'There was an error'
+    if Day.create(day_params)
+      @calendar_days = days_service.generate_for(date: @date)
+      respond_to do |format|
+        format.turbo_stream { render :create }
+      end
     end
-
-    redirect_to calendar_path(params[:calendar_id])
+  rescue Date::Error
+    redirect_to calendar_path(@calendar), alert: 'There was an error with the provided date'
   end
 
   private
@@ -34,8 +36,12 @@ class DaysController < BaseController
   end
 
   def day_params
-    params.require(:day).permit(:when, :calendar_id, :recipe_id)
+    params.require(:day).permit(:when, :recipe_id).merge(calendar_id: params[:calendar_id])
   end
 
-  attr_reader :day
+  def days_service
+    @days_service ||= DaysService.new(calendar:)
+  end
+
+  attr_reader :day, :calendar
 end

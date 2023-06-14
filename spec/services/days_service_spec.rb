@@ -3,23 +3,20 @@
 require 'rails_helper'
 
 RSpec.describe DaysService, type: :service do
-  describe '#generate_for' do
-    let(:calendar) { create :calendar }
-    it 'returns an array of 5 weeks' do
-      result = described_class.new(calendar:).generate_for(
-        date: Date.new(2022, 2, 1)
-      )
+  subject { described_class.new(calendar:) }
+  let(:calendar) { create :calendar }
 
-      expect(result).to be_an(Array)
-      expect(result.size).to eq 5
-      expect(result.first.size).to eq 7
+  describe '#generate_for' do
+    let(:payload) { subject.generate_for(date: Date.new(2022, 2, 1)) }
+
+    it 'returns an array of 5 weeks' do
+      expect(payload).to be_an(Array)
+      expect(payload.size).to eq 5
+      expect(payload.first.size).to eq 7
     end
 
     it 'returns the correct form of the payload' do
-      result = described_class.new(calendar:).generate_for(
-        date: Date.new(2022, 2, 1)
-      )
-      day = result.first.first
+      day = payload.flatten.first
 
       expect(day).to eq(
         {
@@ -31,6 +28,23 @@ RSpec.describe DaysService, type: :service do
         }
       )
     end
+  end
 
+  describe '#prev_month' do
+    let(:payload) { subject.prev_month(Date.new(2023, 4, 21)).flatten }
+
+    it 'returns the previous month' do
+      expect(payload.first[:date]).to eq(Date.new(2023, 2, 27))
+      expect(payload.last[:date]).to eq(Date.new(2023, 4, 2))
+    end
+  end
+
+  describe '#next_month' do
+    let(:payload) { subject.next_month(Date.new(2023, 4, 21)).flatten }
+
+    it 'returns the next month' do
+      expect(payload.first[:date]).to eq(Date.new(2023, 5, 1))
+      expect(payload.last[:date]).to eq(Date.new(2023, 6, 4))
+    end
   end
 end

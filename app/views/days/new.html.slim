@@ -22,7 +22,7 @@ turbo-frame#day-modal
               ]
           .overflow-y-auto
             / Recipes list
-            turbo-frame#recipes src = recipes_path(mode: :list)
+            turbo-frame#recipes data-turbo-permanent ='' src = recipes_path(mode: :list, date: params[:date], calendar_id: params[:calendar_id])
               = render 'components/days/new/recipes_skeleton'
       .hidden.lg:block.w-full.flex.flex-col.pl-4 class="#{recipe_count.positive? ? 'w-1/2' : 'w-full'}"
         / Selected recipe

@@ -17,10 +17,6 @@ class DaysService
     )
   end
 
-  def for_today
-    generate_for
-  end
-
   def prev_month(date)
     generate_for(date: date.prev_month)
   end

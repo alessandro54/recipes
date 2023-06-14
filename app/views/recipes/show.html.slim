@@ -50,6 +50,12 @@ turbo-frame#recipe-details
                     .ml-4.flex.min-w-0.flex-1.gap-2
                       span.truncate.font-medium
                         | #{i + 1}.- #{ingredient}
+    - if params[:calendar_id].present? && params[:date].present?
+      .container
+        = button_to calendar_days_path(calendar_id: params[:calendar_id]), class: 'w-32 items-center rounded-md bg-indigo-600 px-3 py-2 text(sm white) font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 gap-x-3 flex justify-center', data: { action: 'modals--recipe#close modals--day#close', 'turbo-method': :post }, params: { day: { recipe_id: @recipe.id, when: params[:date] } } do
+          .w-5.h-5
+            = svg('plus')
+          | Assign recipe
 turbo-frame#mobile-day-modal
   /actions
   .block.lg:hidden

@@ -16,7 +16,7 @@
             - if day[:recipe]
               .flex.flex-col.items-start.relative.bg-white.px-3.py-2.h-40.cursor-pointer.hover:bg-indigo-100[
                 class="#{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
-                data-action='click->modals--day#show click->calendar#loadShowDayContent'
+                data-action=''
                 data-calendar-url-param = calendar_day_path(calendar_id: @calendar.id, date: day[:date])
               ]
                 - if day[:today] && !override_day
@@ -27,10 +27,11 @@
                     = day[:date].day
                 span.w-full.mt-3.text-base.text-center = day[:recipe].title
             - else
-              .relative.bg-white.px-3.py-2.h-40.cursor-pointer.hover:bg-indigo-100[
+              button.relative.bg-white.px-3.py-2.h-40.cursor-pointer.hover:bg-indigo-100[
+                id="empty-day-#{day[:date].day}"
                 class="#{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
-                data-action='click->modals--day#show click->calendar#loadNewDayContent'
-                data-calendar-url-param = new_calendar_day_path(calendar_id: @calendar.id, date: day[:date])
+                data-action='modals--new-day#show day--new#setDate'
+                data-day--new-date-param="#{day[:date]}"
               ]
                 - if day[:today] && !override_day
                   time.flex.h-8.w-8.text-base.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white datetime=day[:date].to_s
@@ -52,7 +53,7 @@
               button.flex.h-28.bg-white.md:h-32.flex-col.px-3.py-2.hover:bg-gray-100.focus:z-10[
                 id="day-#{day[:date].day}"
                 class="#{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
-                data-action='modals--day#show calendar#loadShowDayContent'
+                data-action=''
                 data-calendar-url-param = calendar_day_path(calendar_id: @calendar.id, date: day[:date])
               ]
                 .flex.flex-col
@@ -60,10 +61,9 @@
                   span.text-xs.scale-90 = day[:recipe].title
             - else
               button.flex.h-28.bg-white.md:h-32.flex-col.px-3.py-2.hover:bg-gray-100.focus:z-10[
-                id="empty-day-#{day[:date].day}"
                 class="#{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
-                data-action='modals--day#show calendar#loadNewDayContent'
-                data-calendar-url-param = new_calendar_day_path(calendar_id: @calendar.id, date: day[:date])
+                data-action='modals--new-day#show day--new#setDate'
+                data-day--new-date-param="#{day[:date]}"
               ]
                 .flex.flex-col
                   time.ml-auto datetime="#{day[:date].to_s}" = day[:date].day

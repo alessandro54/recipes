@@ -1,4 +1,5 @@
 import * as Turbo from '@hotwired/turbo';
+// @ts-ignore
 import Rails from '@rails/ujs';
 import { Controller } from '@hotwired/stimulus';
 

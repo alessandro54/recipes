@@ -1,20 +1,14 @@
-.lg:flex.lg:h-full.lg:flex-col.px-8.py-6 data-controller="modals--day modals--recipe calendar recipe"
+.lg:flex.lg:h-full.lg:flex-col.px-8.py-6[
+  data-controller="day day--new modals--new-day"
+  data-day--new-calendar-id-value = @calendar.id
+]
   - if params[:controller] == 'calendars'
     h1.text-4xl = @calendar.title
     span.pl-2.text-xs.text-gray-400
       | by #{@calendar.owners.pluck(:first_name).join(', ')}
   - else
     h1.text-4xl.font-bold My calendar
-  @calendar.h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-center
+  turbo-frame#calendar.h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-center
     = render 'components/calendars/calendar', override_day: @date != Date.today
 
-  = render 'components/shared/modals/default',
-            id: 'dayModal',
-            frame_id: 'day-modal',
-            close_action: 'modals--day#close',
-            size: :large
-
-  = render 'components/shared/modals/isolated',
-            id: 'newRecipeModal',
-            frame_id: 'new-recipe-modal',
-            close_action: 'modals--recipe#close'
+  = render 'components/days/new/day_modal'

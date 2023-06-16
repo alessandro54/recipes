@@ -3,6 +3,11 @@ import { Modal } from 'flowbite';
 import type { ModalOptions, ModalInterface } from 'flowbite'
 
 export default class extends Controller {
+  static values = { calendarId: String };
+  declare readonly calendarIdValue: string;
+
+  declare dayDate: string
+
   declare modal : ModalInterface
   declare editModal : ModalInterface
 
@@ -15,7 +20,7 @@ export default class extends Controller {
 
   connect(): void {
     this.modal = new Modal(
-      document.getElementById('dayModal'), this.modalOptions
+      document.getElementById('newDayModal'), this.modalOptions
     );
   }
 

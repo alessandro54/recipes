@@ -2,17 +2,25 @@
   "compilerOptions": {
     "module": "ESNext",
     "target": "es2017",
-    "lib": ["ESNext", "DOM"],
+    "lib": ["es2020", "DOM", "DOM.Iterable"],
     "esModuleInterop": true,
     "strict": true,
+    "allowSyntheticDefaultImports": true,
     "strictNullChecks": true,
+    "experimentalDecorators": true,
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "skipLibCheck": true,
+    "plugins": [
+      {
+        "name": "ts-lit-plugin",
+        "strict": true
+      }
+    ],
     "paths": {
       "@/*": ["./app/typescript/*"],
       "~/*": ["./config/app/typescript/*"],
-      "$root/*": ["./"]
+      "$root/*": ["./*"]
     }
   },
   "exclude": [

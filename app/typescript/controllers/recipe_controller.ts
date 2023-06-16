@@ -1,14 +1,15 @@
-import { Controller } from '@hotwired/stimulus';
+import Controller from '@/support/controller';
 
 export default class extends Controller {
   static targets = ['input', 'recipe'];
-
-  declare readonly inputTargets: HTMLInputElement[];
   declare readonly recipeTargets: HTMLAnchorElement[];
+
+  static values = { count: Number };
+  declare readonly countValue: number;
 
   readonly regex: RegExp = /[^A-Za-z.!\s]/g;
 
-  public change(e: KeyboardEvent): void {
+  public change (e: KeyboardEvent): void {
     const element = e.currentTarget as HTMLInputElement;
     const inputValue = element.value;
 
@@ -18,23 +19,25 @@ export default class extends Controller {
     // Update the input value with the modified value
     element.value = modifiedValue;
 
-    // Update other input targets with the modified value
-    this.inputTargets.forEach((input) => (input.value = modifiedValue));
-
     // Instead of match use regex.test which returns a boolean if a match exists
     if (!this.regex.test(modifiedValue)) {
-        this.filterRecipes(modifiedValue);
+      this.filterRecipes(modifiedValue);
     }
-}
+  }
 
-  private filterRecipes(query: string) {
-    console.log('firing');
-    this.recipeTargets.forEach((recipe) => {
-      const { title } = recipe.dataset;
+  private filterRecipes (query: string) {
+    let filteredCount = 0;
 
-      if (title?.toLowerCase().includes(query.toLowerCase()))
-        recipe.classList.replace('hidden', 'flex');
-      else recipe.classList.replace('flex', 'hidden');
-    });
+    for(const recipe of this.recipeTargets) {
+      if (recipe.dataset.title!.toLowerCase().includes(query.toLowerCase())){
+        this.show(recipe, 'flex');
+        filteredCount += 1;
+      } else {
+        this.hide(recipe, 'flex')
+      }
+    }
+    if (filteredCount === 0) {
+      console.log('No recipes found')
+    }
   }
 }

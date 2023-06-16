@@ -14,6 +14,6 @@ Feature: Assign a recipe to a day inside the Calendar
     Then I should see the recipe list
     When I select a recipe from the list
     Then I should see the recipe details displayed
-    And I select the 'Assign' button
+    And I select the 'Assign recipe' button
     Then the recipe should be assigned to the calendar day
 

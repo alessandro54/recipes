@@ -16,6 +16,7 @@ end
 
 When('I click on an empty calendar day') do
   @date = Date.today.beginning_of_month
+
   click_button "empty-day-#{@date.day}"
 end
 
@@ -34,7 +35,7 @@ When('I select a recipe from the list') do
 end
 
 Then('I should see the recipe details displayed') do
-  within '#details-mobile' do
+  within '#recipe-details' do
     expect(page).to have_text(@clicked.title)
     expect(page).to have_text(@clicked.description)
   end

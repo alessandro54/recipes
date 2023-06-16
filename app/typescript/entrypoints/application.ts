@@ -1,9 +1,11 @@
-import '../controllers';
 import '@hotwired/turbo-rails';
 import 'flowbite';
 import 'flowbite/dist/flowbite.turbo.js'
 import { install, injectGlobal } from '@twind/core'
-import config from '$root/twind.config.ts'
+import config from '$root/twind.config'
+
+import '../controllers';
+import '../components';
 
 install(config)
 injectGlobal`

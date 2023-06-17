@@ -15,7 +15,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '$root': path.resolve(__dirname),
-      '@': path.resolve(__dirname, './app/typescript/')
+      '@': path.resolve(__dirname, './app/frontend/')
     }
   }
 });

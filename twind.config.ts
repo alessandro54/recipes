@@ -14,7 +14,7 @@ export default defineConfig({
         './app/helpers/**/*.rb',
         './app/assets/stylesheets/**/*.css',
         './app/views/**/*.{html,slim,html.slim}',
-        './app/typescript/**/*.ts',
+        './app/frontend/**/*.ts',
         './node_modules/flowbite/**/*.js'
       ],
       animation: {

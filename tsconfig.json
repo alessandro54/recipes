@@ -18,8 +18,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./app/typescript/*"],
-      "~/*": ["./config/app/typescript/*"],
+      "@/*": ["./app/frontend/*"],
+      "~/*": ["./config/app/frontend/*"],
       "$root/*": ["./*"]
     }
   },

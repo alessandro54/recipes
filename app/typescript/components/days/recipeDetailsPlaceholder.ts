@@ -9,7 +9,7 @@ export class TwindElement extends LitElement {
   static styles = css`
     :host {
         display: block;
-        height: 70vh;
+        height: 50vh;
     }
   `
   @property()

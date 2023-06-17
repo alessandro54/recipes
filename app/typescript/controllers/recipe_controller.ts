@@ -7,20 +7,19 @@ export default class extends Controller {
   static values = { count: Number };
   declare readonly countValue: number;
 
-  readonly regex: RegExp = /[^A-Za-z.!\s]/g;
-
   public change (e: KeyboardEvent): void {
     const element = e.currentTarget as HTMLInputElement;
     const inputValue = element.value;
+    const regex : RegExp = /[^A-Za-z.!\s]/g;
 
     // Remove characters that are not letters, dots, or exclamation marks
-    const modifiedValue = inputValue.replace(this.regex, '');
+    const modifiedValue = inputValue.replace(regex, '');
 
     // Update the input value with the modified value
     element.value = modifiedValue;
 
     // Instead of match use regex.test which returns a boolean if a match exists
-    if (!this.regex.test(modifiedValue)) {
+    if (regex.test(modifiedValue)) {
       this.filterRecipes(modifiedValue);
     }
   }

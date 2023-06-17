@@ -22,9 +22,6 @@ export default class extends Controller {
   connect () {
     this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     window.addEventListener('resize', this.handleResize);
-    setInterval(() => {
-      console.log(this.calendarIdValue, this.selectedDate);
-    }, 3000);
   };
 
   public setDate ({ params }: ActionEvent): void {

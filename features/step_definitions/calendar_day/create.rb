@@ -46,5 +46,7 @@ And('I select the {string} button') do |button|
 end
 
 Then('the recipe should be assigned to the calendar day') do
-  expect(page).to have_text @clicked.title
+  within "#day-#{@date.day}" do
+    expect(page).to have_text @clicked.title
+  end
 end

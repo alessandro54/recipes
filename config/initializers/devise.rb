@@ -72,7 +72,7 @@ Devise.setup do |config|
   # config.params_authenticatable = true
 
   # Tell if authentication through HTTP Auth is enabled. False by default.
-  # It can be set to an array that will enable http authentication only for the
+  # It can be set to an array that will enable http.ts authentication only for the
   # given strategies, for example, `config.http_authenticatable = [:database]` will
   # enable it only for database authentication.
   # For API-only applications to support authentication "out-of-the-box", you will likely want to
@@ -297,7 +297,7 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
   # ==> Hotwire/Turbo configuration
-  # When using Devise with Hotwire/Turbo, the http status for error responses
+  # When using Devise with Hotwire/Turbo, the http.ts status for error responses
   # and some redirects must match the following. The default in Devise for existing
   # apps is `200 OK` and `302 Found respectively`, but new apps are generated with
   # these new defaults that match Hotwire/Turbo behavior.

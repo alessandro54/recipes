@@ -28,7 +28,6 @@
                 span.w-full.mt-3.text-base.text-center = day[:recipe].title
             - else
               button.relative.bg-white.px-3.py-2.h-40.cursor-pointer.hover:bg-indigo-100[
-                id="empty-day-#{day[:date].day}"
                 class="#{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
                 data-action='modals--new-day#show day--new#setDate'
                 data-day--new-date-param="#{day[:date]}"
@@ -61,6 +60,7 @@
                   span.text-xs.scale-90 = day[:recipe].title
             - else
               button.flex.h-28.bg-white.md:h-32.flex-col.px-3.py-2.hover:bg-gray-100.focus:z-10[
+                id="empty-day-#{day[:date].day}"
                 class="#{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
                 data-action='modals--new-day#show day--new#setDate'
                 data-day--new-date-param="#{day[:date]}"

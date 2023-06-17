@@ -8,8 +8,8 @@ import install from '@twind/with-web-components'
 export class TwindElement extends LitElement {
   static styles = css`
     :host {
-        display: block;
-        height: 50vh;
+      width: 100%;
+      height: 70%;
     }
   `
   @property()

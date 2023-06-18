@@ -2,21 +2,21 @@ import { Controller as Hotwired } from '@hotwired/stimulus';
 import { tx } from '@twind/core';
 
 export default class Controller extends Hotwired {
-  protected addClass(el: HTMLElement, classes: string) {
-    el.classList.add(tx`${classes}`)
+  protected addClass(el: HTMLElement, ...tokens: string[]) {
+    tokens.forEach((token) => el.classList.add(tx(token)));
   }
 
-  protected removeClass(el: HTMLElement, classes: string) {
-    el.classList.remove(tx`${classes}`)
+  protected removeClass(el: HTMLElement, ...tokens: string[]) {
+    tokens.forEach((token) => el.classList.remove(tx(token)));
   }
 
-  protected replaceClass(el: HTMLElement, oldClass: string, newClass: string) {
-    el.classList.replace(tx`${oldClass}`, tx`${newClass}`)
+  protected replaceClass(el: HTMLElement, oldToken: string, newToken: string) {
+    el.classList.replace(tx(oldToken), tx(newToken));
   }
 
-  protected toggleClass(el: HTMLElement, classes: string, cb?: () => boolean) {
+  protected toggleClass(el: HTMLElement, token: string, cb?: () => boolean) {
     const shouldToggle = cb ? cb() : true;
-    el.classList.toggle(classes, shouldToggle);
+    el.classList.toggle(token, shouldToggle);
   }
 
   protected show(el: HTMLElement, display = 'block') {

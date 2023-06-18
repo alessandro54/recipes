@@ -1,5 +1,4 @@
-import { Controller } from '@hotwired/stimulus';
-
+import Controller from '@/support/controller';
 export default class extends Controller {
   static targets = ['link'];
 
@@ -12,6 +11,6 @@ export default class extends Controller {
   }
 
   private setActiveStyles(element: HTMLElement): void {
-    element.classList.add('bg-gray-50', 'text-indigo-600');
+    this.addClass(element, '!bg-primary', '!text-white');
   }
 }

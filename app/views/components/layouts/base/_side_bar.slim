@@ -16,24 +16,24 @@ nav.w-full data-controller="nav--link"
           button type='button' class='-m-2.5 p-2.5' data-nav--mobile-target='button'
             span.sr-only Close sidebar
             .w-6.h-6.text-white = svg 'x-mark'
-        .flex.grow.flex-col.gap-y-5.overflow-y-auto.bg-white.px-6.py-2.h-screen
+        .flex.grow.flex-col.gap-y-5.overflow-y-auto.px-6.py-2.h-screen  class='bg(white dark:dark)'
           .flex.h-16.shrink-0.items-center
-            img.h-8.w-auto src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600' alt='Recipes'
+            img.h-8.w-auto src='https://tailwindui.com/img/logos/mark.svg?color=yellow&shade=600' alt='Recipes'
           nav.flex.flex-1.flex-col
             ul.flex.flex-1.flex-col.gap-y-7 role='list'
               li
                 ul.-mx-2.space-y-1 role='list'
                   - nav_options.each do |name, attributes|
                     li
-                      = link_to attributes[:path], class: 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold', data: { 'nav--link-target': 'link' } do
+                      = link_to attributes[:path], class: 'text(gray-700 hover:secondary dark:hover:dark dark:white) bg(hover:dark:primary hover:gray-100) group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold', data: { 'nav--link-target': 'link' } do
                         .w-6.h-6 = svg(attributes[:icon])
                         | #{name.capitalize.to_s.gsub('_', ' ')}
   / Desktop sidebar
-  .hidden.lg:fixed.lg:inset-y-0.lg:z-20.lg:flex.lg:flex-col.relative[
+  .hidden.lg:fixed.lg:inset-y-0.lg:z-20.lg:flex.lg:flex-col.relative{
     data-nav--desktop-target='nav'
     class='lg:w-[249px]'
-    ]
-    .flex.grow.flex-col.gap-y-5.overflow-y-auto.bg-white.px-6
+  }
+    .flex.grow.flex-col.gap-y-5.overflow-y-auto.px-6 class='bg(white dark:dark)'
       .flex.h-16.shrink-0.items-center
         img.h-8.w-auto src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600' alt='Recipes'
       nav.flex.flex-1.flex-col
@@ -55,6 +55,6 @@ nav.w-full data-controller="nav--link"
           span.sr-only Your profile
           span.text-left aria-hidden="true"
             | #{current_user.first_name}
-          #tooltip-bottom.absolute.z-10.invisible.inline-block.px-3.py-2.text-sm.font-medium.text-white.bg-gray-900.rounded-lg.shadow-sm.opacity-0.tooltip.dark:bg-gray-700.transition-opacity.duration-300[role="tooltip"]
+          #tooltip-bottom.absolute.z-10.invisible.inline-block.px-3.py-2.text-sm.font-medium.text-white.bg-gray-900.rounded-lg.shadow-sm.opacity-0.tooltip.dark:bg-gray-700.transition-opacity.duration-300{role="tooltip"}
             |  Go to Profile
-            .tooltip-arrow[data-popper-arrow]
+            .tooltip-arrow{data-popper-arrow}

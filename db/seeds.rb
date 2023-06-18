@@ -58,6 +58,6 @@ user3.follow(calendar: calendar3)
 
 recipes = create_list(:recipe, 30, author: user1)
 
-(Date.today..Date.today.next_month.end_of_month).each do |date|
+(Date.today.beginning_of_month..Date.today.end_of_month - 15).each do |date|
   create(:day, when: date, calendar: calendar1, recipe: recipes.sample)
 end

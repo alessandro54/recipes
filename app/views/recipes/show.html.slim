@@ -32,7 +32,7 @@ turbo-frame#recipe-details
         dt.text-sm.font-medium.leading-6.text-gray-900
           | Ingredients
         dd.mt-2.text-sm.text-gray-900.sm:col-span-2.sm:mt-0
-          ul.divide-y.divide-gray-100.rounded-md.border.border-gray-200[role="list"]
+          ul.divide-y.divide-gray-100.rounded-md.border.border-gray-200{role="list"}
             - @recipe.ingredients.each do |ingredient|
               li.flex.items-center.justify-between.py-1.pl-4.pr-5.text-sm.leading-6
                 .flex.w-0.flex-1.items-center
@@ -43,7 +43,7 @@ turbo-frame#recipe-details
         dt.text-sm.font-medium.leading-6.text-gray-900
           | Preparation
         dd.mt-2.text-sm.text-gray-900.sm:col-span-2.sm:mt-0
-          ul.divide-y.divide-gray-100.rounded-md.border.border-gray-200[role="list"]
+          ul.divide-y.divide-gray-100.rounded-md.border.border-gray-200{role="list"}
             - @recipe.steps.each_with_index do |ingredient, i|
               li.flex.items-center.justify-between.py-4.pl-4.pr-5.text-sm.leading-6
                 .flex.w-0.flex-1.items-center

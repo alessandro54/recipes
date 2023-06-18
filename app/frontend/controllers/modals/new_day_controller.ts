@@ -20,7 +20,7 @@ export default class extends Controller {
 
   connect(): void {
     this.modal = new Modal(
-      document.getElementById('newDayModal'), this.modalOptions
+      document.getElementById('calendarDayModal'), this.modalOptions
     );
   }
 

@@ -1,24 +1,24 @@
-#newDayModal.hidden.fixed.h-screen.top-0.left-0.right-0.z-50.w-full.p-4.overflow-hidden[
+#calendarDayModal.hidden.fixed.h-screen.top-0.left-0.right-0.z-50.w-full.p-4.overflow-hidden{
   tabindex='-1'
   aria-hidden='true'
-]
+}
   .relative.max-w-7xl class = 'min-w(full xl:[1250px])'
     .relative.rounded-lg.shadow class = 'bg(white dark:gray-700)'
       .relative.flex.items-start.justify-between.pt-2.px-2.lg:px-10
-        button.right-1.absolute.bg-transparent.rounded-lg.text-sm.ml-auto.inline-flex.items-center[
+        button.right-1.absolute.bg-transparent.rounded-lg.text-sm.ml-auto.inline-flex.items-center{
           class='p-1.5 text(gray-400 hover:gray-900 dark:hover:white) bg(transparent hover:gray-200 dark:hover:gray-600)'
           data-action='modals--new-day#close'
-        ]
+        }
           .w-5.h-5 = svg('x-mark')
           span.sr-only
             | Close modal
         - recipe_count = current_user.recipes.count
-        .w-full data-controller='recipe' data-recipe-count-value = recipe_count
-          h1.font-bold.text-3xl.my-3.px-4.flex data-day--new-target='title'
+        .w-full{data-controller = 'recipe' data-recipe-count-value = recipe_count}
+          h1.font-bold.text-3xl.my-3.px-4.flex{data-day--new-target='title'}
           .relative.flex.w-full.gap-x-5 class = 'h-[75vh]'
             / Recipes list
             - if recipe_count.positive?
-              .flex.mb-10 class = 'w(full lg:1/2) flex(col lg:row)' data-day--new-target='recipeList'
+              .flex.mb-10{class = 'w(full lg:1/2) flex(col lg:row)' data-day--new-target='recipeList'}
                 .flex.lg:pr-2.w-full.flex-col.mb-5.lg:mb-0.h-full
                   h2.pl-4.text-2xl.mb-6 Recipes
                   .relative.mt-2.rounded-md.shadow-sm.pb-2
@@ -26,40 +26,39 @@
                       .w-5.h-5.text-gray-500
                         = svg('magnifying-glass')
                     label.sr-only for='search'
-                    input#search.block.w-full.rounded-md.border-0.pl-10.ring-1.ring-inset.ring-gray-300.focus:ring-2.focus:ring-inset.focus:ring-indigo-600.sm:text-sm.sm:leading-6[
+                    input#search.block.w-full.rounded-md.border-0.pl-10.ring-1.ring-inset.ring-gray-300.focus:ring-2.focus:ring-inset.focus:ring-indigo-600.sm:text-sm.sm:leading-6{
                       type='text'
-                      name='search'
                       class="py-1.5 text(gray-900 placeholder:gray-400 dark:white placeholder:dark:white) bg(white dark:gray-700) border(dark:white)"
                       placeholder='Filter by name'
                       data-recipe-target='input'
                       data-action='recipe#change'
-                    ]
+                    }
                   .overflow-y-auto.h-full
                     turbo-frame#recipes src = recipes_path(mode: :list)
             / Selected recipe details or new Recipe
-            .hidden.lg:flex.items-center.justify-center.overflow-y-auto.overflow-x-hidden.scrollbar[
+            .hidden.lg:flex.items-center.justify-center.overflow-y-auto.overflow-x-hidden.scrollbar{
               class="p-2 lg:pl-3 w-full #{recipe_count.positive? ? 'lg:w-1/2' : ''}"
               data-day--new-target='recipeDetails'
-            ]
+            }
               .sticky.top-0.w-full.lg:hidden.pb-5.pl-5
-                button[
+                button{
                   class='flex w-32 rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
                   data-action='day--new#backToList'
-                ]
+                }
                   .w-5.h-5
                     = svg('chevron-left')
                   | Back to list
               turbo-frame#recipe-details
                 recipe-details-placeholder calendarId = @calendar.id
               .hidden.absolute.bottom-1.right-5.flex.justify-start.mt-5 data-day--new-target = 'assign'
-                button.w-36.items-center.rounded-md.bg-indigo-600.px-3.py-2.gap-x-3.font-semibold.shadow-sm.hover:bg-indigo-500.focus-visible:outline.focus-visible:outline-2.focus-visible:outline-offset-2.focus-visible:outline-indigo-600.flex.justify-center[
+                button.w-36.items-center.rounded-md.bg-indigo-600.px-3.py-2.gap-x-3.font-semibold.shadow-sm.hover:bg-indigo-500.focus-visible:outline.focus-visible:outline-2.focus-visible:outline-offset-2.focus-visible:outline-indigo-600.flex.justify-center{
                   class = 'text(sm white)'
                   data-action = 'day--new#createDay modals--new-day#close'
                   data-day--new-url-param = calendar_days_url(@calendar)
-                ]
+                }
                   .w-5.h-5
                     = svg('plus')
                   p.text-sm Assign recipe
             / New recipe form
-            .hidden.w-full data-day--new-target='newRecipe'
-              turbo-frame#new-recipe src = new_recipe_url(calendar: @calendar)
+            .hidden.w-full{data-day--new-target = 'newRecipe'}
+              turbo-frame#new-recipe{src = new_recipe_url(calendar: @calendar)}

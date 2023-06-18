@@ -1,4 +1,4 @@
-import { defineConfig, injectGlobal } from '@twind/core';
+import { defineConfig } from '@twind/core';
 import presetTailwind from '@twind/preset-tailwind';
 import presetTailwindForms from '@twind/preset-tailwind-forms';
 import presetExt from '@twind/preset-ext';
@@ -10,6 +10,12 @@ export default defineConfig({
   ],
   theme: {
     extend: {
+      colors: {
+        primary: '#f57979',
+        secondary: '#fdbf50',
+        light: '#f4f4f8',
+        dark: '#2a2c41'
+      },
       content: [
         './app/helpers/**/*.rb',
         './app/assets/stylesheets/**/*.css',

@@ -1,7 +1,7 @@
-.lg:flex.lg:h-full.lg:flex-col.px-8.py-6[
+.lg:flex.lg:h-full.lg:flex-col.px-8.py-6{
   data-controller="day day--new modals--new-day"
   data-day--new-calendar-id-value = @calendar.id
-]
+}
   - if params[:controller] == 'calendars'
     h1.text-4xl = @calendar.title
     span.pl-2.text-xs.text-gray-400

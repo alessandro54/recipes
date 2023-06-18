@@ -12,7 +12,7 @@ export default defineConfig({
     extend: {
       colors: {
         primary: '#f57979',
-        secondary: '#fdbf50',
+        secondary: '#fddcbb',
         light: '#f4f4f8',
         dark: '#2a2c41'
       },

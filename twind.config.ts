@@ -11,10 +11,17 @@ export default defineConfig({
   theme: {
     extend: {
       colors: {
-        primary: '#f57979',
-        secondary: '#fddcbb',
+        primary: {
+          DEFAULT: '#c7fcec',
+          dark: '#aec1fc'
+        },
+        secondary: {
+          DEFAULT: '#fddcbb',
+          dark: '#7180b0'
+        },
+        alert: '#f57979',
         light: '#f4f4f8',
-        dark: '#2a2c41'
+        dark: '#2a2c41',
       },
       content: [
         './app/helpers/**/*.rb',

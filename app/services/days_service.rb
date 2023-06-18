@@ -11,7 +11,7 @@ class DaysService
   def generate_for(date: Date.today)
     generate_month(
       date:,
-      days: calendar.days.includes(:recipe).from_date(
+      days: calendar.days.includes(recipe: { image_attachment: :blob }).from_date(
         date.year, date.month
       )
     )

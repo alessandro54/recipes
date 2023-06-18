@@ -1,7 +1,7 @@
 = render 'components/calendars/navigator'
 / Weekdays display
-.grid.grid-cols-7.gap-px.font-semibold.leading-6.lg:flex-none{
-  class='rounded-t-lg bg(gray-200 dark:primary) border(dark:& dark:primary) text(center xs)'
+.grid.grid-cols-7.gap-px.font-semibold.leading-6.lg:flex-none.bg-white{
+  class='rounded-t-lg bg(gray-200 dark:secondary) border(dark:& dark:secondary) text(center xs)'
 }
   - %w[Mon Tue Wed Thu Fri Sat Sun].each do |day|
     .flex.justify-center.py-2.text-black.font-bold.text-sm{
@@ -11,7 +11,7 @@
       span.sr-only.sm:not-sr-only = day[1..]
 / Calendar
 .text-xs.leading-6.text-gray-700.lg:flex.shadow.ring-1.ring-black.ring-opacity-5.rounded-b-lg{
-  class='bg(slate-100 dark:primary/20) border(dark:x dark:b dark:primary)'
+  class='bg(slate-100 dark:primary/20) border(dark:x dark:b dark:secondary)'
 }
   .w-full
     / Desktop calendar
@@ -50,36 +50,35 @@
                 | #{day[:date].day}
 
     / Mobile calendar
-    .isolate.grid.w-full.grid-cols-7.gap-px.lg:hidden.shadow-lg{
+    .isolate.grid.w-full.grid-cols-7.gap-px.lg:hidden.shadow-lg.rounded-b-lg{
       class="#{adaptive_styles(@calendar_days.length)}"
     }
       - @calendar_days.each do |week|
         - week.each do |day|
           - if day[:current_month]
             - if day[:recipe]
-              button.relative.flex.h-28.md:h-32.flex-col.hover:bg-gray-100.focus:z-10{
+              button.relative.flex.h-28.md:h-32.flex-col.focus:z-10{
                 id="day-#{day[:date].day}"
-                class="#{day[:today] && override_day == false ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
+                class="#{day[:today] && !override_day ? 'border(2 secondary-dark dark:primary) text(base dark dark:primary)' : 'text-dark'}"
                 data-action=''
                 data-calendar-url-param = calendar_day_path(calendar_id: @calendar.id, date: day[:date])
               }
-                time.ml-auto.pr-2.z-10{
-                  class='text(lg black dark:secondary) font-bold'
-                  datetime="#{day[:date].to_s}"
-                }
+                time.ml-auto.p-2.z-10 datetime="#{day[:date].to_s}"
                   = day[:date].day
                 .absolute.w-full.h-full{
                   class="bg-cover bg-[url('#{url_for(day[:recipe].image)}')]"
                 }
-                .absolute.w-full.h-full.bg-dark/80
-                .absolute.w-full.bottom-1.flex.flex-col.opacity-100{
-                  class='text(black dark:secondary)'
+                .absolute.w-full.h-full{
+                  class='bg(secondary/80 hover:secondary/40 dark:dark/80 hover:dark:secondary-dark/70)'
+                }
+                .absolute.w-full.bottom-0.flex.flex-col.opacity-100.pointer-events-none{
+                  class='bg-secondary-dark/20 rounded-t-md backdrop-blur'
                 }
                   .h-full.span.text-xs.break-all = day[:recipe].title
             - else
               button.flex.items-end.h-28.md:h-32.flex-col.px-3.py-2.focus:z-10{
                 id="empty-day-#{day[:date].day}"
-                class="#{day[:today] && !override_day ? 'text(black dark:primary hover:dark:dark) bg(secondary/60 dark:primary/10 hover:gray-100 dark:hover:primary)' : 'text(black dark:secondary) bg(white dark:dark dark:hover:primary/10)'}"
+                class="#{day[:today] && !override_day ? 'text(black dark:primary hover:dark:dark) bg(secondary/60 dark:primary/10 hover:gray-100 dark:hover:primary)' : 'text(black dark:secondary) bg(white dark:dark hover:primary-dark/50 dark:hover:primary/10)'}"
                 data-action='modals--new-day#show day--new#setDate'
                 data-day--new-date-param="#{day[:date]}"
               }
@@ -87,12 +86,12 @@
                   time.ml-auto datetime="#{day[:date].to_s}" = day[:date].day
           - else
             button.cursor-not-allowed.flex.h-28.md:h-32.flex-col.px-3.py-2.text-gray-500.focus:z-10{
-              class='bg(stone-50 dark:dark/50)'
+              class='bg(secondary-dark/10 dark:dark/50)'
             }
               time.ml-auto datetime="#{day[:date].to_s}" = day[:date].day
 
 javascript:
   var table =  document.querySelector('.isolate');
 
-  table.children[table.children.length - 7].classList.add('rounded-bl-lg', 'rounded-br-lg')
-  table.lastChild.classList.add('rounded-bl-lg', 'rounded-br-lg')
+  table.children[table.children.length - 7].classList.add('rounded-bl-lg')
+  table.lastChild.classList.add('rounded-br-lg')

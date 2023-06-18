@@ -2,7 +2,7 @@
 
 class RecipesController < BaseController
   def index
-    @recipes = Recipe.with_photos.where(author: current_user)
+    @recipes = Recipe.where(author: current_user)
   end
 
   def show

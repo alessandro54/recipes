@@ -24,7 +24,7 @@ html { class='bg(light dark:[#22272e])'}
     nav data-controller='nav--mobile' data-nav--desktop-target='nav' class="lg:w-[288px]"
       / Off-canvas menu for mobile, show/hide based on off-canvas menu state.
       = render 'components/layouts/base/side_bar'
-      = render 'components/layouts/base/top_bar'
+      = render ::Layouts::Base::TopBarComponent.new(current_user: current_user)
     / Sidebar handler
     .h-full.cursor-ew-resize.hidden.lg:block{
       data-action="mousedown->nav--desktop#shrink"

@@ -1,7 +1,0 @@
-linters:
-  LineLength:
-    include: 'app/views/**/*.slim'
-    max: 260
-
-  RedundantDiv:
-    enabled: false

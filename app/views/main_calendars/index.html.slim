@@ -7,4 +7,4 @@
   turbo-frame#calendar.h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-center
     = render Calendars::Calendar::Component.new(calendar: @calendar, date: @date, calendar_days: @calendar_days)
 
-  = render 'components/days/new/day_modal'
+  = render Days::New::Component.new(current_user: , calendar: @calendar)

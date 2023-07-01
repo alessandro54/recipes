@@ -5,7 +5,7 @@ import install from '@twind/with-web-components'
 
 @customElement('recipe-details-placeholder')
 @install(config)
-export class TwindElement extends LitElement {
+export default class extends LitElement {
   static styles = css`
     :host {
       width: 100%;

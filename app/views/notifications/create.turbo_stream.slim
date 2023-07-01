@@ -1,4 +1,4 @@
 turbo-stream action='append' target='notifications'
   template
     - if params[:type].blank?
-      = render 'components/shared/notifications/simple', mode: params[:mode], message: params[:message]
+      = render Shared::Notifications::Simple::Component.new(mode: params[:mode], message: params[:message])

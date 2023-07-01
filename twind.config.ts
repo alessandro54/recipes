@@ -28,6 +28,7 @@ export default defineConfig({
         './app/assets/stylesheets/**/*.css',
         './app/views/**/*.{html,slim,html.slim}',
         './app/frontend/**/*.ts',
+        '/app/components/**/*.{rb,slim}',
         './node_modules/flowbite/**/*.js'
       ],
       animation: {

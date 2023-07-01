@@ -10,6 +10,7 @@ export default class extends Controller {
 
   public open(): void {
     this.removeClass(this.navTarget, 'hidden')
+    this.init();
     setTimeout(() => {
       this.removeClass(this.backdropTarget, 'animate-enter');
       this.removeClass(this.buttonTarget, 'animate-enter');

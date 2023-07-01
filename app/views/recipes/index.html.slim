@@ -1,8 +1,7 @@
 .p-10
   h1.text-3xl.mb-10 My recipes
   turbo-frame#recipes
-    - mode = params.fetch(:mode, 'grid')
-    - if mode == 'grid'
-      = render 'components/recipes/index/grid'
+    - if params.fetch(:mode, 'grid') == 'grid'
+      = render Recipes::Grid::Component.new(recipes: @recipes)
     - else
-      = render 'components/recipes/index/list'
+      = render Recipes::List::Component.new(recipes: @recipes)

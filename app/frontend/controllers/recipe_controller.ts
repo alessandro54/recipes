@@ -14,14 +14,11 @@ export default class extends Controller {
 
     // Remove characters that are not letters, dots, or exclamation marks
     const modifiedValue = inputValue.replace(regex, '');
-
+    console.log(regex.test(modifiedValue))
     // Update the input value with the modified value
     element.value = modifiedValue;
 
-    // Instead of match use regex.test which returns a boolean if a match exists
-    if (regex.test(modifiedValue)) {
-      this.filterRecipes(modifiedValue);
-    }
+    this.filterRecipes(modifiedValue);
   }
 
   private filterRecipes (query: string) {

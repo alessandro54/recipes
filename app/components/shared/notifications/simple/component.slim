@@ -1,18 +1,18 @@
 .flex.w-full.flex-col.items-center.space-y-4.sm:items-end.mt-2.transform.ease-out.duration-300.transition.animate-mobile-notification-enter.sm:animate-notification-enter
-  .pointer-events-auto.w-full.max-w-sm.overflow-hidden.rounded-lg.shadow-lg.ring-1.ring-black.ring-opacity-5.simple-notification class="#{simple_notification_background(mode)}"
+  .pointer-events-auto.w-full.max-w-sm.overflow-hidden.rounded-lg.shadow-lg.ring-1.ring-black.ring-opacity-5.simple-notification{ class=background(mode) }
     .p-4
       .flex.items-start
         .flex-shrink-0
-
-          .w-6.h-6 class="#{simple_notification_icon_styles(mode)}"
-            = svg(simple_notification_icon(mode))
+          .w-6.h-6{ class=icon_style(mode) }
+            = svg icon(mode)
         .ml-3.w-0.flex-1 class="pt-0.5"
-          .text-sm.font-bold class="#{simple_notification_icon_styles(mode)}" = simple_notification_title(mode)
+          .text-sm.font-bold{ class=icon_style(mode) }
+            = title(mode)
           .mt-1.text-sm.text-gray-500
             - if message.instance_of?(Array)
               ul.list-disc
-                - message.each do |m|
-                  li = m
+                - message.each do |message|
+                  li = message
             - elsif message.instance_of?(String)
               = message
         .ml-4.flex.flex-shrink-0
@@ -23,4 +23,4 @@
             span.sr-only
               | Close
             .w-5.h-5
-              = svg('x-mark')
+              = svg 'x-mark'

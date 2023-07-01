@@ -1,14 +1,3 @@
-ruby:
-  def change_flash(flash)
-    if flash == 'notice'
-      'simple_success'
-    elsif flash == 'alert'
-      'simple_alert'
-    else
-      flash
-    end
-  end
-
 .z-50.pointer-events-none.fixed.inset-0.flex.items-end.px-4.lg:px-6.pb-6.lg:py-6.sm:items-start{
   aria-live="assertive"
   data-controller="notifications--simple"
@@ -18,4 +7,4 @@ ruby:
     - flash.each do |f, message|
       - f = change_flash(f)
       - type, mode = f.split('_')
-      = render "components/shared/notifications/#{type}", mode:, message:
+      = render Shared::Notifications.const_get(type.capitalize)::Component.new(mode:, message:)

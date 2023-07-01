@@ -84,6 +84,7 @@ export default class extends Controller {
   }
 
   public backToList(): void {
+    this.removeClass(this.selectedRecipe as HTMLElement, 'bg-indigo-200');
     this.selectedRecipe = null;
     this.show(this.recipeListTarget);
     this.hide(this.recipeDetailsTarget);

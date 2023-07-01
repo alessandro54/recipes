@@ -22,9 +22,10 @@ module DayHelper
   end
 
   def display_date(date)
-    if date == Date.today
+    case date
+    when Date.today
       'today'
-    elsif date == Date.tomorrow
+    when Date.tomorrow
       'tomorrow'
     else
       date.strftime('%e %b')

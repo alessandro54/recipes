@@ -8,12 +8,9 @@ export default class extends Controller {
   declare readonly menuTarget: HTMLDivElement;
   declare readonly buttonTarget: HTMLButtonElement;
 
-  public connect() {
-    this.init();
-  }
-
   public open(): void {
     this.removeClass(this.navTarget, 'hidden')
+    this.init();
     setTimeout(() => {
       this.removeClass(this.backdropTarget, 'animate-enter');
       this.removeClass(this.buttonTarget, 'animate-enter');
@@ -29,7 +26,6 @@ export default class extends Controller {
 
     setTimeout(() => {
       this.addClass(this.navTarget, 'hidden')
-      this.init();
       this.removeClass(this.backdropTarget, 'animate-leave');
       this.removeClass(this.buttonTarget, 'animate-leave');
       this.removeClass(this.menuTarget, 'animate-nav-leave');

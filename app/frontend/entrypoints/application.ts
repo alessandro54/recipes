@@ -12,6 +12,11 @@ injectGlobal`
   html {
     font-family: 'Nunito', sans-serif;
   }
+  
+  turbo-frame {
+    width: 100%;
+    height: 100%;
+  }
 
   .scrollbar::-webkit-scrollbar {
     width: 0;

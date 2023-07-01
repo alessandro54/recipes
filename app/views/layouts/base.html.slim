@@ -33,5 +33,4 @@ html{ class='bg(light dark:[#22272e])' }
       / Main content
     main.w-full.lg:min-h-screen.overflow-x-hidden{ class='min-h-[calc(100vh-64px)]' }
       == yield
-
   = render Shared::Notifications::Component.new(flash:)

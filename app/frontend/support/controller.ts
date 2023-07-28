@@ -1,7 +1,7 @@
-import { Controller as Hotwired } from '@hotwired/stimulus';
+import { Controller } from '@hotwired/stimulus';
 import { tx } from '@twind/core';
 
-export default class Controller extends Hotwired {
+export default class extends Controller {
   protected addClass(el: HTMLElement, ...tokens: string[]) {
     tokens.forEach((token) => el.classList.add(tx(token)));
   }

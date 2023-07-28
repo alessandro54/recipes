@@ -1,7 +1,11 @@
 ul role='list'
   .divide-y.divide-gray-100
     - @recipes.each do |recipe|
-      = link_to recipe_path(recipe), class: 'flex', id: recipe.id, data: { 'turbo-frame': 'recipe-details', 'recipe-target': 'recipe', 'title': recipe.title, action: 'day--new#selectRecipe' }
+      = link_to recipe_path(recipe), class: 'flex', id: recipe.id,
+                data: { 'turbo-frame': 'recipe-details',
+                        'recipe-target': 'recipe',
+                        'title': recipe.title,
+                        action: 'day--new#selectRecipe' }
         li.w-full.relative.flex.justify-between.p-4.cursor-pointer.hover:bg-indigo-100
           .flex.w-3/4.mt-5
             - if recipe.image.attached?

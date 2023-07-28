@@ -7,33 +7,33 @@ export default class extends Controller {
   static values = { count: Number };
   declare readonly countValue: number;
 
-  public change (e: KeyboardEvent): void {
+  public change(e: KeyboardEvent): void {
     const element = e.currentTarget as HTMLInputElement;
     const inputValue = element.value;
-    const regex : RegExp = /[^A-Za-z.!\s]/g;
+    const regex: RegExp = /[^A-Za-z.!\s]/g;
 
     // Remove characters that are not letters, dots, or exclamation marks
     const modifiedValue = inputValue.replace(regex, '');
-    console.log(regex.test(modifiedValue))
+    console.log(regex.test(modifiedValue));
     // Update the input value with the modified value
     element.value = modifiedValue;
 
     this.filterRecipes(modifiedValue);
   }
 
-  private filterRecipes (query: string) {
+  private filterRecipes(query: string) {
     let filteredCount = 0;
 
-    for(const recipe of this.recipeTargets) {
-      if (recipe.dataset.title!.toLowerCase().includes(query.toLowerCase())){
+    for (const recipe of this.recipeTargets) {
+      if (recipe.dataset.title!.toLowerCase().includes(query.toLowerCase())) {
         this.show(recipe, 'flex');
         filteredCount += 1;
       } else {
-        this.hide(recipe, 'flex')
+        this.hide(recipe, 'flex');
       }
     }
     if (filteredCount === 0) {
-      console.log('No recipes found')
+      console.log('No recipes found');
     }
   }
 }

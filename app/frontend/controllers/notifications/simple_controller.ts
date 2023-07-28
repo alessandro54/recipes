@@ -1,33 +1,35 @@
 import * as Turbo from '@hotwired/turbo';
-// @ts-ignore
-import Rails from '@rails/ujs';
-import { Controller } from '@hotwired/stimulus';
+import Controller from '@/support/controller';
+import { post } from '@/support/http';
 
 export default class extends Controller {
   static values = {
     url: String
-  }
+  };
 
   declare readonly urlValue: string;
 
   removeSelf({ currentTarget }: { currentTarget: HTMLElement }) {
-    const parent = currentTarget.closest('.simple-notification')!
+    const parent = currentTarget.closest('.simple-notification')!;
     parent.classList.add('animate-leave');
 
     setTimeout(() => {
       parent.remove();
-    }, 290)
+    }, 290);
   }
 
-  create({ params }: { params: { message: string, mode: string, type: string } }) {
-    Rails.ajax({
-      url: '/notifications',
-      type: 'POST',
-      data: new URLSearchParams(params).toString(),
-      contentType: "application/json",
-      success: (data: string) => {
-        Turbo.renderStreamMessage(data)
+  create({
+    params
+  }: {
+    params: { message: string; mode: string; type: string };
+  }) {
+    post('/notifications', {
+      body: params,
+      headers: {
+        'Content-Type': 'application/json'
       }
     })
+      .then((r) => r.text())
+      .then((r) => Turbo.renderStreamMessage(r));
   }
 }

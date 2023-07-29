@@ -1,2 +1,37 @@
-h1
-  | dasdsdd
+.col-span-1.divide-y.divide-gray-200.rounded-lg.bg-white.shadow
+  .flex.w-full.items-center.justify-between.space-x-6.p-6
+    .flex-1.truncate
+      .flex.items-center.space-x-3
+        h3.truncate.text-sm.font-medium.text-gray-900 = calendar.title
+        - if calendar.recipes.count.positive?
+          span.inline-flex.flex-shrink-0.items-center.rounded-full.bg-green-50{
+            class='px-1.5 py-0.5 text(xs medium green-700) ring(1 inset green-600/20)'
+          }
+            = "Recipes: #{calendar.recipes.count}"
+        - else
+          span.inline-flex.flex-shrink-0.items-center.rounded-full.bg-rose-50{
+            class='px-1.5 py-0.5 text(xs medium rose-700) ring(1 inset rose-600/20)'
+          }
+            | No recipes
+    p.mt-1.truncate.text-xs.text-gray-500 = time_ago_in_words(calendar.created_at)
+  div
+    .-mx-px.flex.divide-x.divide-gray-200
+      .flex.w-0.flex-1
+        = link_to calendar_path(calendar), class: 'relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900' do
+          | To calendar
+      .-ml-px.flex.w-0.flex-1
+        button.relative.inline-flex.w-0.flex-1.items-center.justify-center.gap-x-3.rounded-br-lg.border.border-transparent.py-4.text-sm.font-semibold.text-gray-900{
+          data-dropdown-toggle='dropdown'
+        }
+          | Options
+          .w-5.h-5.text-gray-400
+            == svg('cog-6-tooth')
+        / Dropdown menu
+        #dropdown.z-10.hidden.bg-white.divide-y.divide-gray-100.rounded-lg.shadow.w-48
+          ul.py-2.text-sm.text-gray-700
+            li
+              .block.px-4.py-2.hover:bg-gray-100.cursor-pointer
+                | Edit
+            li
+              = link_to calendar_path(calendar), method: :delete, class: 'block px-4 py-2 hover:bg-gray-100 cursor-pointer' do
+                | Delete

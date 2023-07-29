@@ -18,6 +18,14 @@ class CalendarsService
     current_user.calendars
   end
 
+  def create(params)
+    return params
+  end
+
+  def remove(calendar:)
+    100.times { puts calendar.owners }
+  end
+
   private
 
   def check_ownership(calendar)

@@ -2,6 +2,11 @@
 
 module Calendars
   class Component < ApplicationComponent
-    def initialize; end
+    def initialize(calendar:)
+      super
+      @calendar = calendar
+    end
+
+    attr_reader :calendar
   end
 end

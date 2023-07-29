@@ -1,0 +1,8 @@
+turbo-stream action='append' target='calendars'
+  template
+    = render @calendar
+
+turbo-stream action='replace' target='new-calendar'
+  template
+    turbo-frame#new-calendar
+      = render Calendars::Form::Component.new(calendar: Calendar.new)

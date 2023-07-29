@@ -1,45 +1,28 @@
 - content_for :page_title, "Calendars • Recipes"
 - content_for :nav_title, "My calendars"
 
+h2.px-10.hidden.lg:block.text-2xl.mt-10.text-gray-900.dark:text-white
+  | My Calendars
+
+turbo-frame#new-calendar src= new_calendar_path
+
 .p-10.lg:p-28
-  ul.grid.grid-cols-1.gap-6.sm:grid-cols-2.lg:grid-cols-3
-    - @calendars.each do |calendar|
-      li.col-span-1.divide-y.divide-gray-200.rounded-lg.bg-white.shadow
-        .flex.w-full.items-center.justify-between.space-x-6.p-6
-          .flex-1.truncate
-            .flex.items-center.space-x-3
-              h3.truncate.text-sm.font-medium.text-gray-900 = calendar.title
-              - if calendar.recipes.count.positive?
-                span.inline-flex.flex-shrink-0.items-center.rounded-full.bg-green-50{
-                  class='px-1.5 py-0.5 text(xs medium green-700) ring(1 inset green-600/20)'
-                }
-                  = "Recipes: #{calendar.recipes.count}"
-              - else
-                span.inline-flex.flex-shrink-0.items-center.rounded-full.bg-rose-50{
-                  class='px-1.5 py-0.5 text(xs medium rose-700) ring(1 inset rose-600/20)'
-                }
-                  | No recipes
-            p.mt-1.truncate.text-xs.text-gray-500
-              | Created by #{calendar.owners.pluck(:first_name).join(', ')}
-          p.mt-1.truncate.text-xs.text-gray-500 = time_ago_in_words(calendar.created_at)
-        div
-          .-mx-px.flex.divide-x.divide-gray-200
-            .flex.w-0.flex-1
-              = link_to calendar_path(calendar), class: 'relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900' do
-                | To calendar
-            .-ml-px.flex.w-0.flex-1
-              button.relative.inline-flex.w-0.flex-1.items-center.justify-center.gap-x-3.rounded-br-lg.border.border-transparent.py-4.text-sm.font-semibold.text-gray-900{
-                data-dropdown-toggle='dropdown'
-              }
-                | Options
-                .w-5.h-5.text-gray-400
-                  == svg('cog-6-tooth')
-              / Dropdown menu
-              #dropdown.z-10.hidden.bg-white.divide-y.divide-gray-100.rounded-lg.shadow.w-48
-                ul.py-2.text-sm.text-gray-700
-                  li
-                    .block.px-4.py-2.hover:bg-gray-100.cursor-pointer
-                      | Edit
-                  li
-                    .block.px-4.py-2.hover:bg-gray-100.cursor-pointer
-                      | Delete
+  turbo-frame#calendar.grid.grid-cols-1.gap-6.sm:grid-cols-2.lg:grid-cols-3
+    = render @calendars
+
+#newCalendarModal.fixed.top-0.right-0.z-50.hidden.w-full.p-4.overflow-x-hidden.overflow-y-auto.md:inset-0.max-h-full{
+  class='h-[calc(100%-1rem)]'
+}
+  .relative.w-full.max-w-2xl.max-h-full
+    .relative.bg-white.rounded-lg.shadow.dark:bg-gray-700
+      .flex.items-start.justify-between.p-4.border-b.rounded-t.dark:border-gray-600
+        h3.text-xl.font-semibold.text-gray-900.dark:text-white
+          | New calendar
+        button.text-gray-400.bg-transparent.hover:bg-gray-200.hover:text-gray-900.rounded-lg.text-sm.w-8.h-8.ml-auto.inline-flex.justify-center.items-center.dark:hover:bg:gray-600.dark:hover:text-white{
+          data-modal-hide='newCalendarModal'
+          type='button'
+        }
+          .w-5.h-5
+            = svg('x-mark')
+      .p-6.space-y-6
+        turbo-frame#new-calendar src= new_calendar_path

@@ -1,2 +1,2 @@
-h1
-  = current_user.calendars.inspect
+turbo-frame#new-calendar
+  = render Calendars::Form::Component.new(calendar: @calendar)

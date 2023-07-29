@@ -1,11 +1,13 @@
+- content_for :page_title, "Main Calendar • Recipes"
+- content_for :nav_title, @calendar.title
+
 .lg:flex.lg:h-full.lg:flex-col.px-8.py-6{
   data-controller="day day--new modals--new-day"
   data-day--new-calendar-id-value = @calendar.id
 }
   - if params[:controller] == 'calendars'
-    h1.text-4xl = @calendar.title
     span.pl-2.text-xs.text-gray-400
-      | by #{@calendar.owners.pluck(:first_name).join(', ')}
+      | Owner(s): #{@calendar.owners.pluck(:first_name).join(', ')}
   - else
     h1.text-4xl.font-bold My calendar
   turbo-frame#calendar.h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-center

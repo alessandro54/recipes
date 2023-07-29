@@ -6,7 +6,7 @@
     span.sr-only Open sidebar
     .w-6.h-6.fill-current.hover:text-gray-500.dark:text-secondary = svg('bars-3')
   .flex-1.text-sm.font-semibold.leading-6.dark:text-secondary
-    | Welcome back, #{current_user.first_name}
+    = title
   = link_to profile_path,
           class: 'flex items-center gap-x-4',
           data: { 'tooltip-target': 'tooltip-left', 'tooltip-placement': :left } do

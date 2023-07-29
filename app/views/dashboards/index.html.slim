@@ -1,3 +1,27 @@
-- @upcoming.each do |d|
-  = d.recipe.title
-  = d.calendar.id
+.px-10.lg:px-20
+  dl.mt-5.grid.grid-xols-1.divide-y.divide-gray-200.overflow-hidden.rounded-lg.bg-white.shadow.md:grid-cols-3.md:divide-x.md:divide-y-0
+    .px-4.py-5.sm:p-6
+      dt.text-base.font-normal.text-gray-900
+        | Total recipes
+      dd.mt-1.flex.items-baseline.justify-between.md:block.lg:flex
+        .flex.items-baseline.text-2xl.font-semibold.text-indigo-600
+          | 71,897
+          span.ml-2.text-sm.font-medium.text-gray-500
+            | from 79,946
+    .px-4.py-5.sm:p-6
+      dt.text-base.font-normal.text-gray-900
+        | Total 2
+        dd.mt-1.flex.items-baseline.justify-between.md:block.lg:flex
+          .flex.items-baseline.text-2xl.font-semibold.text-indigo-600
+            | 58.16%
+            span.ml-2.text-sm.font-medium.text-gray-500
+              | from 56.14%
+
+    .px-4.py-5.sm:p-6
+      dt.text-base.font-normal.text-gray-900
+        | Avg. Click Rate
+      dd.mt-1.flex.items-baseline.justify-between.md:block.lg:flex
+        .flex.items-baseline.text-2xl.font-semibold.text-indigo-600
+          | 24.57%
+          span.ml-2.text-sm.font-medium.text-gray-500
+            | from 28.62%

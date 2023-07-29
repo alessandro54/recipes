@@ -1,4 +1,6 @@
+- content_for :page_title, "• #{current_user.first_name}'s Recipes •"
+- content_for :nav_title, "My recipes"
+
 .p-10
-  h1.text-3xl.mb-10 My recipes
   turbo-frame#recipes
     = render Recipes::List::Component.new(recipes: @recipes)

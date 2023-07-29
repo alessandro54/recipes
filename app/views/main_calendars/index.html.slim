@@ -1,9 +1,10 @@
+- content_for :page_title, "Main Calendar • Recipes"
+- content_for :nav_title, "My calendar"
+
 .lg:flex.lg:h-full.lg:flex-col.px-8.py-6{
   data-controller='day day--new modals--new-day'
   data-day--new-calendar-id-value = @calendar.id
 }
-  h1.text-4xl.font-bold class = 'text(dark dark:light)'
-    | My calendar
   turbo-frame#calendar.h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-center
     = render CalendarDays::Component.new(calendar: @calendar, date: @date, calendar_days: @calendar_days)
 

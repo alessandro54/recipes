@@ -1,26 +1,36 @@
-.col-span-1.divide-y.divide-gray-200.rounded-lg.bg-white.shadow
+.col-span-1.rounded-lg.shadow{
+  class='bg(white dark:dark) divide(y gray-200 dark:gray-600)'
+}
   .flex.w-full.items-center.justify-between.space-x-6.p-6
     .flex-1.truncate
       .flex.items-center.space-x-3
-        h3.truncate.text-sm.font-medium.text-gray-900 = calendar.title
+        h3.truncate.font-medium{
+          class='text(sm gray-900 dark:white)'
+        }
+          = calendar.title
         - if calendar.recipes.count.positive?
-          span.inline-flex.flex-shrink-0.items-center.rounded-full.bg-green-50{
-            class='px-1.5 py-0.5 text(xs medium green-700) ring(1 inset green-600/20)'
+          span.inline-flex.flex-shrink-0.items-center.rounded-full{
+            class='px-1.5 py-0.5 text(xs green-700 dark:emerald-500) ring(1 inset green-600/20) bg(green-50 dark:emerald-800/40)'
           }
             = "Recipes: #{calendar.recipes.count}"
         - else
-          span.inline-flex.flex-shrink-0.items-center.rounded-full.bg-rose-50{
-            class='px-1.5 py-0.5 text(xs medium rose-700) ring(1 inset rose-600/20)'
+          span.inline-flex.flex-shrink-0.items-center.rounded-full{
+            class='px-1.5 py-0.5 text(xs rose-700 dark:rose-500) ring(1 inset rose-600/20) bg(rose-50 dark:rose-800/40)'
           }
             | No recipes
+      p
+        | elo
     p.mt-1.truncate.text-xs.text-gray-500 = time_ago_in_words(calendar.created_at)
   div
-    .-mx-px.flex.divide-x.divide-gray-200
+    .-mx-px.flex.divide-x{ class='divide(gray-200 dark:gray-600)' }
       .flex.w-0.flex-1
-        = link_to calendar_path(calendar), class: 'relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900' do
-          | To calendar
+        = link_to calendar_path(calendar), class: 'relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border(& transparent) py-4 font-semibold text(sm gray-900 dark:gray-300)', data: { turbo: false } do
+          .w-4.h-4
+            == svg('eye', type: :mini)
+          | Visualize
       .-ml-px.flex.w-0.flex-1
-        button.relative.inline-flex.w-0.flex-1.items-center.justify-center.gap-x-3.rounded-br-lg.border.border-transparent.py-4.text-sm.font-semibold.text-gray-900{
+        button.relative.inline-flex.w-0.flex-1.items-center.justify-center.gap-x-3.rounded-br-lg.py-4.text-sm.font-semibold.text-gray-900{
+          class='border(& transparent) text(sm gray-900 dark:gray-300)'
           data-dropdown-toggle='dropdown'
         }
           | Options

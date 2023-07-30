@@ -11,5 +11,6 @@ class DashboardsController < BaseController
       },
       when: Date.today
     )
+    @total_recipes = Recipe.where(author: current_user).count
   end
 end

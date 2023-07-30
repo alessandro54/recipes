@@ -2,6 +2,7 @@ import { defineConfig } from '@twind/core';
 import presetTailwind from '@twind/preset-tailwind';
 import presetTailwindForms from '@twind/preset-tailwind-forms';
 import presetExt from '@twind/preset-ext';
+
 export default defineConfig({
   presets: [
     presetTailwind(),
@@ -13,11 +14,19 @@ export default defineConfig({
       colors: {
         primary: {
           DEFAULT: '#c7fcec',
-          dark: '#aec1fc'
+          dark: '#2a2c41'
         },
         secondary: {
           DEFAULT: '#fddcbb',
-          dark: '#7180b0'
+          dark: '#1F2459'
+        },
+        tertiary: {
+          DEFAULT: '#f4f4f8',
+          dark: '#31398C'
+        },
+        highlight: {
+          DEFAULT: '#2a2c41',
+          dark: '#8D93D9'
         },
         alert: '#f57979',
         light: '#f4f4f8',
@@ -28,7 +37,7 @@ export default defineConfig({
         './app/assets/stylesheets/**/*.css',
         './app/views/**/*.{html,slim,html.slim}',
         './app/frontend/**/*.ts',
-        '/app/components/**/*.{rb,slim}',
+        './app/components/**/*.{rb,slim}',
         './node_modules/flowbite/**/*.js'
       ],
       animation: {

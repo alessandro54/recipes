@@ -10,14 +10,15 @@ nav.w-full data-controller="nav--link"
             .w-6.h-6.text-white = svg 'x-mark'
         .flex.grow.flex-col.gap-y-5.overflow-y-auto.px-6.py-2.h-screen  class='bg(white dark:dark)'
           .flex.h-16.shrink-0.items-center
-            img.h-8.w-auto src='https://tailwindui.com/img/logos/mark.svg?color=yellow&shade=600' alt='Recipes'
+            .w-8.h-8.dark:text-text-dark
+              = svg 'beaker'
           nav.flex.flex-1.flex-col
             ul.flex.flex-1.flex-col.gap-y-7 role='list'
               li
                 ul.-mx-2.space-y-1 role='list'
                   - nav_options.each do |name, attributes|
                     li
-                      = link_to attributes[:path], class: 'text(dark dark:hover:dark dark:white) bg(hover:secondary) group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold', data: { 'nav--link-target': 'link' } do
+                      = link_to attributes[:path], class: 'text(dark dark:hover:ligth dark:white) bg(hover:secondary-dark) group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold', data: { 'nav--link-target': 'link' } do
                         .w-6.h-6 = svg(attributes[:icon])
                         | #{name.capitalize.to_s.gsub('_', ' ')}
   / Desktop sidebar

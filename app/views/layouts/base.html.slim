@@ -1,5 +1,5 @@
 doctype html
-html{ class='bg(light dark:[#22272e])' }
+html{ class='bg(light dark:dark/95)' }
   head
     title = content_for?(:page_title) ? yield(:page_title) : "Recipes"
     link{ rel='preconnect' href='https://fonts.googleapis.com' }
@@ -25,11 +25,6 @@ html{ class='bg(light dark:[#22272e])' }
       / Off-canvas menu for mobile, show/hide based on off-canvas menu state.
       = render ::Layouts::Base::SideBar::Component.new(current_user: current_user)
       = render ::Layouts::Base::TopBar::Component.new(current_user: current_user, title: yield(:nav_title))
-    / Sidebar handler
-    .h-full.cursor-ew-resize.hidden.lg:block.bg-gray-200{
-      data-action='mousedown->nav--desktop#shrink'
-      class='w-0.5'
-    }
       / Main content
     main.w-full.lg:min-h-screen.overflow-x-hidden{ class='min-h-[calc(100vh-64px)]' }
       == yield

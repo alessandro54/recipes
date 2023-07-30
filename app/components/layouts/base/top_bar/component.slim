@@ -1,23 +1,32 @@
 / Only Visible on mobile
 .sticky.top-0.z-20.flex.items-center.gap-x-6.py-4.shadow-sm.lg:hidden{
-  class='bg(white dark:dark) px(4 sm:6) text(black dark:white)'
+  class='bg(white dark:primary-dark) px(4 sm:6)'
 }
   button{ class='-m-2.5 p-2.5' data-action='click->nav--mobile#open' }
     span.sr-only Open sidebar
-    .w-6.h-6.fill-current.hover:text-gray-500.dark:text-secondary = svg('bars-3')
-  .flex-1.text-sm.font-semibold.leading-6.dark:text-secondary
+    .w-6.h-6.fill-current.hover:text-gray-500{
+      class='text(dark:highlight-dark hover:text-gray-500 hover:dark:secondary-dark)'
+    }
+      = svg('bars-3')
+  .flex-1.text-sm.font-semibold.leading-6{
+    class='text(dark:light)'
+  }
     = title
   = link_to profile_path,
           class: 'flex items-center gap-x-4',
-          data: { 'tooltip-target': 'tooltip-left', 'tooltip-placement': :left } do
+          data: { 'tooltip-target': 'tooltip-left', 'tooltip-placement': 'left' } do
     span.sr-only Your profile
     - if current_user.avatar.attached?
       img
     - else
       .relative.inline-flex.items-center.justify-center.w-8.h-8.overflow-hidden.rounded-full{
-        class='bg(dark dark:secondary) text(light dark:dark)'
+        class='bg(dark dark:highlight-dark) text(light dark:tertiary-dark)'
       }
-        span.font-medium.text-sm = current_user.mini_name
-  #tooltip-left.absolute.z-10.invisible.inline-block.px-3.py-2.text-sm.font-medium.text-white.bg-gray-900.rounded-lg.shadow-sm.opacity-0.tooltip.dark:bg-gray-700.transition-opacity.duration-300{role="tooltip"}
-    |  Go to profile
-    .tooltip-arrow{data-popper-arrow}
+        span.font-medium.text-sm
+          = current_user.mini_name
+  #tooltip-left.absolute.z-10.invisible.inline-block.px-3.py-2.text-sm.font-medium.text-white.rounded-lg.shadow-sm.opacity-0.tooltip.transition-opacity.duration-300{
+    class='text(sm white) bg(gray-900 dark:secondary-dark)'
+    role='tooltip'
+  }
+    | Go to profile
+    .tooltip-arrow{ data-popper-arrow }

@@ -1,13 +1,20 @@
+- content_for :page_title, "Dashboard • Recipes"
+- content_for :nav_title, "Dashboard"
+
 .px-10.lg:px-20
-  dl.mt-5.grid.grid-xols-1.divide-y.divide-gray-200.overflow-hidden.rounded-lg.bg-white.shadow.md:grid-cols-3.md:divide-x.md:divide-y-0
+  dl.mt-5.overflow-hidden.rounded-lg.bg-white.shadow-lg.md:grid-cols-3.md:divide-x.md:divide-y-0{
+    class='grid(& cols-1) divide(y gray-200 dark:gray-700) bg(white dark:dark)'
+  }
     .px-4.py-5.sm:p-6
-      dt.text-base.font-normal.text-gray-900
+      dt.text-base.font-normal{
+        class='text(base gray-900 dark:white)'
+      }
         | Total recipes
       dd.mt-1.flex.items-baseline.justify-between.md:block.lg:flex
-        .flex.items-baseline.text-2xl.font-semibold.text-indigo-600
-          | 71,897
-          span.ml-2.text-sm.font-medium.text-gray-500
-            | from 79,946
+        .flex.items-baseline.font-semibold{
+          class='text(2xl indigo-600 dark:text-dark)'
+        }
+          = @total_recipes
     .px-4.py-5.sm:p-6
       dt.text-base.font-normal.text-gray-900
         | Total 2

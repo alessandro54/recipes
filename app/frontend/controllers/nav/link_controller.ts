@@ -13,9 +13,8 @@ export default class extends Controller {
   private setActiveStyles(element: HTMLElement): void {
     this.addClass(
       element,
-      '!bg-primary',
-      '!bg-secondary-dark',
-      '!dark:text-white',
+      '!dark:bg-highlight-dark',
+      '!dark:text-primary-dark',
       );
   }
 }

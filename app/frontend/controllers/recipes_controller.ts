@@ -1,7 +1,7 @@
 import Controller from '@/support/controller';
 
 export default class extends Controller {
-  static targets = ['input', 'recipe'];
+  static targets = ['input', 'recipe', 'recipeList'];
   declare readonly recipeTargets: HTMLAnchorElement[];
 
   static values = { count: Number };
@@ -14,7 +14,7 @@ export default class extends Controller {
 
     // Remove characters that are not letters, dots, or exclamation marks
     const modifiedValue = inputValue.replace(regex, '');
-    console.log(regex.test(modifiedValue));
+
     // Update the input value with the modified value
     element.value = modifiedValue;
 

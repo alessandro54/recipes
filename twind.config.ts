@@ -34,7 +34,6 @@ export default defineConfig({
       },
       content: [
         './app/helpers/**/*.rb',
-        './app/assets/stylesheets/**/*.css',
         './app/views/**/*.{html,slim,html.slim}',
         './app/frontend/**/*.ts',
         './app/components/**/*.{rb,slim}',

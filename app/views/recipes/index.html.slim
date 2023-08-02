@@ -1,6 +1,8 @@
 - content_for :page_title, "• #{current_user.first_name}'s Recipes •"
 - content_for :nav_title, "My recipes"
 
-.p-10
-  turbo-frame#recipes
-    = render Recipes::List::Component.new(recipes: @recipes)
+turbo-frame#recipes
+  - if params[:mode] == 'list'
+    = render Recipes::List::Component.new(recipes: @recipes, total_pages: @pagy.pages)
+  - else
+    = render @recipes

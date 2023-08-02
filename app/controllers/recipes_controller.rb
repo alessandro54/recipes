@@ -2,7 +2,13 @@
 
 class RecipesController < BaseController
   def index
-    @recipes = Recipe.where(author: current_user)
+    @pagy, @recipes = pagy(
+      Recipe.with_photos.where(author: current_user),
+      page: params[:page],
+      items: 10
+    )
+  rescue Pagy::OverflowError
+    redirect_to recipes_path(page: 1)
   end
 
   def show

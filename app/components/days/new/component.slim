@@ -13,7 +13,7 @@
           span.sr-only
             | Close modal
         - recipe_count = current_user.recipes.count
-        .w-full{data-controller = 'recipe' data-recipe-count-value = recipe_count}
+        .w-full{data-controller = 'recipes' data-recipes-count-value = recipe_count}
           h1.font-bold.text-3xl.my-3.px-4.flex{data-day--new-target='title'}
           .relative.flex.w-full.gap-x-5 class = 'h-[75vh]'
             / Recipes list
@@ -30,8 +30,8 @@
                       type='text'
                       class="py-1.5 text(gray-900 placeholder:gray-400 dark:white placeholder:dark:white) bg(white dark:gray-700) border(dark:white)"
                       placeholder='Filter by name'
-                      data-recipe-target='input'
-                      data-action='recipe#change'
+                      data-recipes-target='input'
+                      data-action='recipes#change'
                     }
                   .overflow-y-auto.h-full
                     turbo-frame#recipes src = recipes_path(mode: :list)

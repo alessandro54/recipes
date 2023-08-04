@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CalendarsService, type: :service do
+RSpec.describe CalendarService, type: :service do
   let(:user) { create :user }
 
   describe '#find' do

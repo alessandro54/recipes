@@ -6,26 +6,19 @@ class CalendarsController < BaseController
   before_action :set_date, only: :show
 
   def index
-    @calendars = calendars_service.all
-  end
-
-  def new
-    @calendar = Calendar.new
+    @calendars = calendar_service.list
   end
 
   def create
-    @calendar = Calendar.new(calendar_params)
+    @calendar = calendar_service.create(calendar_params)
 
-    calendars_service.create(calendar_params)
-    return unless @calendar.save
-
-    @calendar.owners << current_user
+    return unless @calendar
 
     respond_to(&:turbo_stream)
   end
 
   def show
-    @calendar_days = days_service.generate_for(date:)
+    @calendar_days = day_service.generate_for(date:)
   end
 
   def destroy
@@ -39,7 +32,7 @@ class CalendarsController < BaseController
   end
 
   def set_calendar
-    @calendar = calendars_service.find(id: params[:id])
+    @calendar = calendar_service.find(id: params[:id])
     redirect_to calendars_path if @calendar.nil?
   end
 
@@ -47,12 +40,12 @@ class CalendarsController < BaseController
     @date = params[:date].present? ? Date.parse(params[:date]) : Date.today
   end
 
-  def days_service
-    @days_service ||= DaysService.new(calendar:)
+  def day_service
+    @day_service ||= DayService.new(calendar:)
   end
 
-  def calendars_service
-    @calendars_service ||= CalendarsService.new(user: current_user)
+  def calendar_service
+    @calendar_service ||= CalendarService.new(user: current_user)
   end
 
   attr_reader :calendar, :date

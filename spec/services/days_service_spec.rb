@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DaysService, type: :service do
+RSpec.describe DayService, type: :service do
   subject { described_class.new(calendar:) }
   let(:calendar) { create :calendar }
 

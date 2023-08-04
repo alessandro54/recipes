@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Service layer for calendars
-class CalendarsService
+class CalendarService < ApplicationService
   def initialize(user:)
     @current_user = user
   end
@@ -14,12 +14,17 @@ class CalendarsService
     end
   end
 
-  def all
+  def list
     current_user.calendars
   end
 
   def create(params)
-    return params
+    @calendar = Calendar.create(params)
+
+    return unless @calendar.save
+
+    @calendar.owners << current_user
+    @calendar
   end
 
   def remove(calendar:)

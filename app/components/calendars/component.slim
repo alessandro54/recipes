@@ -6,8 +6,16 @@
       .flex.items-center.space-x-3
         h3.truncate.font-medium{
           class='text(sm gray-900 dark:white)'
+          data-tooltip-target="tooltip-title-#{calendar.id}"
+          data-tooltip-placement='bottom'
         }
           = calendar.title
+        .absolute.z-20.invisible.inline-block.px-3.py-2.text-sm.font-medium.text-white.transition-opacity.duration-300.bg-gray-900.rounded-lg.shadow-sm.opacity-0.tooltip.dark:bg-gray-700{
+          id="tooltip-title-#{calendar.id}"
+          role='tooltip'
+        }
+          = calendar.title
+          .tooltip-arrow{ data-popper-arrow }
         - if calendar.recipes.count.positive?
           span.inline-flex.flex-shrink-0.items-center.rounded-full{
             class='px-1.5 py-0.5 text(xs green-700 dark:emerald-500) ring(1 inset green-600/20) bg(green-50 dark:emerald-800/40)'
@@ -18,8 +26,13 @@
             class='px-1.5 py-0.5 text(xs rose-700 dark:rose-500) ring(1 inset rose-600/20) bg(rose-50 dark:rose-800/40)'
           }
             | No recipes
-      p
-        | elo
+      .mt-5
+        - calendar.owners.take(5).each_with_index do |owner, i|
+          .relative.z-10.inline-block.h-6.w-6.rounded-full.ring-2.ring-white{
+            class="bg-[#{random_color(format: :hex)}]"
+          }
+            .h-full.text-xs.grid.place-items-center
+              = owner.mini_name
     p.mt-1.truncate.text-xs.text-gray-500 = time_ago_in_words(calendar.created_at)
   div
     .-mx-px.flex.divide-x{ class='divide(gray-200 dark:gray-600)' }

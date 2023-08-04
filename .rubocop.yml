@@ -9,3 +9,8 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/services/**'
+    - 'app/components/**/*'

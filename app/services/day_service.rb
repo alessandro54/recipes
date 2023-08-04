@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Service layer for days
-class DaysService < ApplicationService
+class DayService < ApplicationService
   include DayHelper
 
   def initialize(calendar:)
@@ -26,7 +26,7 @@ class DaysService < ApplicationService
     generate_for(date: date.next_month)
   end
 
-  def create(params)
+  def save(params)
     @calendar = Calendar.find(params.fetch(:calendar_id))
     @date = Date.parse(params.fetch(:when))
 

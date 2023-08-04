@@ -17,9 +17,9 @@ class DaysController < BaseController
   def edit; end
 
   def create
-    @day = days_service.create(day_params)
+    @day = day_service.create(day_params)
 
-    @calendar_days = days_service.generate_for(date: @day.when)
+    @calendar_days = day_service.generate_for(date: @day.when)
     respond_to(:turbo_stream)
   rescue Date::Error
     redirect_to calendar_path(calendar), alert: 'There was an error with the provided date'
@@ -39,8 +39,8 @@ class DaysController < BaseController
     params.require(:day).permit(:when, :recipe_id).merge(calendar_id: params[:calendar_id])
   end
 
-  def days_service
-    @days_service ||= DaysService.new(calendar:)
+  def day_service
+    @day_service ||= DayService.new(calendar:)
   end
 
   attr_reader :day, :calendar

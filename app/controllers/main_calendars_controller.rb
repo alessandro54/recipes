@@ -20,7 +20,7 @@ class MainCalendarsController < BaseController
   end
 
   def days_service
-    @days_service ||= DaysService.new(calendar: @calendar)
+    @days_service ||= DayService.new(calendar: @calendar)
   end
 
   attr_reader :calendar, :date

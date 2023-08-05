@@ -19,19 +19,19 @@ export default defineConfig({
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#c7fcec',
+          DEFAULT: '#F0EBE3',
           dark: '#2a2c41'
         },
         secondary: {
-          DEFAULT: '#fddcbb',
+          DEFAULT: '#E4DCCF',
           dark: '#1F2459'
         },
         tertiary: {
-          DEFAULT: '#f4f4f8',
+          DEFAULT: '#7D9D9C',
           dark: '#31398C'
         },
         highlight: {
-          DEFAULT: '#2a2c41',
+          DEFAULT: '#576F72',
           dark: '#8D93D9'
         },
         alert: '#f57979',

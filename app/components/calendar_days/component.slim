@@ -88,7 +88,7 @@
                 }
                   .h-full.span.text-xs.break-all.dark:text-light/60.truncate
                     = day[:recipe].title
-              .tooltip.dark:bg-black{
+              .tooltip.bg-black{
                 id="tooltip-#{day[:date]}"
                 role='tooltip'
               }
@@ -103,7 +103,8 @@
                 data-day--new-date-param=day[:date]
               }
                 .flex.flex-col
-                  time.text-lg.font-bold.ml-auto datetime="#{day[:date].to_s}" = day[:date].day
+                  time.text-lg.font-bold.ml-auto datetime="#{day[:date].to_s}"
+                    = day[:date].day
           / Day not belonging to current month
           - else
             button.cursor-not-allowed.flex.h-28.md:h-32.flex-col.px-3.py-2.text-gray-500.focus:z-10{

@@ -1,14 +1,23 @@
 nav.w-full data-controller="nav--link"
   / Mobile sidebar
-  .relative.z-30.hidden.lg:hidden role='dialog' aria-modal='true' data-nav--mobile-target='nav'
-    .fixed.inset-0.bg-gray-900/80.ease-linear.transition-opacity.duration-300 data-nav--mobile-target='backdrop'
+  .relative.z-30.hidden.lg:hidden{
+    role='dialog'
+    aria-modal='true'
+    data-nav--mobile-target='nav'
+  }
+    .fixed.inset-0.bg-gray-900/80.ease-linear.transition-opacity.duration-300{
+      data-nav--mobile-target='backdrop'
+    }
     .fixed.inset-0.flex data-action='click->nav--mobile#backdropClose'
       .relative.mr-16.flex.w-full.max-w-xs.flex-1.ease-in-out.duration-300.transform data-nav--mobile-target='menu'
         .absolute.left-full.top-0.flex.w-16.justify-center.pt-5 data-action='click->nav--mobile#close'
           button type='button' class='-m-2.5 p-2.5' data-nav--mobile-target='button'
             span.sr-only Close sidebar
-            .w-6.h-6.text-white = svg 'x-mark'
-        .flex.grow.flex-col.gap-y-5.overflow-y-auto.px-6.py-2.h-screen  class='bg(white dark:dark)'
+            .w-6.h-6.text-white
+              = svg 'x-mark'
+        .flex.grow.flex-col.gap-y-5.overflow-y-auto.px-6.py-2.h-screen{
+          class='bg(white dark:dark)'
+        }
           .flex.h-16.shrink-0.items-center
             .w-8.h-8{
               class='text(dark:light)'

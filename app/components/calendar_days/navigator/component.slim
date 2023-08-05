@@ -12,7 +12,7 @@ header.flex.items-center.justify-between.py-4.lg:flex-none
         aria-hidden='true'
       }
       = link_to calendar_path(@calendar.id, date: @date.prev_month),
-              class: 'flex items-center justify-center rounded-l-md py-2 px-3 text(gray-400 hover:gray-500 dark:highlight-dark dark:hover:dark) bg(hover:highlight-dark) focus:relative md:w-9 md:px-2' do
+              class: 'flex items-center justify-center rounded-l-md py-2 px-3 text(gray-400 hover:gray-500 dark:highlight-dark dark:hover:dark) bg(hover:secondary dark:hover:highlight-dark) focus:relative md:w-9 md:px-2' do
         span.sr-only Previous month
         .w-5.h-5 = svg('chevron-left')
       = link_to calendar_path(@calendar.id, date: Date.today),

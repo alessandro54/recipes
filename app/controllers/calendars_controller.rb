@@ -18,7 +18,7 @@ class CalendarsController < BaseController
   end
 
   def show
-    @calendar_days = day_service.generate_for(date:)
+    @calendar_days = day_service.generate_for(date:, with_images: true)
   end
 
   def destroy

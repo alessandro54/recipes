@@ -20,7 +20,7 @@ nav.w-full data-controller="nav--link"
                 ul.-mx-2.space-y-1 role='list'
                   - nav_options.each do |name, attributes|
                     li
-                      = link_to attributes[:path], class: 'text(dark dark:hover:primary-dark dark:white) bg(dark:hover:highlight-dark) group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold', data: { 'nav--link-target': 'link' } do
+                      = link_to attributes[:path], class: 'transition duration-300 text(dark dark:hover:primary-dark dark:white) bg(dark:hover:highlight-dark) group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold', data: { 'nav--link-target': 'link' } do
                         .w-6.h-6 = svg(attributes[:icon])
                         | #{name.capitalize.to_s.gsub('_', ' ')}
   / Desktop sidebar
@@ -52,6 +52,8 @@ nav.w-full data-controller="nav--link"
           span.sr-only Your profile
           span.text-left aria-hidden="true"
             | #{current_user.first_name}
-          #tooltip-bottom.absolute.z-10.invisible.inline-block.px-3.py-2.text-sm.font-medium.text-white.bg-gray-900.rounded-lg.shadow-sm.opacity-0.tooltip.dark:bg-gray-700.transition-opacity.duration-300{role="tooltip"}
+          #tooltip-bottom.text-white.bg-gray-900.tooltip.dark:bg-gray-700{
+            role="tooltip"
+          }
             |  Go to Profile
             .tooltip-arrow{data-popper-arrow}

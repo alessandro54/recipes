@@ -4,10 +4,16 @@ import presetTailwindForms from '@twind/preset-tailwind-forms';
 import presetExt from '@twind/preset-ext';
 
 export default defineConfig({
-  presets: [
-    presetTailwind(),
-    presetTailwindForms(),
-    presetExt()
+  presets: [presetTailwind(), presetTailwindForms(), presetExt()],
+  rules: [
+    [
+      'tooltip',
+      'absolute z-30 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 rounded-lg shadow-sm opacity-0'
+    ],
+    [
+      'button',
+      'inline-flex items-center gap-x-1.5 rounded-md px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+    ]
   ],
   theme: {
     extend: {
@@ -30,7 +36,7 @@ export default defineConfig({
         },
         alert: '#f57979',
         light: '#f4f4f8',
-        dark: '#2a2c41',
+        dark: '#2a2c41'
       },
       content: [
         './app/helpers/**/*.rb',
@@ -74,5 +80,5 @@ export default defineConfig({
         }
       }
     }
-  },
-})
+  }
+});

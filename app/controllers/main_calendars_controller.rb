@@ -2,11 +2,10 @@ class MainCalendarsController < BaseController
   before_action :set_date
 
   def index
-    unless current_user.calendars.count.positive?
-      redirect_to calendars_path and return
-    end
+    redirect_to calendars_path and return unless current_user.calendars.count.positive?
+
     set_main_calendar
-    @calendar_days = days_service.generate_for(date:)
+    @calendar_days = days_service.generate_for(date:, with_images: true)
   end
 
   private

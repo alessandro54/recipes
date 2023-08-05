@@ -20,12 +20,12 @@
       img
     - else
       .relative.inline-flex.items-center.justify-center.w-8.h-8.overflow-hidden.rounded-full{
-        class='bg(dark dark:highlight-dark) text(light dark:tertiary-dark)'
+        class='bg(dark dark:tertiary-dark) text(light dark:gray-300)'
       }
         span.font-medium.text-sm
           = current_user.mini_name
-  #tooltip-left.absolute.z-10.invisible.inline-block.px-3.py-2.text-sm.font-medium.text-white.rounded-lg.shadow-sm.opacity-0.tooltip.transition-opacity.duration-300{
-    class='text(sm white) bg(gray-900 dark:secondary-dark)'
+  #tooltip-left.tooltip{
+    class='text(sm white) bg(gray-900 dark:black)'
     role='tooltip'
   }
     | Go to profile

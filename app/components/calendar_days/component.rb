@@ -10,6 +10,18 @@ module CalendarDays
       @override_day = date != Date.today
     end
 
+    private
+
+    def mobile_without_recipes_styles(is_today: false)
+      if is_today && !@override_day
+        'text(black dark:light hover:dark:light)
+        bg(secondary/60 dark:tertiary-dark/80 hover:gray-100 dark:hover:secondary-dark)'
+      else
+        'text(black dark:highlight-dark) bg(white dark:primary-dark hover:primary-dark/50
+        dark:hover:primary-dark/80)'
+      end
+    end
+
     def adaptive_styles(length)
       case length
       when 7

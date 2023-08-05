@@ -4,15 +4,16 @@
   .flex.w-full.items-center.justify-between.space-x-6.p-6
     .flex-1.truncate
       .flex.items-center.space-x-3
-        h3.truncate.font-medium{
+        h3.truncate.font-medium.cursor-text{
           class='text(sm gray-900 dark:white)'
           data-tooltip-target="tooltip-title-#{calendar.id}"
           data-tooltip-placement='bottom'
         }
           = calendar.title
-        .absolute.z-20.invisible.inline-block.px-3.py-2.text-sm.font-medium.text-white.transition-opacity.duration-300.bg-gray-900.rounded-lg.shadow-sm.opacity-0.tooltip.dark:bg-gray-700{
+        .absolute.z-30.invisible.inline-block.px-3.py-2.text-sm.font-medium.text-white.transition-opacity.duration-300.rounded-lg.shadow-sm.opacity-0.tooltip{
           id="tooltip-title-#{calendar.id}"
           role='tooltip'
+          class='bg(gray-900 dark:gray-700)'
         }
           = calendar.title
           .tooltip-arrow{ data-popper-arrow }
@@ -26,13 +27,18 @@
             class='px-1.5 py-0.5 text(xs rose-700 dark:rose-500) ring(1 inset rose-600/20) bg(rose-50 dark:rose-800/40)'
           }
             | No recipes
-      .mt-5
-        - calendar.owners.take(5).each_with_index do |owner, i|
-          .relative.z-10.inline-block.h-6.w-6.rounded-full.ring-2.ring-white{
-            class="bg-[#{random_color(format: :hex)}]"
+      .mt-5.p-1
+        - owners = calendar.owners
+        - owners.take(5).each_with_index do |owner, i|
+          .relative.z-10.inline-block.h-6.w-6.rounded-full{
+            class="bg([#{random_color(format: :hex)}] dark:[#{random_color(type: :dark, format: :hex)}]) ring(2 white dark:gray-100)"
           }
-            .h-full.text-xs.grid.place-items-center
+            .h-full.text-xs.grid.place-items-center{ class = 'dark:text-white'}
               = owner.mini_name
+        - if owners.count > 5
+          .relative.z-10.inline-block.h-6.w-6.rounded-full.ring-2.ring-white.bg-gray-100
+            .h-full.text-xs.grid.place-items-center
+              = "+#{calendar.owners.count - 5}"
     p.mt-1.truncate.text-xs.text-gray-500 = time_ago_in_words(calendar.created_at)
   div
     .-mx-px.flex.divide-x{ class='divide(gray-200 dark:gray-600)' }
@@ -50,11 +56,15 @@
           .w-5.h-5.text-gray-400
             == svg('cog-6-tooth')
         / Dropdown menu
-        #dropdown.z-10.hidden.bg-white.divide-y.divide-gray-100.rounded-lg.shadow.w-48
-          ul.py-2.text-sm.text-gray-700
+        #dropdown.z-10.hidden.rounded-lg.shadow.w-48{
+          class='bg(white dark:dark) ring(dark:1 dark:gray-800) '
+        }
+          ul.divide-y.divide-gray-600.py-2.text-sm{ class = 'text(gray-700 dark:white)'}
             li
-              .block.px-4.py-2.hover:bg-gray-100.cursor-pointer
+              = link_to edit_calendar_path(calendar), class: 'block px-4 py-2 bg(hover:gray-100 hover:dark:highlight-dark/50) cursor-pointer' do
                 | Edit
             li
-              = link_to calendar_path(calendar), method: :delete, class: 'block px-4 py-2 hover:bg-gray-100 cursor-pointer' do
+              = link_to calendar_path(calendar), method: :delete, class: 'block px-4 py-2 bg(hover:gray-100 hover:dark:highlight-dark/50) cursor-pointer flex items-center' do
                 | Delete
+                .w-4.h-4.ml-2.text-rose-400
+                  = svg('trash', type: :mini)

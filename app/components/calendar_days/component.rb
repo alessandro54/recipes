@@ -14,11 +14,11 @@ module CalendarDays
 
     def mobile_without_recipes_styles(is_today: false)
       if is_today && !@override_day
-        'text(black dark:light hover:dark:light)
-        bg(secondary/60 dark:tertiary-dark/80 hover:gray-100 dark:hover:secondary-dark)'
+        'text(black dark:gray-200 dark:hover:layout-dark)
+        bg(secondary/60 hover:gray-100 dark:asset-dark dark:hover:main-dark)'
       else
-        'text(black dark:highlight-dark) bg(white dark:primary-dark hover:primary-dark/50
-        dark:hover:primary-dark/80)'
+        'text(black dark:main-dark dark:hover:white) bg(white dark:layout-dark hover:main/50
+        dark:hover:alt-dark/50)'
       end
     end
 

@@ -1,33 +1,28 @@
 header.flex.items-center.justify-between.py-4.lg:flex-none
   h1.font-semibold.leading-6{
-    class='text(base gray-900 dark:light)'
+    class='text(base gray-900 dark:white)'
   }
     time.pl-2.text-2xl{ datetime = @date }
       = @date.strftime('%B %Y')
   .flex.items-center
-    .relative.flex.items-center.rounded-md.shadow-xl.md:items-stretch{
-      class='bg(white dark:dark)'
-    }
-      .pointer-events-none.absolute.inset-0.rounded-md{
-        aria-hidden='true'
-      }
+    .relative.flex.items-center.rounded-md.shadow-xl.md:items-stretch
+      .pointer-events-none.absolute.inset-0.rounded-md{ aria-hidden='true' }
       = link_to calendar_path(@calendar.id, date: @date.prev_month),
-              class: 'flex items-center justify-center rounded-l-md py-2 px-3 text(gray-400 hover:gray-500 dark:highlight-dark dark:hover:dark) bg(hover:secondary dark:hover:highlight-dark) focus:relative md:w-9 md:px-2' do
+              class: 'flex items-center justify-center rounded-l-md py-2 px-3 text(gray-400 hover:gray-500 dark:main-dark dark:hover:dark) bg(dark:layout-dark hover:secondary dark:hover:main-dark) focus:relative md:w-9 md:px-2' do
         span.sr-only Previous month
         .w-5.h-5 = svg('chevron-left')
       = link_to calendar_path(@calendar.id, date: Date.today),
-              class: 'group hidden md:block py-2 px-3.5 text(sm:gray-900 dark:highlight-dark hover:dark:dark) bg(hover:secondary dark:hover:highlight-dark) font-semibold focus:relative' do
+              class: 'group hidden md:block py-2 px-3.5 text(sm:gray-900 dark:main-dark hover:dark:alt-dark) bg(dark:layout-dark hover:secondary dark:hover:main-dark) font-semibold focus:relative' do
         .flex.items-center.justify-center
           span.not-sr-only.mr-1.border.border-alert.rounded-full.dark:border-0
             .text-xs.rounded-full.px-1{
-              class = 'text(black dark:light) bg(white dark:tertiary-dark group-hover:hightlight-dark)'
+              class = 'text(black dark:gray-300) bg(white dark:alt-dark)'
             }
               = @date.day < 10 ? "0#{@date.day}" : @date.day
           span.font-bold.text-sm Today
       = link_to calendar_path(@calendar.id, date: @date.next_month),
-              class: 'flex items-center justify-center rounded-r-md py-2 px-3 text(gray-400 hover:gray-500 dark:highlight-dark dark:hover:dark) bg(hover:highlight-dark) focus:relative md:w-9 md:px-2' do
+              class: 'flex items-center justify-center rounded-r-md py-2 px-3 text(gray-400 hover:gray-500 dark:main-dark dark:hover:dark) bg(dark:layout-dark hover:main-dark) focus:relative md:w-9 md:px-2' do
         span.sr-only
           | Next month
         .w-5.h-5
           = svg('chevron-right')
-

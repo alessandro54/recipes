@@ -1,5 +1,5 @@
 .col-span-1.rounded-lg.shadow{
-  class='bg(white dark:dark) divide(y gray-200 dark:gray-600)'
+  class='bg(white dark:asset-dark/20) divide(y gray-200 dark:gray-600)'
 }
   .flex.w-full.items-center.justify-between.space-x-6.p-6
     .flex-1.truncate
@@ -7,13 +7,13 @@
         h3.truncate.font-medium.cursor-text{
           class='text(sm gray-900 dark:white)'
           data-tooltip-target="tooltip-title-#{calendar.id}"
-          data-tooltip-placement='bottom'
+          data-tooltip-placement='top'
         }
           = calendar.title
         .tooltip{
           id="tooltip-title-#{calendar.id}"
           role='tooltip'
-          class='bg(gray-900 dark:gray-700)'
+          class='bg(gray-900 dark:alt-dark)'
         }
           = calendar.title
           .tooltip-arrow{ data-popper-arrow }
@@ -56,15 +56,15 @@
           .w-5.h-5.text-gray-400
             == svg('cog-6-tooth')
         / Dropdown menu
-        #dropdown.z-10.hidden.rounded-lg.shadow.w-48{
-          class='bg(white dark:dark) ring(dark:1 dark:gray-800) '
+        #dropdown.z-10.hidden.rounded-lg.shadow-xl.w-48{
+          class='bg(white dark:layout-dark) ring(dark:1 dark:gray-800) '
         }
           ul.divide-y.divide-gray-600.py-2.text-sm{ class = 'text(gray-700 dark:white)'}
             li
-              = link_to edit_calendar_path(calendar), class: 'block px-4 py-2 bg(hover:gray-100 hover:dark:highlight-dark/50) cursor-pointer', data: { turbo: false } do
+              = link_to edit_calendar_path(calendar), class: 'block px-4 py-2 bg(hover:gray-100 hover:dark:main-dark/50) cursor-pointer', data: { turbo: false } do
                 | Edit
             li
-              = link_to calendar_path(calendar), method: :delete, class: 'block px-4 py-2 bg(hover:gray-100 hover:dark:highlight-dark/50) cursor-pointer flex items-center' do
+              = link_to calendar_path(calendar), method: :delete, class: 'block px-4 py-2 bg(hover:gray-100 hover:dark:main-dark/50) cursor-pointer flex items-center' do
                 | Delete
                 .w-4.h-4.ml-2.text-rose-400
                   = svg('trash', type: :mini)

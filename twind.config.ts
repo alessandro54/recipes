@@ -18,25 +18,23 @@ export default defineConfig({
   theme: {
     extend: {
       colors: {
-        primary: {
+        main: {
           DEFAULT: '#F0EBE3',
-          dark: '#2a2c41'
+          dark: '#8D93D9'
         },
-        secondary: {
+        alt: {
           DEFAULT: '#E4DCCF',
-          dark: '#1F2459'
+          dark: '#31398C'
         },
-        tertiary: {
+        asset: {
           DEFAULT: '#7D9D9C',
           dark: '#31398C'
         },
-        highlight: {
+        layout: {
           DEFAULT: '#576F72',
-          dark: '#8D93D9'
+          dark: '#2a2c41'
         },
         alert: '#f57979',
-        light: '#f4f4f8',
-        dark: '#2a2c41'
       },
       content: [
         './app/helpers/**/*.rb',

@@ -45,10 +45,10 @@ export default class extends Controller {
 
   public selectRecipe(e: ActionEvent): void {
     if (this.selectedRecipe != null) {
-      this.removeClass(this.selectedRecipe as HTMLElement, 'bg-indigo-200');
+      this.removeClass(this.selectedRecipe as HTMLElement, 'bg-indigo-800');
     }
     this.selectedRecipe = e.currentTarget as HTMLElement;
-    this.addClass(this.selectedRecipe as HTMLElement, 'bg-indigo-200');
+    this.addClass(this.selectedRecipe as HTMLElement, 'bg-indigo-800');
     if (this.windowWidth < 1024) {
       this.hide(this.recipeListTarget);
       this.show(this.recipeDetailsTarget);

@@ -16,11 +16,11 @@ nav.w-full data-controller="nav--link"
             .w-6.h-6.text-white
               = svg 'x-mark'
         .flex.grow.flex-col.gap-y-5.overflow-y-auto.px-6.py-2.h-screen{
-          class='bg(white dark:dark)'
+          class='bg(white dark:layout-dark)'
         }
           .flex.h-16.shrink-0.items-center
             .w-8.h-8{
-              class='text(dark:light)'
+              class='text(dark:main-dark)'
             }
               = svg 'beaker'
           nav.flex.flex-1.flex-col
@@ -29,7 +29,7 @@ nav.w-full data-controller="nav--link"
                 ul.-mx-2.space-y-1 role='list'
                   - nav_options.each do |name, attributes|
                     li
-                      = link_to attributes[:path], class: 'transition duration-300 text(dark dark:hover:primary-dark dark:white) bg(dark:hover:highlight-dark) group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold', data: { 'nav--link-target': 'link' } do
+                      = link_to attributes[:path], class: 'transition duration-300 text(dark dark:hover:asset-dark dark:white) bg(dark:hover:main-dark) group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold', data: { 'nav--link-target': 'link' } do
                         .w-6.h-6 = svg(attributes[:icon])
                         | #{name.capitalize.to_s.gsub('_', ' ')}
   / Desktop sidebar

@@ -1,27 +1,8 @@
 - content_for :page_title, "Calendars • Recipes"
 - content_for :nav_title, "My calendars"
 
-h2.px-10.hidden.lg:block.text-2xl.mt-10.text-gray-900.dark:text-white
-  | My Calendars
 turbo-frame#new-calendar src= new_calendar_path
 
 .p-10.lg:p-28
   turbo-frame#calendar.grid.grid-cols-1.gap-6.sm:grid-cols-2.lg:grid-cols-3
     = render @calendars
-
-#newCalendarModal.fixed.top-0.right-0.z-50.hidden.w-full.p-4.overflow-x-hidden.overflow-y-auto.md:inset-0.max-h-full{
-  class='h-[calc(100%-1rem)]'
-}
-  .relative.w-full.max-w-2xl.max-h-full
-    .relative.bg-white.rounded-lg.shadow.dark:bg-gray-700
-      .flex.items-start.justify-between.p-4.border-b.rounded-t.dark:border-gray-600
-        h3.text-xl.font-semibold.text-gray-900.dark:text-white
-          | New calendar
-        button.text-gray-400.bg-transparent.hover:bg-gray-200.hover:text-gray-900.rounded-lg.text-sm.w-8.h-8.ml-auto.inline-flex.justify-center.items-center.dark:hover:bg:gray-600.dark:hover:text-white{
-          data-modal-hide='newCalendarModal'
-          type='button'
-        }
-          .w-5.h-5
-            = svg('x-mark')
-      .p-6.space-y-6
-        turbo-frame#new-calendar src= new_calendar_path

@@ -1,11 +1,11 @@
 = render CalendarDays::Navigator::Component.new(date: @date, calendar: @calendar)
 / Weekdays display
 .grid.grid-cols-7.font-semibold.leading-6.lg:flex-none.bg-white{
-  class='rounded-t-lg bg(gray-200 dark:highlight-dark) text(center xs bold)'
+  class='rounded-t-lg bg(gray-200 dark:main-dark) text(center xs bold)'
 }
   - %w[Mon Tue Wed Thu Fri Sat Sun].each do |day|
     .flex.justify-center.py-2.text-black.font-bold.text-sm{
-      class = 'border(b dark:gray-600) first:rounded-tl-lg last:rounded-tr-lg bg(secondary dark:dark) text(dark dark:highlight-dark)'
+      class = 'border(b dark:gray-600) first:rounded-tl-lg last:rounded-tr-lg bg(secondary dark:layout-dark) text(dark dark:main-dark)'
     }
       span = day[0]
       span.sr-only.sm:not-sr-only = day[1..]
@@ -68,11 +68,12 @@
           - if day[:current_month]
             / with recipe
             - if day[:recipe]
-              button.relative.flex.h-28.md:h-32.flex-col.focus:z-10{
+              button.relative.flex.h-28.md:h-32.flex-col.focus:z-10.group.transition-opacity.duration-300{
                 id="day-#{day[:date].day}"
                 class="#{day[:today] && !@override_day ? 'border(2 secondary-dark dark:primary) text(base dark dark:primary)' : 'text-dark'}"
                 data-action=''
                 data-tooltip-target="tooltip-#{day[:date]}"
+                data-tooltip-placement='bottom'
                 data-calendar-url-param=calendar_day_path(calendar_id: @calendar.id, date: day[:date])
               }
                 time.ml-auto.p-2.z-10 datetime="#{day[:date].to_s}"
@@ -80,15 +81,19 @@
                 .absolute.w-full.h-full{
                   class="bg-cover bg-[url('#{url_for(day[:recipe].image)}')]"
                 }
+                / Color filter for img
                 .absolute.w-full.h-full{
-                  class='bg(secondary/80 hover:secondary/40 dark:dark/80 hover:dark:secondary-dark/70)'
+                  class='bg(secondary/80 hover:secondary/40 dark:alt-dark/50 hover:dark:asset-dark/70)'
                 }
+                / Text container
                 .absolute.w-full.bottom-0.flex.flex-col.opacity-100.pointer-events-none{
-                  class='bg-secondary-dark/20 rounded-t-md backdrop-blur'
+                  class='bg-asset-dark/20 rounded-t-md backdrop-blur group-hover:hidden'
                 }
-                  .h-full.span.text-xs.break-all.dark:text-light/60.truncate
+                  .h-full.span.text-xs.break-all.truncate {
+                    class='px-2 py-1 text(dark:white)'
+                  }
                     = day[:recipe].title
-              .tooltip.bg-black{
+              .tooltip.bg-asset-dark{
                 id="tooltip-#{day[:date]}"
                 role='tooltip'
               }
@@ -108,7 +113,7 @@
           / Day not belonging to current month
           - else
             button.cursor-not-allowed.flex.h-28.md:h-32.flex-col.px-3.py-2.text-gray-500.focus:z-10{
-              class='bg(secondary-dark/10 dark:indigo-900/40)'
+              class='bg(secondary-dark/10 dark:asset-dark/50)'
             }
               time.ml-auto datetime="#{day[:date].to_s}" = day[:date].day
 

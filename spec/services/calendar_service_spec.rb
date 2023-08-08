@@ -17,14 +17,14 @@ RSpec.describe CalendarService, type: :service do
     end
   end
 
-  describe '#all' do
+  describe '#list' do
     subject { described_class.new(user:) }
 
     it 'returns all records' do
       calendar1 = create(:calendar, owners: [user])
       calendar2 = create(:calendar, owners: [user])
 
-      result = subject.all
+      result = subject.list
 
       expect(result).to contain_exactly(calendar1, calendar2)
     end

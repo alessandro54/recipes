@@ -17,7 +17,7 @@ class DaysController < BaseController
   def edit; end
 
   def create
-    @day = day_service.create(day_params)
+    @day = day_service.save(day_params)
 
     @calendar_days = day_service.generate_for(date: @day.when)
     respond_to(:turbo_stream)

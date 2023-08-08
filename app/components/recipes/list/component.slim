@@ -1,34 +1,34 @@
-ul.divide-y.divide-gray-100{
-  role='list'
-}
+ul.py-2
   - @recipes.each do |recipe|
-    = link_to recipe_path(recipe), class: 'flex', id: recipe.id,
-              data: { 'turbo-frame': 'recipe-details',
-                      'recipes-target': 'recipe',
-                      'title': recipe.title,
-                      action: 'day--new#selectRecipe' }
-      li.w-full.relative.flex.justify-between.p-4.cursor-pointer{
-        class='bg(hover:indigo-100 dark:hover:gray-700)'
-      }
+    li.relative.flex.justify-between.p-4.cursor-pointer{
+      class='transition duration-300 bg(dark:hover:primary-dark even:dark:tertiary-dark/30 odd:dark:secondary-dark/10) even:my-0.5 rounded-xl'
+      data-recipes-target='recipe'
+      data-title=recipe.title
+      data-action='click->day--new#selectRecipe'
+    }
+      = link_to recipe_path(recipe), class: 'w-full flex', id: recipe.id,
+                data: { 'turbo-frame': 'recipe-details' } do
         .flex.w-3/4.mt-5
           - if recipe.image.attached?
-            = image_tag recipe.image.variant(resize_to_limit: [100, 50]), class: 'h-12 w-12 flex-none object-cover rounded-full bg-gray-50 mr-3'
+            = image_tag recipe.image.variant(resize_to_limit: [100, 50]), class: 'h-12 w-12 flex-none object-cover rounded-full bg-gray-50 mr-3 dark:opacity-60'
           .min-w-0.flex-auto
             p.font-semibold.leading-6{ class='text(sm gray-900)' }
-              span.absolute.inset-x-0.top-1.left-3{
+              span.text-base.absolute.inset-x-0.top-1.left-3{
                 class='text(dark:white)'
               }
                 = recipe.title
             p.mt-4.flex.leading-3{
-              class='text(xs gray-500 dark:gray-100)'
+              class='text(xs gray-500 dark:gray-400)'
             }
               = recipe.description
         .flex.justify-end.items-center.gap-x-4.w-1/4
           .hidden.sm:items-end{ class='flex(sm:& sm:col)' }
             p.text-sm.leading-6.text-gray-900
               | tags here
-            p.mt-1.text-xs.leading-5.text-gray-500
-              = minutes_to_hours_and_minutes(recipe.duration)
+            .mt-1.text-xs.leading-5.text-light.flex.justify-between.items-center
+              .w-4.h-4.text-light
+                = svg('clock', type: :mini)
+              .text-xs.text-light
+                = minutes_to_hours_and_minutes(recipe.duration)
           .h-5.w-5.text-gray-400
             = svg('chevron-right')
-

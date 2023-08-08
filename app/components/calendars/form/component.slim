@@ -1,12 +1,9 @@
-= form_with model: @calendar, class: 'flex items-end w-full mt-10 px-[20%]' do |f|
+= form_with model: Calendar.new, class: 'flex items-end w-full mt-10 px-[20%]' do |f|
   .w-2/3
     = f.label :title, class: 'block text-sm font-medium leading-6 text-gray-900 dark:text-white'
-    = f.text_field :title, required: true, class: 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+    = f.text_field :title, required: true, class: 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-layout-dark dark:text-white'
   .w-1/3
-    button.ml-3.inline-flex.items-end.rounded-md.bg-indigo-600.px-3.py-2.text-sm.font-semibold.text-white.shadow-sm.hover:bg-indigo-500.focus-visible:outline.focus-visible:outline-2.focus-visible:outline-offset-2.focus-visible:outline-indigo-600{
-      data-modal-target='newCalendarModal'
-      data-modal-toggle='newCalendarModal'
-    }
+    button.button.bg-asset-dark.ml-2.px-2.py-2
       .h-5.w-5.mr-1
         = svg('plus')
-      | New calendar
+      | Create calendar

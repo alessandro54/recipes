@@ -1,6 +1,7 @@
 ul.py-2
   - @recipes.each do |recipe|
     li.relative.flex.justify-between.p-4.cursor-pointer{
+      id=recipe.id
       class='transition duration-300 bg(dark:hover:primary-dark even:dark:tertiary-dark/30 odd:dark:secondary-dark/10) even:my-0.5 rounded-xl'
       data-recipes-target='recipe'
       data-title=recipe.title

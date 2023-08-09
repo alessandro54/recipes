@@ -50,13 +50,14 @@
       .-ml-px.flex.w-0.flex-1
         button.relative.inline-flex.w-0.flex-1.items-center.justify-center.gap-x-3.rounded-br-lg.py-4.text-sm.font-semibold.text-gray-900{
           class='border(& transparent) text(sm gray-900 dark:gray-300)'
-          data-dropdown-toggle='dropdown'
+          data-dropdown-toggle="dropdown-#{calendar.id}"
         }
           | Options
           .w-5.h-5.text-gray-400
             == svg('cog-6-tooth')
         / Dropdown menu
-        #dropdown.z-10.hidden.rounded-lg.shadow-xl.w-48{
+        .z-10.hidden.rounded-lg.shadow-xl.w-48{
+          id="dropdown-#{calendar.id}"
           class='bg(white dark:layout-dark) ring(dark:1 dark:gray-800) '
         }
           ul.divide-y.divide-gray-600.py-2.text-sm{ class = 'text(gray-700 dark:white)'}

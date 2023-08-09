@@ -1,8 +1,15 @@
-turbo-stream action='append' target='calendars'
-  template
-    = render @calendar
+- has_errors = @calendar.errors.any?
+- if has_errors
+  turbo-stream action='append' target='notifications'
+    template
+      turbo-frame#new-calendar
+        = render Shared::Notifications::Simple::Component.new(mode: :alert, message: @calendar.errors.full_messages.join(', '))
+- else
+  turbo-stream action='prepend' target='calendars'
+    template
+      = render @calendar
 
 turbo-stream action='replace' target='new-calendar'
   template
     turbo-frame#new-calendar
-      = render Calendars::Form::Component.new(calendar: Calendar.new)
+      = render Calendars::Form::Component.new(calendar: has_errors ? @calendar : Calendar.new)

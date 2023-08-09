@@ -22,5 +22,9 @@ module Recipes
     # config.eager_load_paths << Rails.root.join("extras")
     config.generators.template_engine = :slim
     config.time_zone = 'Eastern Time (US & Canada)'
+
+    config.action_view.field_error_proc = proc do |html_tag, _instance|
+      html_tag.html_safe
+    end
   end
 end

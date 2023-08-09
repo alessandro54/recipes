@@ -21,9 +21,8 @@ class CalendarService < ApplicationService
   def create(params)
     @calendar = Calendar.create(params)
 
-    return unless @calendar.save
+    @calendar.owners << current_user if @calendar.save
 
-    @calendar.owners << current_user
     @calendar
   end
 

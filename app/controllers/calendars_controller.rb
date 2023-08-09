@@ -9,12 +9,12 @@ class CalendarsController < BaseController
     @calendars = calendar_service.list.order(created_at: :desc)
   end
 
+  def new
+    @calendar = Calendar.new
+  end
+
   def create
     @calendar = calendar_service.create(calendar_params)
-
-    return unless @calendar
-
-    respond_to(&:turbo_stream)
   end
 
   def show

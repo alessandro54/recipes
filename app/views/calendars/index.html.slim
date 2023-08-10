@@ -1,8 +1,8 @@
 - content_for :page_title, "Calendars • Recipes"
 - content_for :nav_title, "My calendars"
 
-turbo-frame#new-calendar src= new_calendar_path
-
+.p-5
+  turbo-frame#new-calendar src= new_calendar_path
 .p-10.lg:p-28
   turbo-frame#calendars.grid.grid-cols-1.gap-6.sm:grid-cols-2.lg:grid-cols-3
     = render @calendars

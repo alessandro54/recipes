@@ -7,4 +7,4 @@
 turbo-stream action='replace' target='new-calendar'
   template
     turbo-frame#new-calendar
-      = render Calendars::Form::Component.new(calendar: has_errors ? @calendar : Calendar.new)
+      = render Calendars::NewComponent.new(calendar: has_errors ? @calendar : Calendar.new)

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-module Calendars
-  module Form
+module Recipes
+  module Index
     class Component < ApplicationComponent
-      def initialize(calendar:)
-        @calendar = calendar
+      def initialize(recipe:)
+        @recipe = recipe
       end
     end
   end

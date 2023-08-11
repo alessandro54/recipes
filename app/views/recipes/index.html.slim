@@ -3,6 +3,6 @@
 
 turbo-frame#recipes
   - if params[:mode] == 'list'
-    = render Recipes::List::Component.new(recipes: @recipes, total_pages: @pagy.pages)
+    = render Recipes::Index::ListComponent.new(recipes: @recipes, total_pages: @pagy.pages)
   - else
     = render @recipes

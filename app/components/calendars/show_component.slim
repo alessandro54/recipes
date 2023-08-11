@@ -1,4 +1,4 @@
-= render CalendarDays::Navigator::Component.new(date: @date, calendar: @calendar)
+= render Calendars::Navigator::Component.new(date: @date, calendar: @calendar)
 / Weekdays display
 .grid.grid-cols-7.font-semibold.leading-6.lg:flex-none.bg-white{
   class='rounded-t-lg bg(gray-200 dark:main-dark) text(center xs bold)'
@@ -18,7 +18,7 @@
     .hidden.w-full.lg:grid.lg:grid-cols-7.lg:gap-px class="#{adaptive_styles(@calendar_days.length)}"
       - @calendar_days.each do |week|
         - week.each do |day|
-          = render Calendars::Days::DesktopComponent.new(calendar_id: @calendar.id, day:)
+          = render Days::Show::DesktopComponent.new(calendar_id: @calendar.id, day:)
 
     / Mobile calendar
     .isolate.grid.w-full.grid-cols-7.gap-px.lg:hidden.shadow-lg.rounded-b-lg{
@@ -26,7 +26,7 @@
     }
       - @calendar_days.each do |week|
         - week.each do |day|
-          = render Calendars::Days::MobileComponent.new(calendar_id: @calendar.id, day:)
+          = render Days::Show::MobileComponent.new(calendar_id: @calendar.id, day:)
 
 javascript:
     var table =  document.querySelector('.isolate');

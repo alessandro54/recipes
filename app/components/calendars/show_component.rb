@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module CalendarDays
-  class Component < ApplicationComponent
+module Calendars
+  class ShowComponent < ApplicationComponent
     def initialize(calendar:, date:, calendar_days:)
       super
       @calendar = calendar

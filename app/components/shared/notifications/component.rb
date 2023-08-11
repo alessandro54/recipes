@@ -4,7 +4,6 @@ module Shared
   module Notifications
     class Component < ApplicationComponent
       def initialize(flash:)
-        super
         @flash = flash
       end
 

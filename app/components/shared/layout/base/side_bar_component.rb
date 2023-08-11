@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
-module Layouts
-  module Base
-    module SideBar
-      class Component < ApplicationComponent
+module Shared
+  module Layout
+    module Base
+      class SideBarComponent < ApplicationComponent
         def initialize(current_user:)
-          super
           @current_user = current_user
         end
 

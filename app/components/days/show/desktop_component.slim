@@ -27,7 +27,7 @@
     }
       / if it's today
       - if today? && !overrided_day?
-        time.flex.h-8.w-8.text-base.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white datetime=day[:date].to_s
+        time.flex.h-8.w-8.text-base.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white datetime=@date.to_s
           = @date.day
       - else
         time datetime=@date.to_s

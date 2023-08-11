@@ -1,0 +1,52 @@
+turbo-frame#recipe-details
+  .pb-10
+    .container.mx-auto.px-4.sm:px-6.lg:px-8.pt-4.border-1.rounded-lg
+      .px-4.sm:px-0
+        h3.text-base.font-semibold.leading-7.text-gray-900
+          | Recipe Information
+        p.mt-1.max-w-2xl.text-sm.leading-6.text-gray-500
+          | Details for the recipe
+      .mt-6.border-t.border-gray-100
+        dl.divide-y.divide-gray-100
+          .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+            dt.text-sm.font-medium.leading-6.text-gray-900
+              | Title
+            dd.mt-1.text-sm.leading-6.text-gray-700.dark:text-white.sm:col-span-2.sm:mt-0
+              = @recipe.title
+      .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+        dt.text-sm.font-medium.leading-6.text-gray-900
+          | Author
+        dd.mt-1.text-sm.leading-6.text-gray-700.dark:text-white.sm:col-span-2.sm:mt-0
+          = @recipe.author.full_name
+      .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+        dt.text-sm.font-medium.leading-6.text-gray-900
+          | Preparation time
+        dd.mt-1.text-sm.leading-6.text-gray-700.dark:text-white.sm:col-span-2.sm:mt-0
+          = minutes_to_hours_and_minutes(@recipe.duration)
+      .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+        dt.text-sm.font-medium.leading-6.text-gray-900
+          | Description
+        dd.mt-1.text-sm.leading-6.text-gray-700.dark:text-white.sm:col-span-2.sm:mt-0
+          = @recipe.description
+      .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+        dt.text-sm.font-medium.leading-6.text-gray-900
+          | Ingredients
+        dd.mt-2.text-sm.text-gray-900.sm:col-span-2.sm:mt-0
+          ul.divide-y.divide-gray-100.rounded-md.border.border-gray-200{role="list"}
+            - @recipe.ingredients.each do |ingredient|
+              li.flex.items-center.justify-between.py-1.pl-4.pr-5.text-sm.leading-6
+                .flex.w-0.flex-1.items-center
+                  .ml-4.flex.min-w-0.flex-1.gap-2
+                    span.truncate.font-medium
+                      | #{ingredient}
+      .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
+        dt.text-sm.font-medium.leading-6.text-gray-900
+          | Preparation
+        dd.mt-2.text-sm.text-gray-900.sm:col-span-2.sm:mt-0
+          ul.divide-y.divide-gray-100.rounded-md.border.border-gray-200{role="list"}
+            - @recipe.steps.each_with_index do |ingredient, i|
+              li.flex.items-center.justify-between.py-4.pl-4.pr-5.text-sm.leading-6
+                .flex.w-0.flex-1.items-center
+                  .ml-4.flex.min-w-0.flex-1.gap-2
+                    span.truncate.font-medium
+                      | #{i + 1}.- #{ingredient}

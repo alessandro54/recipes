@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 module Recipes
-  module List
-    class Component < ApplicationComponent
-      include TimeHelper
+  module Index
+    class ListComponent < ApplicationComponent
       def initialize(recipes:, total_pages:)
         super
         @recipes = recipes

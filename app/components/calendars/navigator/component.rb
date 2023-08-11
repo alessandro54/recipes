@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CalendarDays
+module Calendars
   module Navigator
     class Component < ApplicationComponent
       def initialize(calendar:, date:)

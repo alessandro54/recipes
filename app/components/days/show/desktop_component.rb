@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Calendars
-  module Days
+module Days
+  module Show
     # This is the desktop version component of the calendar day.
     class DesktopComponent < ApplicationComponent
       # Initializes the component.

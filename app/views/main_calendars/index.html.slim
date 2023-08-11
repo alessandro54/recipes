@@ -6,6 +6,6 @@
   data-day--new-calendar-id-value = @calendar.id
 }
   turbo-frame#calendar.h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-center
-    = render CalendarDays::Component.new(calendar: @calendar, date: @date, calendar_days: @calendar_days)
+    = render Calendars::ShowComponent.new(calendar: @calendar, date: @date, calendar_days: @calendar_days)
 
-  = render Days::New::Component.new(current_user: , calendar: @calendar)
+  = render Days::NewComponent.new(current_user: , calendar: @calendar)

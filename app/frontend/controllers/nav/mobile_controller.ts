@@ -8,17 +8,6 @@ export default class extends Controller {
   declare readonly menuTarget: HTMLDivElement;
   declare readonly buttonTarget: HTMLButtonElement;
 
-  connect(): void {
-      document.addEventListener('turbo:frame-load', (e) => {
-        console.log(new Date().toLocaleTimeString([], { timeStyle: 'medium' }));
-        console.log(e)
-      });
-      document.addEventListener('turbo:load', (e) => {
-        console.log(new Date().toLocaleTimeString([], { timeStyle: 'medium' }));
-        console.log(e)
-      });
-  }
-
   public open(): void {
     this.removeClass(this.navTarget, 'hidden')
     this.init();

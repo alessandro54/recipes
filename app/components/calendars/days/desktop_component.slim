@@ -1,0 +1,41 @@
+/ Day belonging to current month
+- if from_current_month?
+  / with recipe
+  - if @recipe
+    .flex.flex-col.items-start.relative.px-3.py-2.h-40.cursor-pointer.hover:bg-indigo-100{
+      class="#{@date && !overrided_day? ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
+      data-action=''
+      data-calendar-url-param = calendar_day_path(calendar_id: @calendar_id, date: @date)
+    }
+      / if it's today
+      - if today? && !overrided_day?
+        time.flex.h-8.w-8.text-base.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white{
+          class=''
+          datetime=@date.to_s
+        }
+          = @date.day
+      - else
+        time datetime=@date.to_s
+          = @date.day
+      span.w-full.mt-3.text-base.text-center = @recipe.title
+  / without recipe
+  - else
+    button.relative.px-3.py-2.h-40.cursor-pointer.hover:bg-indigo-100{
+      class="bg(white dark:layout-dark) #{today? && !overrided_day? ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
+      data-action='modals--new-day#show day--new#setDate'
+      data-day--new-date-param=@date.to_s
+    }
+      / if it's today
+      - if today? && !overrided_day?
+        time.flex.h-8.w-8.text-base.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white datetime=day[:date].to_s
+          = @date.day
+      - else
+        time datetime=@date.to_s
+          = @date.day
+/ Day not belonging to current month
+- else
+  .relative.bg-gray-50.px-3.py-2.text-gray-500.cursor-not-allowed{
+    class='bg(secondary-dark/10 dark:asset-dark/50)'
+  }
+    time datetime=@date.to_s
+      | #{@date.day}

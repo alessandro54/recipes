@@ -3,6 +3,9 @@
 
 .p-5
   turbo-frame#new-calendar src= new_calendar_path
-.p-10.lg:p-28
+.p-10.lg:p-28.relative
   turbo-frame#calendars.grid.grid-cols-1.gap-6.sm:grid-cols-2.lg:grid-cols-3
     = render @calendars
+
+  nav.text-white.flex.justify-center.items-center.mt-10.absolute.bottom-0.left-0.right-0
+    == pagy_nav(@pagy) if @pagy.pages

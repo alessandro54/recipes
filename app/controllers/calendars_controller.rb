@@ -6,7 +6,7 @@ class CalendarsController < BaseController
   before_action :set_date, only: :show
 
   def index
-    @calendars = calendar_service.list.order(created_at: :desc)
+    @pagy, @calendars = pagy(calendar_service.list.order(created_at: :desc), items: 9)
   end
 
   def new

@@ -6,7 +6,7 @@ FactoryBot.define do
   factory :recipe do
     title { Faker::Food.dish }
     description { Faker::Food.description }
-    duration { rand(1..12) * 10 }
+    duration { rand(12..40) * 10 }
     steps { Array.new(8) { Faker::Lorem.sentence } }
     ingredients { Array.new(4) { Faker::Food.unique.ingredient } }
 

@@ -4,41 +4,43 @@
       src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
       alt='Recipes'
     ]
-    h2.mt-6.text-center.text-2xl.font-bold.leading-9.tracking-light.text-gray-900
+    h2.mt-6.text-center.text-2xl.font-bold.leading-9.tracking-light{
+      class='text(gray-900 white)'
+    }
       | Sign in to your account
   .mt-10.sm:mx-auto.sm:w-full class='sm:max-w-[480px]'
-    .bg-white.px-6.py-12.shadow.sm:rounded-lg.sm:px-12
+    .dark:bg-layout-dark.bg-white.px-6.py-12.shadow.sm:rounded-lg.sm:px-12
       = form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'space-y-6' } do |f|
         = render "devise/shared/error_messages", resource: resource
         div
-          = f.label :email, autofocus: true, class: 'block text-sm font-medium leading-6 text-gray-900'
+          = f.label :email, autofocus: true, class: 'block text-sm font-medium leading-6 text(gray-900 dark:white)'
           .mt-2
             = f.email_field :email,
                             autofocus: true,
                             autocomplete: :email,
-                            class: 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                            class: 'block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text(gray-900 dark:main-dark) bg(white dark:layout-dark)'
         div
-          = f.label :password, class: 'block text-sm font-medium leading-6 text-gray-900'
+          = f.label :password, class: 'block text-sm font-medium leading-6 text(gray-900 dark:white)'
           .mt-2
             = f.password_field :password,
                                 autocomplete: :current_password,
-                                class: 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                                class: 'block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text(gray-900 dark:main-dark) bg(white dark:layout-dark)'
         .flex.items-center.justify-between.mt-6
           .flex.items-center
-            = f.check_box :remember_me, class: 'h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded'
-            = f.label :remember_me, class: 'ml-2 block text-sm text-gray-900'
+            = f.check_box :remember_me, class: 'h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded dark:bg-layout-dark'
+            = f.label :remember_me, class: 'ml-2 block text-sm text(gray-900 dark:white)'
 
           .text-sm.leading-6
-            = link_to 'Forgot password?', '/', class: 'font-medium text-indigo-600 hover:text-indigo-500'
+            = link_to 'Forgot password?', '/', class: 'font-medium text(asset dark:main-dark) hover:text-indigo-500'
         div
           = f.submit 'Sign in',
-                    class: 'cursor-pointer w-full flex justify-center py-1.5 px-3 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'
+                    class: 'button w-full bg(main dark:main-dark dark:hover:alt-dark) flex justify-center'
       div
         .relative.mt-10
           .absolute.inset-0.flex.items-center aria-hidden='true'
             .w-full.border-t.border-gray-300
           .relative.flex.justify-center.text-sm.font-medium.leading-6
-            span.bg-white.px-6.text-gray-900
+            span.px-6 { class='text(gray-600 dark:white) bg(white dark:layout-dark)' }
               | Or continue with
         .mt-6.grid.grid-cols-2.gap-4
           = link_to '/', class: 'flex w-full items-center justify-center gap-3 rounded-md bg-[#1D9BF0] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D9BF0' do

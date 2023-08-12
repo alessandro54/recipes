@@ -1,15 +1,15 @@
 / Only Visible on mobile
 .sticky.top-0.z-20.flex.items-center.gap-x-6.py-4.shadow-sm.lg:hidden{
-  class='bg(white dark:layout-dark) px(4 sm:6)'
+  class='bg(layout dark:layout-dark) px(4 sm:6)'
 }
   button{ class='-m-2.5 p-2.5' data-action='click->nav--mobile#open' }
     span.sr-only Open sidebar
-    .w-6.h-6.fill-current.hover:text-gray-500{
-      class='text(dark:main-dark hover:text-gray-500 hover:dark:secondary-dark)'
+    .w-6.h-6.fill-current{
+      class='text(gray-500 dark:main-dark hover:asset hover:dark:secondary-dark)'
     }
       = svg('bars-3')
   .flex-1.text-sm.font-semibold.leading-6{
-    class='text(dark:white)'
+    class='text(gray-700 dark:white)'
   }
     = title
   = link_to profile_path,
@@ -20,9 +20,9 @@
       img
     - else
       .relative.inline-flex.items-center.justify-center.w-8.h-8.overflow-hidden.rounded-full{
-        class='bg(dark dark:main-dark) text(light dark:gray-900)'
+        class='bg(asset/70 dark:main-dark)'
       }
-        span.font-medium.text-sm
+        span.font-medium.text-sm { class='text(white)' }
           = current_user.mini_name
   #tooltip-left.tooltip{
     class='text(sm white) bg(gray-900 dark:asset-dark)'

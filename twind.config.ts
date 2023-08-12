@@ -19,19 +19,19 @@ export default defineConfig({
     extend: {
       colors: {
         main: {
-          DEFAULT: '#F0EBE3',
+          DEFAULT: '#85E6C5',
           dark: '#8D93D9'
         },
         alt: {
-          DEFAULT: '#E4DCCF',
+          DEFAULT: '#33BBC5',
           dark: '#31398C'
         },
         asset: {
-          DEFAULT: '#7D9D9C',
+          DEFAULT: '#614BC3',
           dark: '#31398C'
         },
         layout: {
-          DEFAULT: '#576F72',
+          DEFAULT: '#C8FFE0',
           dark: '#2a2c41'
         },
         alert: '#f57979',

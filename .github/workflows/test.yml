@@ -1,0 +1,49 @@
+name: "CI"
+on:
+  push:
+    branches: ["develop"]
+  pull_request:
+    branches: ["develop"]
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+      - name: Install Gems
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+      - name: Install Yarn dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Precompile Assets
+        run: bundle exec rails assets:precompile
+        env:
+          RAILS_ENV: test
+          RAILS_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+          DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}

@@ -29,14 +29,20 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.2
+
       - name: Install Gems
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
+
+      - name: Setup Database
+        run: bundle exec rails db:setup RAILS_ENV=test
+
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
           node-version: 18
+
       - name: Install Yarn dependencies
         run: yarn install --frozen-lockfile
 
@@ -47,6 +53,6 @@ jobs:
         run: bundle exec rake
         env:
           RAILS_ENV: test
-          RAILS_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
-          DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+          RAILS_DATABASE_URL: postgres://postgres:postgres@postgres:5432/recipes_test
+          DATABASE_URL: postgres://postgres:postgres@postgres:5432/recipes_test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}

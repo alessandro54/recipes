@@ -43,6 +43,12 @@ jobs:
       - name: Install Yarn dependencies
         run: yarn install --pure-lockfile
 
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Install libvips for image processing (used by ActiveStorage)
+        run: sudo apt-get-yqq install libvips
+
       - name: Precompile Assets
         run: bundle exec rails assets:precompile RAILS_ENV=test
 
@@ -50,4 +56,7 @@ jobs:
         run: bin/rails db:schema:load
 
       - name: Run RSpec specs
-        run: bin/rake
+        run: bundle exec rspec
+
+      - name: Run Cucumber features
+        run: bundle exec cucumber

@@ -5,6 +5,22 @@ on:
   pull_request:
     branches: ["develop"]
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Install Ruby and Gems
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
+        with:
+          bundler-cache: true
+          ruby-version: 3.2.2
+      - name: Security audit dependencies
+        run: bundle exec bundle-audit check --update
+      - name: Security audit application code
+        run: bundle exec brakeman -q -w2
+      - name: Lint Ruby files
+        run: bin/rubocop --parallel
   test:
     name: Run Tests
     runs-on: ubuntu-latest
@@ -36,9 +52,9 @@ jobs:
           ruby-version: 3.2.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 18.x
 
       - name: Install Yarn dependencies
         run: yarn install --pure-lockfile

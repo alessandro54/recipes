@@ -82,10 +82,14 @@ GEM
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
+    brakeman (6.0.1)
     builder (3.2.4)
     bullet (7.0.7)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
+    bundler-audit (0.9.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     capybara (3.39.2)
       addressable
       matrix
@@ -398,7 +402,9 @@ PLATFORMS
 DEPENDENCIES
   benchmark-ips
   bootsnap
+  brakeman
   bullet
+  bundler-audit
   capybara
   capybara-screenshot
   cucumber-rails

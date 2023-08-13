@@ -26,6 +26,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Install apt dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -50,10 +55,10 @@ jobs:
       - name: Setup Database
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://postgres@localhost:5342/recipes_test
+          POSTGRES_DB: recipes_test
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         run: |
-          sudo apt-get -yqq install libpq-dev
           bundle exec rake db:create RAILS_ENV=test
           bundle exec rake db:migrate RAILS_ENV=test
 

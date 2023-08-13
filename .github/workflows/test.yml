@@ -8,22 +8,23 @@ jobs:
   test:
     name: Run Tests
     runs-on: ubuntu-latest
-
     services:
       postgres:
         image: postgres:latest
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+        env:
+          POSTGRES_DB: recipes_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -35,27 +36,26 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3
 
-      - name: Setup Database
-        run: |
-          bundle exec rake db:create RAILS_ENV=test
-          bundle exec rake db:migrate RAILS_ENV=test
-
-
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 18
 
       - name: Install Yarn dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --pure-lockfile
 
       - name: Precompile Assets
         run: bundle exec rails assets:precompile
 
-      - name: Run RSpec specs
-        run: bundle exec rake
+      - name: Setup Database
         env:
           RAILS_ENV: test
-          RAILS_DATABASE_URL: postgres://postgres:postgres@postgres:5432/recipes_test
-          DATABASE_URL: postgres://postgres:postgres@postgres:5432/recipes_test
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+          DATABASE_URL: postgres://postgres@localhost:5342/recipes_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        run: |
+          bundle exec rake db:create RAILS_ENV=test
+          bundle exec rake db:migrate RAILS_ENV=test
+
+      - name: Run RSpec specs
+        run: bundle exec rake RAILS_ENV=test

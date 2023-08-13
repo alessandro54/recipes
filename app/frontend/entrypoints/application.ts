@@ -21,11 +21,11 @@ injectGlobal`
 }
 
 .page.next.disabled {
-  @apply relative inline-flex items-center rounded-r-md border(& gray-300 dark:transparent) bg(slate-500 dark:gray-800) text(sm gray-500 dark:gray-300) cursor-not-allowed px-2 py-2 text-sm font-medium focus:z-20;
+  @apply relative inline-flex items-center rounded-r-md border(& gray-300 dark:transparent) bg(slate-100 dark:gray-600) text(sm gray-500 dark:gray-400) cursor-not-allowed px-2 py-2 text-sm font-medium focus:z-20;
 }
 
 .page.prev.disabled {
-  @apply relative inline-flex items-center rounded-l-md border(& gray-300 dark:transparent) bg(slate-500 dark:gray-800) text(sm gray-500 dark:gray-300) cursor-not-allowed px-2 py-2 text-sm font-medium focus:z-20;
+  @apply relative inline-flex items-center rounded-l-md border(& gray-300 dark:transparent) bg(slate-500 dark:gray-600) text(sm gray-500 dark:gray-400) cursor-not-allowed px-2 py-2 text-sm font-medium focus:z-20;
 }
 
 .page a, .page.gap {

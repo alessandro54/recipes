@@ -85,7 +85,6 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner-active_record'
   gem 'rails-controller-testing'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 4.11.0'
   gem 'shoulda-matchers', '~> 5.0'
-  gem 'webdrivers'
 end

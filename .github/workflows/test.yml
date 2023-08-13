@@ -1,4 +1,4 @@
-name: "CI"
+name: "Recipes CI"
 on:
   push:
     branches: ["develop"]
@@ -22,24 +22,18 @@ jobs:
           POSTGRES_DB: recipes_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/recipes_test
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Install apt dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
-
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
         with:
+          bundler-cache: true
           ruby-version: 3.2.2
-
-      - name: Install Gems
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -53,14 +47,7 @@ jobs:
         run: bundle exec rails assets:precompile RAILS_ENV=test
 
       - name: Setup Database
-        env:
-          RAILS_ENV: test
-          POSTGRES_DB: recipes_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        run: |
-          bundle exec rake db:create RAILS_ENV=test
-          bundle exec rake db:migrate RAILS_ENV=test
+        run: bin/rails db:schema:load
 
       - name: Run RSpec specs
-        run: bundle exec rake RAILS_ENV=test
+        run: bin/rake

@@ -22,10 +22,10 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Setup Ruby
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.2
@@ -36,9 +36,12 @@ jobs:
           bundle install --jobs 4 --retry 3
 
       - name: Setup Database
-        run: bundle exec rails db:setup RAILS_ENV=test
+        run: |
+          bundle exec rake db:create RAILS_ENV=test
+          bundle exec rake db:migrate RAILS_ENV=test
 
-      - name: Setup Node
+
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 18

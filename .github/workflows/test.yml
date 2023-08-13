@@ -47,7 +47,7 @@ jobs:
         uses: browser-actions/setup-chrome@v1
 
       - name: Install libvips for image processing (used by ActiveStorage)
-        run: sudo apt-get-yqq install libvips
+        run: sudo apt-get -yqq install libvips
 
       - name: Precompile Assets
         run: bundle exec rails assets:precompile RAILS_ENV=test

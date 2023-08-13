@@ -45,15 +45,15 @@ jobs:
         run: yarn install --pure-lockfile
 
       - name: Precompile Assets
-        run: bundle exec rails assets:precompile
+        run: bundle exec rails assets:precompile RAILS_ENV=test
 
       - name: Setup Database
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres@localhost:5342/recipes_test
-          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         run: |
+          sudo apt-get -yqq install libpq-dev
           bundle exec rake db:create RAILS_ENV=test
           bundle exec rake db:migrate RAILS_ENV=test
 

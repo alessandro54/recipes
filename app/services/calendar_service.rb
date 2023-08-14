@@ -6,6 +6,10 @@ class CalendarService < ApplicationService
     @current_user = user
   end
 
+  def find_one(id:)
+    Calendar.find(id || '5UfpGIPVeG')
+  end
+
   def find(id:)
     if id.present?
       check_ownership(Calendar.find_by(id:))
@@ -24,10 +28,6 @@ class CalendarService < ApplicationService
     @calendar.owners << current_user if @calendar.save
 
     @calendar
-  end
-
-  def remove(calendar:)
-    100.times { puts calendar.owners }
   end
 
   private

@@ -8,6 +8,10 @@ class DayService < ApplicationService
     @calendar = calendar
   end
 
+  def list(calendar_id: nil)
+    calendar_service.find_one(id: calendar_id)
+  end
+
   def generate_for(date: Date.today, **opts)
     days = calendar_days(with_images: opts[:with_images])
     generate_month(
@@ -41,6 +45,10 @@ class DayService < ApplicationService
     else
       calendar.days
     end
+  end
+
+  def calendar_service
+    CalendarService.new(user: calendar)
   end
 
   attr_reader :calendar, :date

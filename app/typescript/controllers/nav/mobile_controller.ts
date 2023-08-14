@@ -1,4 +1,4 @@
-import Controller from '@/support/controller'
+import Controller from '$root/app/typescript/support/controller';
 
 export default class extends Controller {
   static targets = ['nav', 'backdrop', 'menu', 'button'];
@@ -9,13 +9,12 @@ export default class extends Controller {
   declare readonly buttonTarget: HTMLButtonElement;
 
   public open(): void {
-    this.removeClass(this.navTarget, 'hidden')
+    this.removeClass(this.navTarget, 'hidden');
     this.init();
     setTimeout(() => {
       this.removeClass(this.backdropTarget, 'animate-enter');
       this.removeClass(this.buttonTarget, 'animate-enter');
       this.removeClass(this.menuTarget, 'animate-nav-enter');
-
     }, 250);
   }
 
@@ -25,7 +24,7 @@ export default class extends Controller {
     this.addClass(this.menuTarget, 'animate-nav-leave');
 
     setTimeout(() => {
-      this.addClass(this.navTarget, 'hidden')
+      this.addClass(this.navTarget, 'hidden');
       this.removeClass(this.backdropTarget, 'animate-leave');
       this.removeClass(this.buttonTarget, 'animate-leave');
       this.removeClass(this.menuTarget, 'animate-nav-leave');

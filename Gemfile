@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github) {|repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.2'
 
@@ -67,14 +67,17 @@ group :development, :test do
 end
 
 group :development do
+  gem 'brakeman'
+  gem 'bundler-audit'
   gem 'i18n-tasks', '~> 1.0.12'
   gem 'ruby-lsp', require: false
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   gem 'rack-mini-profiler'
   gem 'rubocop', require: false
-  gem 'bundler-audit'
+  gem 'rubocop-capybara'
+  gem 'rubocop-factory_bot'
+  gem 'rubocop-rails'
   gem 'web-console'
-  gem 'brakeman'
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"

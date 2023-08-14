@@ -17,8 +17,8 @@ FactoryBot.define do
     association :author, factory: :user
 
     after(:create) do |recipe, evaluator|
-      recipe.image.attach(io: URI.parse(evaluator.image_path).open,
-                          filename: 'recipe_image.jpg',
+      recipe.image.attach(io:           URI.parse(evaluator.image_path).open,
+                          filename:     'recipe_image.jpg',
                           content_type: 'image/jpeg')
     end
   end

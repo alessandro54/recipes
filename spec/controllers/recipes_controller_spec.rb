@@ -19,7 +19,7 @@ RSpec.describe RecipesController, type: :controller do
 
   describe 'GET #show' do
     it 'renders the show template' do
-      get :show, params: { id: recipe.id }
+      get :show, params: {id: recipe.id}
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:show)
     end

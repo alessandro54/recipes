@@ -20,11 +20,11 @@ RSpec.describe DayService, type: :service do
 
       expect(day).to eq(
         {
-          id: nil,
-          today: false,
-          date: Date.new(2022, 1, 31),
+          id:            nil,
+          today:         false,
+          date:          Date.new(2022, 1, 31),
           current_month: false,
-          recipe: nil
+          recipe:        nil
         }
       )
     end

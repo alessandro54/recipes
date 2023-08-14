@@ -37,7 +37,7 @@ class DayService < ApplicationService
 
   def calendar_days(with_images: false)
     if with_images
-      calendar.days.includes(recipe: { image_attachment: :blob })
+      calendar.days.includes(recipe: {image_attachment: :blob})
     else
       calendar.days
     end

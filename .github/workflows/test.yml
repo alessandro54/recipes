@@ -1,0 +1,78 @@
+name: "Recipes CI"
+on:
+  push:
+    branches: ["develop"]
+  pull_request:
+    branches: ["develop"]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Install Ruby and Gems
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
+        with:
+          bundler-cache: true
+          ruby-version: 3.2.2
+      - name: Security audit dependencies
+        run: bundle exec bundle-audit check --update
+      - name: Security audit application code
+        run: bundle exec brakeman -q -w2
+      - name: Lint Ruby files
+        run: bundle exec rubocop --parallel
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        env:
+          POSTGRES_DB: recipes_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/recipes_test
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
+        with:
+          bundler-cache: true
+          ruby-version: 3.2.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Install Yarn dependencies
+        run: yarn install --pure-lockfile
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Install libvips for image processing (used by ActiveStorage)
+        run: sudo apt-get -yqq install libvips
+
+      - name: Precompile Assets
+        run: bundle exec rails assets:precompile RAILS_ENV=test
+
+      - name: Setup Database
+        run: bundle exec rails db:schema:load
+
+      - name: Run RSpec specs
+        run: bundle exec rspec
+
+      - name: Run Cucumber features
+        run: bundle exec cucumber

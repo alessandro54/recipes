@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Calendars::ListComponent, type: :component do
+RSpec.describe Calendars::IndexComponent, type: :component do
   let(:user) { create :user, first_name: 'John', last_name: 'Doe' }
   let(:calendar) { create :calendar, title: 'Example Title 1', owners: [user] }
 

@@ -1,4 +1,4 @@
-import Controller from '@/support/controller';
+import Controller from '$root/app/typescript/support/controller';
 export default class extends Controller {
   static targets = ['link'];
 
@@ -11,10 +11,6 @@ export default class extends Controller {
   }
 
   private setActiveStyles(element: HTMLElement): void {
-    this.addClass(
-      element,
-      '!dark:bg-main-dark',
-      '!dark:text-asset-dark',
-      );
+    this.addClass(element, '!dark:bg-main-dark', '!dark:text-asset-dark');
   }
 }

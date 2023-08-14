@@ -1,5 +1,12 @@
-import * as Turbo from '@hotwired/turbo';
 import { Controller } from '@hotwired/stimulus';
+
+interface StimulusEvent extends Event {
+  detail: {
+    fetchResponse: {
+      responseHTML: string;
+    };
+  };
+}
 
 export default class extends Controller {
   connect(): void {
@@ -13,13 +20,17 @@ export default class extends Controller {
 
   submit() {
     setTimeout(() => {
-      const frame = document.getElementById('new-calendar')
-      const event = new CustomEvent('turbo:frame-load', { bubbles: true, cancelable: true });
+      const frame = document.getElementById('new-calendar');
+      const event = new CustomEvent('turbo:frame-load', {
+        bubbles: true,
+        cancelable: true,
+      });
       frame?.dispatchEvent(event);
-    }, 500)
+    }, 500);
   }
-  async deleteLast(e: any): Promise<void> {
-    const response = await e.detail.fetchResponse.responseHTML
+  async deleteLast(e: Event): Promise<void> {
+    const event = e as StimulusEvent;
+    const response = await event.detail.fetchResponse.responseHTML;
 
     if (!response.includes('with_errors')) {
       const parentEl = document.getElementById('calendars')!;

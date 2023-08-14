@@ -1,7 +1,7 @@
 {
   "all": {
-    "sourceCodeDir": "app/frontend",
-    "watchAdditionalPaths": []
+    "sourceCodeDir": "app/typescript",
+    "watchAdditionalPaths": ["app/components"]
   },
   "development": {
     "autoBuild": true,

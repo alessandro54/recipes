@@ -1,15 +1,15 @@
 import { ActionEvent } from '@hotwired/stimulus';
 import * as Turbo from '@hotwired/turbo';
 
-import Controller from '@/support/controller';
-import { post } from '@/support/http';
+import Controller from '$root/app/typescript/support/controller';
+import { post } from '$root/app/typescript/support/http';
 export default class extends Controller {
   static targets = [
     'recipeList',
     'recipeDetails',
     'newRecipe',
     'title',
-    'assign'
+    'assign',
   ];
   declare readonly recipeListTarget: HTMLDivElement;
   declare readonly recipeDetailsTarget: HTMLDivElement;
@@ -39,7 +39,7 @@ export default class extends Controller {
     ).toLocaleDateString('en-US', {
       weekday: 'long',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     })}`;
   }
 
@@ -61,13 +61,13 @@ export default class extends Controller {
       body: {
         day: {
           when: this.selectedDate,
-          recipe_id: this.selectedRecipe!.id
-        }
+          recipe_id: this.selectedRecipe!.id,
+        },
       },
       headers: {
         Accept: 'text/vnd.turbo-stream.html',
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     })
       .then((response) => response.text())
       .then((response) => {
@@ -75,7 +75,7 @@ export default class extends Controller {
           `/calendars/${this.calendarIdValue}/?date=${this.selectedDate}`,
           {
             action: 'replace',
-            frame: 'calendar'
+            frame: 'calendar',
           }
         );
         Turbo.renderStreamMessage(response);
@@ -113,7 +113,7 @@ export default class extends Controller {
     this.hide(this.recipeDetailsTarget);
     this.hide(this.newRecipeTarget);
     document.getElementById('recipe-details')!.innerHTML = `
-            <recipe-details-placeholder calendarId=${this.calendarIdValue}></recipe-details-placeholder>
+            <recipe-placeholder calendarId=${this.calendarIdValue}></recipe-placeholder>
     `;
   }
 }

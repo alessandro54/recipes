@@ -3,7 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 import config from '$root/twind.config';
 import install from '@twind/with-web-components';
 
-@customElement('recipe-details-placeholder')
+@customElement('recipe-placeholder')
 @install(config)
 export default class extends LitElement {
   static styles = css`
@@ -53,8 +53,6 @@ export default class extends LitElement {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                data-darkreader-inline-stroke=""
-                style="--darkreader-inline-stroke: currentColor;"
               >
                 <path
                   stroke-linecap="round"

@@ -49,7 +49,7 @@
                     = svg('chevron-left')
                   | Back to list
               turbo-frame#recipe-details
-                recipe-details-placeholder calendarId = @calendar.id
+                recipe-placeholder calendarId = @calendar.id
               .hidden.absolute.bottom-1.right-5.flex.justify-start.mt-5 data-day--new-target = 'assign'
                 button.w-36.items-center.rounded-md.bg-indigo-600.px-3.py-2.gap-x-3.font-semibold.shadow-sm.hover:bg-indigo-500.focus-visible:outline.focus-visible:outline-2.focus-visible:outline-offset-2.focus-visible:outline-indigo-600.flex.justify-center{
                   class = 'text(sm white)'

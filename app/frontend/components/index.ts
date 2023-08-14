@@ -1,2 +1,1 @@
-// @ts-ignore
-const components = import.meta.globEager('./**/*.ts')
+import.meta.glob('./**/*.ts', { eager: true });

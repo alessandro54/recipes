@@ -5,22 +5,22 @@ export default class extends Controller {
   loadShowDayContent({ params }: { params: { url: string } }) {
     Turbo.visit(params.url, {
       action: 'replace',
-      frame: 'day-modal'
+      frame: 'day-modal',
     });
     Turbo.visit(params.url, {
       action: 'replace',
-      frame: 'mobile-day-modal'
+      frame: 'mobile-day-modal',
     });
   }
 
   loadNewDayContent({ params }: { params: { url: string } }) {
     Turbo.visit(params.url, {
       action: 'replace',
-      frame: 'day-modal'
+      frame: 'day-modal',
     });
     Turbo.visit(params.url, {
       action: 'replace',
-      frame: 'mobile-day-modal'
+      frame: 'mobile-day-modal',
     });
   }
 }

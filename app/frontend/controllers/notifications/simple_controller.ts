@@ -4,7 +4,7 @@ import { post } from '@/support/http';
 
 export default class extends Controller {
   static values = {
-    url: String
+    url: String,
   };
 
   declare readonly urlValue: string;
@@ -19,15 +19,15 @@ export default class extends Controller {
   }
 
   create({
-    params
+    params,
   }: {
     params: { message: string; mode: string; type: string };
   }) {
     post('/notifications', {
       body: params,
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     })
       .then((r) => r.text())
       .then((r) => Turbo.renderStreamMessage(r));

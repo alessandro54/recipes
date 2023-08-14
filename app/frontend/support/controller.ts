@@ -21,10 +21,10 @@ export default class extends Controller {
 
   protected show(el: HTMLElement, display = 'block') {
     el.classList.remove(tx`hidden`);
-    el.classList.add(tx`${display}`)
+    el.classList.add(tx`${display}`);
   }
-  protected hide (el: HTMLElement, display = 'block') {
+  protected hide(el: HTMLElement, display = 'block') {
     el.classList.add(tx`hidden`);
-    el.classList.remove(tx`${display}`)
+    el.classList.remove(tx`${display}`);
   }
 }

@@ -4,7 +4,7 @@ class RecipesController < BaseController
   def index
     @pagy, @recipes = pagy(
       Recipe.with_photos.where(author: current_user),
-      page: params[:page],
+      page:  params[:page],
       items: 10
     )
   rescue Pagy::OverflowError

@@ -10,10 +10,10 @@ module Shared
 
         def nav_options
           {
-            dashboard: { icon: 'rectangle-group', path: root_path },
-            my_calendar: { icon: 'calendar-days', path: my_calendar_path },
-            recipes: { icon: 'book', path: recipes_path },
-            calendars: { icon: 'rectangle-stack', path: calendars_path }
+            dashboard:   {icon: 'rectangle-group', path: root_path},
+            my_calendar: {icon: 'calendar-days', path: my_calendar_path},
+            recipes:     {icon: 'book', path: recipes_path},
+            calendars:   {icon: 'rectangle-stack', path: calendars_path}
           }
         end
 

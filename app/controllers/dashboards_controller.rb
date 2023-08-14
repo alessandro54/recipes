@@ -9,7 +9,7 @@ class DashboardsController < BaseController
           id: current_user.id
         }
       },
-      when: Date.today
+      when:     Date.today
     )
     @total_recipes = Recipe.where(author: current_user).count
   end

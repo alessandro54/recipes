@@ -19,9 +19,9 @@ RSpec.describe DaysController, type: :controller do
       let(:valid_params) do
         {
           calendar_id: calendar.id,
-          day: {
+          day:         {
             recipe_id: recipe.id,
-            when: Date.today.beginning_of_month
+            when:      Date.today.beginning_of_month
           }
         }
       end
@@ -45,7 +45,7 @@ RSpec.describe DaysController, type: :controller do
       let(:invalid_params) do
         {
           calendar_id: calendar.id,
-          day: {
+          day:         {
             when: ''
           }
         }

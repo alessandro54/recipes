@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MainCalendarsController < BaseController
   before_action :set_date
 

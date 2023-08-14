@@ -1,4 +1,4 @@
-import Controller from '@/support/controller';
+import Controller from '$root/app/typescript/support/controller';
 import { Modal } from 'flowbite';
 import type { ModalOptions, ModalInterface } from 'flowbite';
 

@@ -10,13 +10,13 @@ export default defineConfig({
     RubyPlugin(),
     StimulusHMR(),
     FullReload(['config/routes.rb', 'app/views/**/*', 'app/components/**/*'], {
-      delay: 300
-    })
+      delay: 300,
+    }),
   ],
   resolve: {
     alias: {
       $root: path.resolve(__dirname),
-      '@': path.resolve(__dirname, './app/frontend/')
-    }
-  }
+      '@': path.resolve(__dirname, './app/typescript/'),
+    },
+  },
 });

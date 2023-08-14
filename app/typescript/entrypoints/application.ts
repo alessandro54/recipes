@@ -4,8 +4,10 @@ import { install, injectGlobal } from '@twind/core';
 import config from '$root/twind.config';
 
 import '../controllers';
-import '../components';
-import globalStyles from '@/support/globalStyles';
+
+import globalStyles from '$root/app/typescript/support/globalStyles';
+
+import.meta.glob('$root/app/components/**/*.ts', { eager: true });
 
 install(config);
 injectGlobal(globalStyles);

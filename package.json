@@ -1,9 +1,9 @@
 {
   "name": "recipes",
   "scripts": {
-    "lint": "eslint app/frontend",
-    "format": "prettier --write app/frontend",
-    "lint:fix": "eslint --fix app/frontend"
+    "lint": "eslint app/**/*.ts",
+    "format": "prettier --write app/**/*.ts",
+    "lint:fix": "eslint --fix app/**/*.ts"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",

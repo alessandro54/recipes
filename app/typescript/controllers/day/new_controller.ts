@@ -1,8 +1,8 @@
 import { ActionEvent } from '@hotwired/stimulus';
 import * as Turbo from '@hotwired/turbo';
 
-import Controller from '@/support/controller';
-import { post } from '@/support/http';
+import Controller from '$root/app/typescript/support/controller';
+import { post } from '$root/app/typescript/support/http';
 export default class extends Controller {
   static targets = [
     'recipeList',
@@ -113,7 +113,7 @@ export default class extends Controller {
     this.hide(this.recipeDetailsTarget);
     this.hide(this.newRecipeTarget);
     document.getElementById('recipe-details')!.innerHTML = `
-            <recipe-details-placeholder calendarId=${this.calendarIdValue}></recipe-details-placeholder>
+            <recipe-placeholder calendarId=${this.calendarIdValue}></recipe-placeholder>
     `;
   }
 }

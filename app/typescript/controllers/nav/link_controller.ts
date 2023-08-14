@@ -1,4 +1,4 @@
-import Controller from '@/support/controller';
+import Controller from '$root/app/typescript/support/controller';
 export default class extends Controller {
   static targets = ['link'];
 

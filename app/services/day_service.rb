@@ -2,54 +2,29 @@
 
 # Service layer for days
 class DayService < ApplicationService
-  include DayHelper
-
-  def initialize(calendar:)
-    @calendar = calendar
+  def list_all(calendar_id: nil, **opts)
+    calendar = calendar_service.find(id: calendar_id)
+    days = calendar.days
+    days = days.includes(recipe: {image_attachment: :blob}) if opts[:with_images] == true
+    days
   end
 
-  def list(calendar_id: nil)
-    calendar_service.find_one(id: calendar_id)
+  def list(calendar_id: nil, month: Date.today.month, year: Date.today.year, **)
+    start_date = Date.new(year, month, 1)
+    end_date = start_date.end_of_month
+    list_all(calendar_id:, **).where(when: start_date..end_date)
   end
 
-  def generate_for(date: Date.today, **opts)
-    days = calendar_days(with_images: opts[:with_images])
-    generate_month(
-      date:,
-      days: days.from_date(
-        date.year, date.month
-      )
-    )
-  end
-
-  def prev_month(date)
-    generate_for(date: date.prev_month)
-  end
-
-  def next_month(date)
-    generate_for(date: date.next_month)
-  end
-
-  def save(params)
-    @calendar = Calendar.find(params.fetch(:calendar_id))
-    @date = Date.parse(params.fetch(:when))
+  def save(calendar_params)
+    @calendar = Calendar.find(calendar_params.fetch(:calendar_id))
+    @date = Date.parse(calendar_params.fetch(:when))
 
     Day.create(params)
   end
 
   private
 
-  def calendar_days(with_images: false)
-    if with_images
-      calendar.days.includes(recipe: {image_attachment: :blob})
-    else
-      calendar.days
-    end
-  end
-
   def calendar_service
-    CalendarService.new(user: calendar)
+    @calendar_service ||= CalendarService.new
   end
-
-  attr_reader :calendar, :date
 end

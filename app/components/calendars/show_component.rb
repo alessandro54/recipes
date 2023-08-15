@@ -2,11 +2,12 @@
 
 module Calendars
   class ShowComponent < ApplicationComponent
-    def initialize(calendar:, date:, calendar_days:)
-      super
+    include DayHelper
+
+    def initialize(calendar:, days:, date:)
       @calendar = calendar
+      @days = days
       @date = date
-      @calendar_days = calendar_days
       @override_day = date != Date.today
     end
 

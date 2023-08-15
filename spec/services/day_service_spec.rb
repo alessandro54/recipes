@@ -6,6 +6,9 @@ RSpec.describe DayService, type: :service do
   subject { described_class.new(calendar:) }
   let(:calendar) { create :calendar }
 
+
+  
+
   describe '#generate_for' do
     let(:payload) { subject.generate_for(date: Date.new(2022, 2, 1)) }
 

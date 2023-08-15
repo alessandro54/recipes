@@ -8,8 +8,4 @@ class PlaygroundsController < BaseController
 
     @service = day_service.list(calendar_id: params[:calendar_id])
   end
-
-  def day_service
-    @day_service ||= DayService.new(calendar: current_user)
-  end
 end

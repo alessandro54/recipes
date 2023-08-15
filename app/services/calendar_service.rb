@@ -2,42 +2,25 @@
 
 # Service layer for calendars
 class CalendarService < ApplicationService
-  def initialize(user:)
-    @current_user = user
-  end
-
-  def find_one(id:)
-    Calendar.find(id || '5UfpGIPVeG')
+  def list_all
+    Calendar.all
   end
 
   def find(id:)
-    if id.present?
-      check_ownership(Calendar.find_by(id:))
-    else
-      current_user.main_calendar
-    end
+    Calendar.find(id)
+  rescue ActiveRecord::RecordNotFound
+    current_user.main_calendar
   end
 
-  def list
-    current_user.calendars
+  def list(user_id: nil)
+    User.find(user_id).calendars
   end
 
-  def create(params)
-    @calendar = Calendar.create(params)
+  def save(calendar_params)
+    calendar = Calendar.create(calendar_params)
 
-    @calendar.owners << current_user if @calendar.save
+    calendar.owners << current_user if calendar.save
 
-    @calendar
+    calendar
   end
-
-  private
-
-  def check_ownership(calendar)
-    return calendar if current_user.owner?(calendar:)
-
-    flash[:alert] = 'You are not an owner of that'
-    redirect_to calendars_path
-  end
-
-  attr_reader :current_user
 end

@@ -2,7 +2,7 @@
 
 # Helper to generate month days for the view
 module DayHelper
-  def generate_month(days:, date: Date.today, starting_day: :monday)
+  def calendar_days(days:, date: Date.today, starting_day: :monday)
     first = date.beginning_of_month.beginning_of_week(starting_day)
     last = date.end_of_month.end_of_week(starting_day)
     days_with_recipe = days.index_by(&:when)

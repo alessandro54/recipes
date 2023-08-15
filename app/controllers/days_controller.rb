@@ -40,7 +40,7 @@ class DaysController < BaseController
   end
 
   def day_service
-    @day_service ||= DayService.new(calendar:)
+    @day_service ||= DayService.new
   end
 
   attr_reader :day, :calendar

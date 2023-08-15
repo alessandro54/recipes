@@ -18,16 +18,16 @@
     / Desktop calendar
     .hidden.w-full.lg:grid.lg:grid-cols-7.lg:gap-px class="#{adaptive_styles(calendar_days.length)}"
       - calendar_days.each do |week|
-        - week.each do |day|
-          = render Days::Show::DesktopComponent.new(calendar_id: @calendar.id, day:)
+        - week.each do |payload|
+          = render Days::Show::DesktopComponent.new(calendar_id: @calendar.id, payload:)
 
     / Mobile calendar
     .isolate.grid.w-full.grid-cols-7.gap-px.lg:hidden.shadow-lg.rounded-b-lg{
       class="#{adaptive_styles(calendar_days.length)}"
     }
       - calendar_days.each do |week|
-        - week.each do |day|
-          = render Days::Show::MobileComponent.new(calendar_id: @calendar.id, day:)
+        - week.each do |payload|
+          = render Days::Show::MobileComponent.new(calendar_id: @calendar.id, payload:)
 
 javascript:
     var table =  document.querySelector('.isolate');

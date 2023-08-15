@@ -7,28 +7,26 @@ module Days
       # Initializes the component.
       #
       # @param calendar_id [String] the calendar id.
-      # @param day [{
-      #    id: [String] the day id if it has a recipe assigned.
-      #    today: [Boolean] if the day is today.
-      #    date: [Date] the day date.
-      #    current_month: [Boolean] if the day is from the current month.
+      # @param payload [{
+      #    day: [Day] the day linked to the date
       #    recipe: [Recipe] the recipe of the day.
+      #    month: [Integer] the issued month.
       # }] the day payload.
-      def initialize(calendar_id:, day:)
+      def initialize(calendar_id:, payload:)
         @calendar_id = calendar_id
-        @day = day
-        @recipe = day[:recipe]
-        @date = day[:date]
+        @day = payload[:day]
+        @month = payload[:month]
+        @date = payload[:date]
       end
 
       private
 
       def from_current_month?
-        @day[:current_month]
+        @date.month == @month
       end
 
       def today?
-        @day[:today]
+        @date == Date.today
       end
 
       def overrided_day?

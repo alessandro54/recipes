@@ -5,7 +5,7 @@
   data-controller='day day--new modals--new-day'
   data-day--new-calendar-id-value = @calendar.id
 }
-  turbo-frame#calendar.h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-center
+  turbo-frame#calendar.h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-start
     = render Calendars::ShowComponent.new(calendar: @calendar, days: @days, date: @date)
 
   = render Days::NewComponent.new(current_user: , calendar: @calendar)

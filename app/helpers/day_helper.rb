@@ -14,10 +14,9 @@ module DayHelper
 
   def self.payload(day, date, days_with_recipe)
     {
-      id:            days_with_recipe[day]&.id,
-      date:          day,
-      current_month: day.month == date.month,
-      recipe:        days_with_recipe[day]&.recipe
+      date:  day,
+      month: date.month,
+      day:   days_with_recipe[day]
     }
   end
 

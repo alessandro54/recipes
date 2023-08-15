@@ -15,14 +15,20 @@ class DayService < ApplicationService
     list_all(calendar_id:, **).where(when: start_date..end_date)
   end
 
-  def save(calendar_params)
-    @calendar = Calendar.find(calendar_params.fetch(:calendar_id))
-    @date = Date.parse(calendar_params.fetch(:when))
+  def save(user_id: nil, **params)
+    day = Day.new(params)
+    user = User.find(user_id)
 
-    Day.create(params)
+    return unless user.owner?(calendar: day.calendar)
+
+    day if day.save
   end
 
   private
+
+  def owner?(owner:, calendar:)
+    owner.owner?(calendar:)
+  end
 
   def calendar_service
     @calendar_service ||= CalendarService.new

@@ -11,7 +11,7 @@ class Calendar < ApplicationRecord
   has_many :days, dependent: :destroy
   has_many :recipes, -> { distinct }, through: :days, source: :recipe
 
-  validates :title, presence: true, format: {with: /\A[\w\s!'.,]+\z/}
+  validates :title, presence: true, format: {with: /\A[a-zA-Z0-9\s\p{P}]+\z/}
 
   def owned?(user:)
     owners.include?(user)

@@ -11,7 +11,7 @@ class Recipe < ApplicationRecord
   belongs_to :author, class_name: :User, foreign_key: :user_id
   has_many :days_made, class_name: :Day
 
-  validates :title, presence: true, format: {with: /\A[a-zA-Z\s.]+\z/}
+  validates :title, presence: true, format: {with: /\A[\p{L}\s]+\z/}
 
   private
 

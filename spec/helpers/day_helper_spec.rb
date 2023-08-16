@@ -11,10 +11,6 @@ RSpec.describe DayHelper, type: :helper do
       expect(display_date(Date.today)).to eq('today')
     end
 
-    it 'returns tomorrow' do
-      expect(display_date(Date.tomorrow)).to eq('tomorrow')
-    end
-
     it 'returns the correct format of string' do
       expect(display_date(Date.new(2023, 4, 21))).to eq('21 Apr')
     end

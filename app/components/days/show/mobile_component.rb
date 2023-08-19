@@ -3,11 +3,11 @@
 module Days
   module Show
     # This is the mobile version component of the calendar day.
-    class MobileComponent < ApplicationComponent
+    class MobileComponent < DesktopComponent
       # Initializes the component.
       #
       # @param calendar_id [String] the calendar id.
-      # @param day [{
+      # @param payload [{
       #    id: [String] the day id if it has a recipe assigned.
       #    today: [Boolean] if the day is today.
       #    date: [Date] the day date.
@@ -23,24 +23,12 @@ module Days
 
       private
 
-      def from_current_month?
-        @date.month == @month
-      end
-
-      def today?
-        @date == Date.today
-      end
-
-      def overrided_day?
-        @date != Date.today
-      end
-
       def no_recipe_style
         if today? && !overrided_day?
-          'text(black dark:gray-200 dark:hover:layout-dark)
-          bg(secondary/60 hover:gray-100 dark:asset-dark dark:hover:main-dark)'
+          'text(alt hover:white dark:gray-200 dark:hover:layout-dark)
+          bg(main/40 hover:alt/80 dark:asset-dark dark:hover:main-dark)'
         else
-          'text(black dark:main-dark dark:hover:white) bg(white dark:layout-dark hover:main/50
+          'text(gray-500 dark:main-dark dark:hover:white) bg(white dark:layout-dark hover:main/40
           dark:hover:alt-dark/50)'
         end
       end

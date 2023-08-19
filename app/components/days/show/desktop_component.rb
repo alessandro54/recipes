@@ -19,9 +19,9 @@ module Days
         @date = payload[:date]
       end
 
-      private
+      protected
 
-      def from_current_month?
+      def from_month?
         @date.month == @month
       end
 
@@ -29,8 +29,16 @@ module Days
         @date == Date.today
       end
 
-      def overrided_day?
+      def override_day?
         @date != Date.today
+      end
+
+      def not_from_month
+        if @date.month > @month
+          Date.new(@date.year, @month, 1).next_month
+        else
+          Date.new(@date.year, @month, 1).prev_month
+        end
       end
     end
   end

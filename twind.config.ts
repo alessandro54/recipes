@@ -8,12 +8,12 @@ export default defineConfig({
   rules: [
     [
       'tooltip',
-      'absolute z-30 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 rounded-lg shadow-sm opacity-0'
+      'absolute z-30 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 rounded-lg shadow-sm opacity-0',
     ],
     [
       'button',
-      'inline-flex items-center gap-x-1.5 rounded-md px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transform hover:scale-105 transition duration-300'
-    ]
+      'inline-flex items-center gap-x-1.5 rounded-md px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transform hover:scale-105 transition duration-300',
+    ],
   ],
   theme: {
     extend: {
@@ -28,10 +28,10 @@ export default defineConfig({
         },
         asset: {
           DEFAULT: '#614BC3',
-          dark: '#31398C',
+          dark: '#373a57',
         },
         layout: {
-          DEFAULT: '#C8FFE0',
+          DEFAULT: '#e5ffef',
           dark: '#2a2c41',
         },
         alert: '#f57979',

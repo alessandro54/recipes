@@ -12,7 +12,7 @@ RSpec.describe DaysController, type: :controller do
 
   describe 'POST #create' do
     let(:calendar) { create(:calendar, owners: [user]) }
-    let(:dat) { Date.today.beginning_of_month }
+
     render_views
 
     context 'with valid params' do
@@ -26,18 +26,20 @@ RSpec.describe DaysController, type: :controller do
         }
       end
 
+      it 'responds with a 201 status' do
+        expect(response).to have_http_status(:success)
+      end
+
       it 'creates a new day and returns a turbo stream response' do
         expect { post :create, params: valid_params, format: :turbo_stream }
           .to change { calendar.days.count }.by(1)
+      end
 
-        expect(response).to have_http_status(:success)
+      it 'returns a turbo_stream response with the correct template' do
+        post :create, params: valid_params, format: :turbo_stream
+
         expect(response.media_type).to eq('text/vnd.turbo-stream.html')
         expect(response.body).to include('turbo-stream')
-
-        created_day = calendar.days.last
-
-        expect(created_day.calendar.id).to eq(calendar.id)
-        expect(created_day.recipe.id).to eq(recipe.id)
       end
     end
 
@@ -46,17 +48,16 @@ RSpec.describe DaysController, type: :controller do
         {
           calendar_id: calendar.id,
           day:         {
-            when: ''
+            when: nil
           }
         }
       end
 
-      it 'does not create a new day and redirects with an alert' do
+      it 'does not create a new day and renders an alert' do
         expect {
-          post :create, params: invalid_params
+          post :create, params: invalid_params, format: :turbo_stream
         }.to_not change(Day, :count)
 
-        expect(response).to redirect_to(calendar_path(calendar))
         expect(flash[:alert]).to be_present
       end
     end

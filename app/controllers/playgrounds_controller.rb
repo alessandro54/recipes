@@ -5,5 +5,7 @@ class PlaygroundsController < BaseController
   def show
     flash[:simple_info] = 'This is a simple info message'
     flash[:simple_warn] = 'This is a simple warn message'
+
+    @service = day_service.list(calendar_id: params[:calendar_id])
   end
 end

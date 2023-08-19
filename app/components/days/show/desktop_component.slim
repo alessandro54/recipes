@@ -1,41 +1,60 @@
-/ Day belonging to current month
-- if from_current_month?
-  / with recipe
-  - if @recipe
-    .flex.flex-col.items-start.relative.px-3.py-2.h-40.cursor-pointer.hover:bg-indigo-100{
-      class="#{@date && !overrided_day? ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
-      data-action=''
+- if from_month?
+  - if @day.present?
+    .flex.flex-col.items-start.group.relative.transition.duration-300.px-3.py-2.h-40.cursor-pointer{
+      class="#{@date && !override_day? ? 'text-black bg-white' : 'text-gray-500'} bg(white hover:alt/50 dark:asset-dark dark:hover:alt-dark/70)"
+      data-tooltip-target="d-#{@day.id}-tooltip"
+      data-tooltip-placement='bottom'
       data-calendar-url-param = calendar_day_path(calendar_id: @calendar_id, date: @date)
     }
-      / if it's today
-      - if today? && !overrided_day?
-        time.flex.h-8.w-8.text-base.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white{
-          class=''
-          datetime=@date.to_s
-        }
-          = @date.day
-      - else
-        time datetime=@date.to_s
-          = @date.day
-      span.w-full.mt-3.text-base.text-center = @recipe.title
-  / without recipe
+      .absolute.top-2
+        / if it's today
+        - if today? && !override_day?
+          time.flex.h-8.w-8.text-base.items-center.justify-center.rounded-full.font-semibold{
+            class='bg(alt dark:indigo-500) text(white base)'
+            datetime=@date.to_s
+          }
+            = @day.when.day
+        - else
+          time{
+            datetime= @date.to_s
+            class='dark:text-white group-hover:text-black dark:group-hover:text-white text-base'
+          }
+            = @day.when.day
+      .w-full.h-full.grid.place-items-center.mt-3.text-base.text-center
+        .transition.duration-300.bg-gray-100.dark:bg-layout-dark.rounded-full.lazy.animate-pulse.w-20.h-20.text-gray-400.grid.place-items-center.lazy-placeholder
+          .w-8.h-8.text-gray-300.dark:text-gray-600
+            = svg('image', type: :extra)
+        .w-20.h-20
+          = image_tag @day.recipe.image, class: 'lazy-image hidden ring(4 alt dark:main-dark group-hover:alt) w-full h-full rounded-full object-cover'
+        .dark:text-white.h-5.text-xs
+          = @day.recipe.title
+    .tooltip.bg-black.flex.items-center.flex-col{ id="d-#{@day.id}-tooltip" role='tooltip'}
+      = @day.recipe.title
+      .flex.items-center
+        | Duration:
+        .w-3.h-3.ml-1
+          = svg('clock', type: :mini)
+        = minutes_to_hours_and_minutes(@day.recipe.duration)
+      .tooltip-arrow { data-popper-arrow }
   - else
-    button.relative.px-3.py-2.h-40.cursor-pointer.hover:bg-indigo-100{
-      class="bg(white dark:layout-dark) #{today? && !overrided_day? ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
+    button.relative.px-3.py-2.h-40.cursor-pointer.hover:bg-layout.transition.duration-300{
+      class="bg(white dark:layout-dark dark:hover:asset-dark) #{today? && !override_day? ? 'text-indigo-600 bg-indigo-50' : 'text-gray-500'}"
       data-action='modals--new-day#show day--new#setDate'
       data-day--new-date-param=@date.to_s
     }
-      / if it's today
-      - if today? && !overrided_day?
-        time.flex.h-8.w-8.text-base.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white datetime=@date.to_s
-          = @date.day
-      - else
-        time datetime=@date.to_s
-          = @date.day
+      .absolute.top-2
+        / if it's today
+        - if today? && !override_day?
+          time.flex.h-8.w-8.text-base.items-center.justify-center.rounded-full.bg-indigo-600.font-semibold.text-white datetime=@date.to_s
+            = @date.day
+        - else
+          time{ datetime= @date.to_s class='text-base' }
+            = @date.day
 / Day not belonging to current month
 - else
-  .relative.bg-gray-50.px-3.py-2.text-gray-500.cursor-not-allowed{
-    class='bg(secondary-dark/10 dark:asset-dark/50)'
-  }
-    time datetime=@date.to_s
-      | #{@date.day}
+  = link_to calendar_path(@calendar_id, date: not_from_month), class: '' do
+    .relative.bg-gray-50.px-3.py-2.text-gray-500.h-full.transition.duration-300{
+      class="group-hover:opacity-20 dark:group-hover:opacity-80 bg(gray-50 dark:asset-dark/80) #{@date.month > @month ? 'cursor-e-resize' : 'cursor-w-resize'}"
+    }
+      time datetime=@date.to_s
+        | #{@date.day}

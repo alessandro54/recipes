@@ -11,6 +11,11 @@ export default class extends Controller {
   }
 
   private setActiveStyles(element: HTMLElement): void {
-    this.addClass(element, '!dark:bg-main-dark', '!dark:text-asset-dark');
+    this.addClass(
+      element,
+      '!bg-main',
+      '!dark:bg-main-dark',
+      '!dark:text-asset-dark'
+    );
   }
 }

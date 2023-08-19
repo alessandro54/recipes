@@ -17,12 +17,13 @@ class DaysController < BaseController
   def edit; end
 
   def create
-    @day = day_service.save(day_params)
+    @day = day_service.save(user_id: current_user.id, **day_params)
 
-    @calendar_days = day_service.generate_for(date: @day.when)
-    respond_to(:turbo_stream)
-  rescue Date::Error
-    redirect_to calendar_path(calendar), alert: 'There was an error with the provided date'
+    redirect_to calendar_path(calendar), alert: 'There was an error with the provided date' and return unless @day
+
+    respond_to do |format|
+      format.turbo_stream { render :create, status: :created }
+    end
   end
 
   private
@@ -40,7 +41,7 @@ class DaysController < BaseController
   end
 
   def day_service
-    @day_service ||= DayService.new(calendar:)
+    @day_service ||= DayService.new
   end
 
   attr_reader :day, :calendar

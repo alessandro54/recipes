@@ -16,6 +16,11 @@ en:
               invalid: format is invalid
             password:
               blank: must be provided
+        recipe:
+          attributes:
+            title:
+              blank: needs to be provided
+              invalid: format is invalid
   errors:
     messages:
       not_saved: Not saved

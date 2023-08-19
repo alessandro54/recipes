@@ -4,7 +4,7 @@
 This application is a recipe manager, which features a calendar to plan your meals, also works as a recipe book, where you can store your recipes and share them with other users. (WIP) The name for the moment is 'Recipes' but is more a codename.
 
 Features:
-* Github Actions CI
+* Github Actions CI for Lint and Tests
 * Docker (soon)
 * User authentication
 * Recipe CRUD
@@ -16,6 +16,8 @@ Features:
 * Rails 7.0.7
 * Postgres 13.11
 * Yarn 1.22.19
+* Typescript 5.1.6
+* Lit 2.7.5
 
 ## Local installation
 * Clone the repo

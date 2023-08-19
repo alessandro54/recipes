@@ -1,25 +1,47 @@
 # README
-[![Recipes CI](https://github.com/alessandro54/recipes/actions/workflows/test.yml/badge.svg?branch=main&event=status)](https://github.com/alessandro54/recipes/actions/workflows/test.yml)
+[![Recipes CI](https://github.com/alessandro54/recipes/actions/workflows/test.yml/badge.svg)](https://github.com/alessandro54/recipes/actions/workflows/test.yml)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application is a recipe manager, which features a calendar to plan your meals, also works as a recipe book, where you can store your recipes and share them with other users. (WIP) The name for the moment is 'Recipes' but is more a codename.
 
-Things you may want to cover:
+Features:
+* Github Actions CI
+* Docker (soon)
+* User authentication
+* Recipe CRUD
+* Main-flow tests with RSpec and Cucumber
 
-* Ruby version
 
-* System dependencies
+## Tools
+* Ruby 3.2.2
+* Rails 7.0.7
+* Postgres 13.11
+* Yarn 1.22.19
 
-* Configuration
+## Local installation
+* Clone the repo
+* Install ruby dependencies
+```bash
+bundle install
+```
 
-* Database creation
+* Install JS dependencies
+```bash
+yarn install
+```
 
-* Database initialization
+* Create the database and run the migrations
+```bash
+rails db:setup
+```
 
-* How to run the test suite
+* Run the server on [localhost:3000](http://localhost:3000)
+```bash
+./bin/dev
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+* Run the tests
+```bash
+./bin/rake
+```
 
-* Deployment instructions
-
-* ...
+## Docker Setup (soon)

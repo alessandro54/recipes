@@ -1,40 +1,39 @@
 .flex.min-h-full.flex-col.justify-center.py-12.sm:px-6.lg:px-8
   .sm:mx-auto.sm:w-full.sm:max-w-md
     img.mx-auto.h-10.w-auto[
-      src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
+      src='https://tailwindui.com/img/logos/mark.svg?color=teal&shade=300'
       alt='Recipes'
     ]
     h2.mt-6.text-center.text-2xl.font-bold.leading-9.tracking-light{
-      class='text(gray-900 white)'
+      class='text(gray-800 dark:white)'
     }
       | Sign in to your account
   .mt-10.sm:mx-auto.sm:w-full class='sm:max-w-[480px]'
     .dark:bg-layout-dark.bg-white.px-6.py-12.shadow.sm:rounded-lg.sm:px-12
       = form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'space-y-6' } do |f|
-        = render "devise/shared/error_messages", resource: resource
         div
           = f.label :email, autofocus: true, class: 'block text-sm font-medium leading-6 text(gray-900 dark:white)'
           .mt-2
             = f.email_field :email,
                             autofocus: true,
                             autocomplete: :email,
-                            class: 'block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text(gray-900 dark:main-dark) bg(white dark:layout-dark)'
+                            class: 'block w-full rounded-md border-0 py-1.5 shadow-sm ring(1 inset gray-300 focus:2 focus:inset focus:alt) sm:leading-6 text(gray-900 dark:main-dark placeholder:gray-400 sm:sm) bg(white dark:layout-dark)'
         div
           = f.label :password, class: 'block text-sm font-medium leading-6 text(gray-900 dark:white)'
           .mt-2
             = f.password_field :password,
                                 autocomplete: :current_password,
-                                class: 'block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text(gray-900 dark:main-dark) bg(white dark:layout-dark)'
+                                class: 'block w-full rounded-md border-0 py-1.5 shadow-sm ring(1 inset gray-300 focus:2 focus:inset focus:alt) sm:leading-6 text(gray-900 dark:main-dark placeholder:gray-400 sm:sm) bg(white dark:layout-dark)'
         .flex.items-center.justify-between.mt-6
           .flex.items-center
             = f.check_box :remember_me, class: 'h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded dark:bg-layout-dark'
             = f.label :remember_me, class: 'ml-2 block text-sm text(gray-900 dark:white)'
 
           .text-sm.leading-6
-            = link_to 'Forgot password?', '/', class: 'font-medium text(asset dark:main-dark) hover:text-indigo-500'
+            = link_to 'Forgot password?', '/', class: 'font-medium text(alt dark:main-dark) hover:text-indigo-500'
         div
           = f.submit 'Sign in',
-                    class: 'button w-full bg(main dark:main-dark dark:hover:alt-dark) flex justify-center'
+                    class: 'button w-full bg(alt dark:main-dark dark:hover:alt-dark) flex justify-center'
       div
         .relative.mt-10
           .absolute.inset-0.flex.items-center aria-hidden='true'
@@ -52,4 +51,4 @@
               | GitHub
     p.mt-10.text-center.text-sm.text-gray-500
       | Not member?
-      = link_to 'Create an account', '/register', class: 'pl-2 font-medium text-indigo-600 hover:text-indigo-500'
+      = link_to 'Create an account', '/register', class: 'pl-2 font-medium text(alt dark:indigo-600 hover:indigo-500)'

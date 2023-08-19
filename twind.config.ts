@@ -31,7 +31,7 @@ export default defineConfig({
           dark: '#373a57',
         },
         layout: {
-          DEFAULT: '#C8FFE0',
+          DEFAULT: '#e5ffef',
           dark: '#2a2c41',
         },
         alert: '#f57979',

@@ -30,7 +30,7 @@ nav.w-full data-controller="nav--link"
                   - nav_options.each do |name, attributes|
                     li
                       = link_to attributes[:path],
-                                class: 'transition duration-300 text(dark dark:hover:asset-dark dark:white) bg(dark:hover:main-dark) group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
+                                class: 'transition duration-300 text(dark dark:hover:asset-dark dark:white) bg(hover:main dark:hover:main-dark) group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                 data: { 'nav--link-target': 'link' } do
                         .w-6.h-6 = svg(attributes[:icon])
                         | #{name.capitalize.to_s.gsub('_', ' ')}

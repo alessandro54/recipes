@@ -6,7 +6,12 @@ class CalendarsController < BaseController
   before_action :set_date, only: :show
 
   def index
-    @pagy, @calendars = pagy(calendar_service.list.order(created_at: :desc), items: 9)
+    @pagy, @calendars = pagy(
+      calendar_service
+      .list(user_id: current_user.id)
+      .order(created_at: :desc),
+      items: 9
+    )
   end
 
   def new
@@ -14,11 +19,16 @@ class CalendarsController < BaseController
   end
 
   def create
-    @calendar = calendar_service.create(calendar_params)
+    @calendar = calendar_service.save(calendar_params)
   end
 
   def show
-    @calendar_days = day_service.generate_for(date:, with_images: true)
+    @days = day_service.list(
+      calendar_id: calendar.id,
+      month:       date.month,
+      year:        date.year,
+      with_images: true
+    )
   end
 
   def destroy
@@ -28,7 +38,7 @@ class CalendarsController < BaseController
   private
 
   def calendar_params
-    params.require(:calendar).permit(:title)
+    params.require(:calendar).permit(:title, :owner_id)
   end
 
   def set_calendar
@@ -41,11 +51,11 @@ class CalendarsController < BaseController
   end
 
   def day_service
-    @day_service ||= DayService.new(calendar:)
+    @day_service ||= DayService.new
   end
 
   def calendar_service
-    @calendar_service ||= CalendarService.new(user: current_user)
+    @calendar_service ||= CalendarService.new
   end
 
   attr_reader :calendar, :date

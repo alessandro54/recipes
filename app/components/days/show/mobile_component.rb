@@ -14,21 +14,21 @@ module Days
       #    current_month: [Boolean] if the day is from the current month.
       #    recipe: [Recipe] the recipe of the day.
       # }] the day payload.
-      def initialize(calendar_id:, day:)
+      def initialize(calendar_id:, payload:)
         @calendar_id = calendar_id
-        @day = day
-        @recipe = day[:recipe]
-        @date = day[:date]
+        @day = payload[:day]
+        @month = payload[:month]
+        @date = payload[:date]
       end
 
       private
 
       def from_current_month?
-        @day[:current_month]
+        @date.month == @month
       end
 
       def today?
-        @day[:today]
+        @date == Date.today
       end
 
       def overrided_day?

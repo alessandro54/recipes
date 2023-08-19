@@ -7,8 +7,6 @@ class RecipesController < BaseController
       page:  params[:page],
       items: 10
     )
-  rescue Pagy::OverflowError
-    redirect_to recipes_path(page: 1)
   end
 
   def show

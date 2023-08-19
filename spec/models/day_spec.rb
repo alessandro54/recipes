@@ -6,5 +6,7 @@ RSpec.describe Day, type: :model do
   describe 'associations' do
     it { should belong_to(:calendar) }
     it { should belong_to(:recipe) }
+
+    it { validate_presence_of(:when) }
   end
 end

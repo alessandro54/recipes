@@ -1,18 +1,17 @@
 - if from_current_month?
-  / with recipe
-  - if @recipe
+  - if @day.present?
     button.relative.flex.h-28.md:h-32.flex-col.focus:z-10.group.transition-opacity.duration-300{
-      id="day-#{@date.day}"
+      id="day-#{@day.when.day}"
       class="#{today? && !overrided_day? ? 'border(2 secondary-dark dark:primary) text(base dark dark:primary)' : 'text-dark'}"
       data-action=''
-      data-tooltip-target="tooltip-#{@date}"
+      data-tooltip-target="tooltip-#{@day.when}"
       data-tooltip-placement='bottom'
       data-calendar-url-param=calendar_day_path(calendar_id: @calendar_id, date: @date)
     }
       time.ml-auto.p-2.z-10 datetime="#{@date.to_s}"
-        = @date.day
+        = @day.when.day
       .absolute.w-full.h-full{
-        class="bg-cover bg-[url('#{url_for(@recipe.image)}')]"
+        class="bg-cover bg-[url('#{url_for(@day.recipe.image)}')]"
       }
       / Color filter for img
       .absolute.w-full.h-full{
@@ -25,14 +24,13 @@
         .h-full.span.text-xs.break-all.truncate {
           class='px-2 py-1 text(dark:white)'
         }
-          = @recipe.title
+          = @day.recipe.title
     .tooltip.bg-asset-dark{
       id="tooltip-#{@date}"
       role='tooltip'
     }
-      = @recipe.title
+      = @day.recipe.title
       .tooltip-arrow { data-popper-arrow }
-  / without recipe
   - else
     button.transition.duration-300.flex.items-end.h-28.md:h-32.flex-col.px-3.py-2.focus:z-10{
       id="empty-day-#{@date.day}"

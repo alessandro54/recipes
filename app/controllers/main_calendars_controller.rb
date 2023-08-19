@@ -7,7 +7,12 @@ class MainCalendarsController < BaseController
     redirect_to calendars_path and return unless current_user.calendars.count.positive?
 
     set_main_calendar
-    @calendar_days = days_service.generate_for(date:, with_images: true)
+    @days = day_service.list(
+      calendar_id: calendar.id,
+      month:       date.month,
+      year:        date.year,
+      with_images: true
+    )
   end
 
   private
@@ -20,8 +25,8 @@ class MainCalendarsController < BaseController
     @calendar = current_user.main_calendar
   end
 
-  def days_service
-    @days_service ||= DayService.new(calendar: @calendar)
+  def day_service
+    @day_service ||= DayService.new
   end
 
   attr_reader :calendar, :date

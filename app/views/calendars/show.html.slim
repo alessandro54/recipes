@@ -10,7 +10,7 @@
       | Owner(s): #{@calendar.owners.pluck(:first_name).join(', ')}
   - else
     h1.text-4xl.font-bold My calendar
-  turbo-frame#calendar.h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-center
-    = render Calendars::ShowComponent.new(calendar: @calendar, date: @date, calendar_days: @calendar_days)
+  turbo-frame#calendar.h-max.lg:flex.lg:flex-auto.lg:flex-col.justify-start
+    = render Calendars::ShowComponent.new(calendar: @calendar, days: @days, date: @date)
 
   = render Days::NewComponent.new(current_user: , calendar: @calendar)

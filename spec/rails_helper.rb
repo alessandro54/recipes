@@ -59,6 +59,9 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each) do
     DatabaseCleaner.start
   end
 
@@ -95,6 +98,8 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  #
+  config.example_status_persistence_file_path = 'tmp/specs.txt'
 end
 
 Shoulda::Matchers.configure do |config|

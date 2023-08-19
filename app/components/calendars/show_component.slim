@@ -1,3 +1,4 @@
+- calendar_days = calendar_days(days: @days, date: @date)
 = render Calendars::Navigator::Component.new(date: @date, calendar: @calendar)
 / Weekdays display
 .grid.grid-cols-7.font-semibold.leading-6.lg:flex-none.bg-white{
@@ -15,18 +16,18 @@
 }
   .w-full
     / Desktop calendar
-    .hidden.w-full.lg:grid.lg:grid-cols-7.lg:gap-px class="#{adaptive_styles(@calendar_days.length)}"
-      - @calendar_days.each do |week|
-        - week.each do |day|
-          = render Days::Show::DesktopComponent.new(calendar_id: @calendar.id, day:)
+    .hidden.w-full.lg:grid.lg:grid-cols-7.lg:gap-px class="#{adaptive_styles(calendar_days.length)}"
+      - calendar_days.each do |week|
+        - week.each do |payload|
+          = render Days::Show::DesktopComponent.new(calendar_id: @calendar.id, payload:)
 
     / Mobile calendar
     .isolate.grid.w-full.grid-cols-7.gap-px.lg:hidden.shadow-lg.rounded-b-lg{
-      class="#{adaptive_styles(@calendar_days.length)}"
+      class="#{adaptive_styles(calendar_days.length)}"
     }
-      - @calendar_days.each do |week|
-        - week.each do |day|
-          = render Days::Show::MobileComponent.new(calendar_id: @calendar.id, day:)
+      - calendar_days.each do |week|
+        - week.each do |payload|
+          = render Days::Show::MobileComponent.new(calendar_id: @calendar.id, payload:)
 
 javascript:
     var table =  document.querySelector('.isolate');

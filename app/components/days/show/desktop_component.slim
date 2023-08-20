@@ -1,6 +1,6 @@
 - if from_month?
   - if @day.present?
-    .flex.flex-col.items-start.group.relative.transition.duration-300.px-3.py-2.h-40.cursor-pointer{
+    .flex.flex-col.items-start.relative.transition.duration-300.px-3.py-2.h-40.cursor-pointer{
       class="#{@date && !override_day? ? 'text-black bg-white' : 'text-gray-500'} bg(white hover:alt/50 dark:asset-dark dark:hover:alt-dark/70)"
       data-tooltip-target="d-#{@day.id}-tooltip"
       data-tooltip-placement='bottom'
@@ -25,7 +25,7 @@
           .w-8.h-8.text-gray-300.dark:text-gray-600
             = svg('image', type: :extra)
         .w-20.h-20
-          = image_tag @day.recipe.image, class: 'lazy-image hidden ring(4 alt dark:main-dark group-hover:alt) w-full h-full rounded-full object-cover'
+          = image_tag @day.recipe.image, class: 'lazy-image hidden ring(4 alt dark:main-dark) w-full h-full rounded-full object-cover'
         .dark:text-white.h-5.text-xs
           = @day.recipe.title
     .tooltip.bg-black.flex.items-center.flex-col{ id="d-#{@day.id}-tooltip" role='tooltip'}

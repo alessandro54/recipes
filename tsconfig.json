@@ -19,6 +19,7 @@
     "paths": {
       "@/*": ["./app/typescript/*"],
       "~/*": ["./config/app/typescript/*"],
+      "@components/*": ["./app/components/*"],
       "$root/*": ["./*"]
     }
   },

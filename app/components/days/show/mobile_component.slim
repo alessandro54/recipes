@@ -11,12 +11,13 @@
       time.ml-auto.pr-1.pt-1.z-10.text-base datetime="#{@date.to_s}"
         = @day.when.day
       .absolute.w-full.h-full.grid.place-items-center.transition.duration-300
-        .lazy-placeholder.transition.duration-300.bg-gray-100.dark:bg-layout-dark.rounded-full.lazy.animate-pulse.text-gray-400.grid.place-items-center{
-          class='w(12 md:20) h(12 md:20)'
-        }
-          .w-8.h-8.text-gray-300.dark:text-gray-600
-            = svg('image', type: :extra)
-        = image_tag @day.recipe.image, class: 'lazy-image hidden ring(2 alt dark:main-dark) w(12 md:20) h(12 md:20) rounded-full object-cover'
+        - unless eager_load
+          .lazy-placeholder.transition.duration-300.bg-gray-100.dark:bg-layout-dark.rounded-full.lazy.animate-pulse.text-gray-400.grid.place-items-center{
+            class='w(12 md:20) h(12 md:20)'
+          }
+            .w-8.h-8.text-gray-300.dark:text-gray-600
+              = svg('image', type: :extra)
+        = image_tag @day.recipe.image, class: "#{eager_load ? '' : 'lazy-image hidden'} ring(2 alt dark:main-dark) w(12 md:20) h(12 md:20) rounded-full object-cover"
       / Text container
       .absolute.w-full.-bottom-1.flex.flex-col.opacity-100.pointer-events-none{
       }

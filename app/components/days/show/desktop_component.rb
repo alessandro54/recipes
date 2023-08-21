@@ -12,11 +12,12 @@ module Days
       #    month: [Integer] the issued month.
       #    day: [Day] the day linked to the date
       # }] the day payload.
-      def initialize(calendar_id:, payload:)
+      def initialize(calendar_id:, payload:, **opts)
         @calendar_id = calendar_id
         @day = payload[:day]
         @month = payload[:month]
         @date = payload[:date]
+        @opts = opts
       end
 
       protected
@@ -39,6 +40,10 @@ module Days
         else
           Date.new(@date.year, @month, 1).prev_month
         end
+      end
+
+      def eager_load
+        @opts[:eager_load] || false
       end
     end
   end

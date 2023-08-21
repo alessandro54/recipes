@@ -65,7 +65,7 @@ export default class extends Controller {
           when: this.selectedDate,
           recipe_id: this.selectedRecipe!.id,
         },
-        button: this.selectedButton.id,
+        button: this.selectedButton!.id.slice(2),
       },
       headers: {
         Accept: 'text/vnd.turbo-stream.html',

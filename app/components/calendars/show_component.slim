@@ -1,20 +1,18 @@
 - calendar_days = calendar_days(days: @days, date: @date)
 = render Calendars::Navigator::Component.new(date: @date, calendar: @calendar)
 / Weekdays display
-.grid.grid-cols-7.font-semibold.leading-6.lg:flex-none{
-  class='rounded-t-lg bg(gray-200 dark:main-dark) text(center xs bold)'
+.grid.grid-cols-7.font-semibold.leading-6.lg:flex-none.m-0{
+  class='rounded-t-lg text(center xs bold)'
   data-controller='lazy-images'
 }
   - %w[Mon Tue Wed Thu Fri Sat Sun].each do |day|
     .flex.justify-center.py-2.text-black.font-bold.text-sm{
-      class = 'border(b dark:gray-600) first:rounded-tl-lg last:rounded-tr-lg bg(secondary dark:layout-dark) text(dark dark:main-dark)'
+      class = 'border(b dark:gray-600) first:rounded-tl-lg last:rounded-tr-lg bg(alt/50 dark:layout-dark) text(dark dark:main-dark)'
     }
       span = day[0]
       span.sr-only.sm:not-sr-only = day[1..]
 / Calendar
-.text-xs.leading-6.text-gray-700.lg:flex.shadow-lg.ring-1.ring-black.ring-opacity-5.rounded-b-lg{
-  class='rounded-lg'
-}
+.text-xs.leading-6.text-gray-700.lg:flex.shadow-lg.ring-1.ring-black.ring-opacity-5.rounded-b-lg
   .w-full
     / Desktop calendar
     .group.isolate.hidden.w-full.lg:grid.lg:grid-cols-7.lg:gap-px class="#{adaptive_styles(calendar_days.length)}"

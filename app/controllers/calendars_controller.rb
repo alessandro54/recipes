@@ -19,7 +19,7 @@ class CalendarsController < BaseController
   end
 
   def create
-    @calendar = calendar_service.save(calendar_params)
+    @calendar = calendar_service.save(calendar_params, user_id: current_user.id)
   end
 
   def show

@@ -16,10 +16,10 @@ class CalendarService < ApplicationService
     User.find(user_id).calendars
   end
 
-  def save(calendar_params)
+  def save(calendar_params, user_id: nil)
     calendar = Calendar.create(calendar_params)
 
-    calendar.owners << current_user if calendar.save
+    calendar.owners << User.find(user_id) if calendar.save
 
     calendar
   end

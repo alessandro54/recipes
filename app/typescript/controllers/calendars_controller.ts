@@ -30,7 +30,7 @@ export default class extends Controller {
   }
   async deleteLast(e: Event): Promise<void> {
     const event = e as StimulusEvent;
-    const response = await event.detail.fetchResponse.responseHTML;
+    const response = event.detail.fetchResponse.responseHTML;
 
     if (!response.includes('with_errors')) {
       const parentEl = document.getElementById('calendars')!;

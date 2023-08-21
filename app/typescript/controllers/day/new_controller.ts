@@ -47,10 +47,18 @@ export default class extends Controller {
 
   public selectRecipe(e: ActionEvent): void {
     if (this.selectedRecipe != null) {
-      this.removeClass(this.selectedRecipe as HTMLElement, 'bg-indigo-800');
+      this.removeClass(
+        this.selectedRecipe.parentElement as HTMLElement,
+        '!bg-main',
+        '!dark:bg-alt-dark'
+      );
     }
     this.selectedRecipe = e.currentTarget as HTMLElement;
-    this.addClass(this.selectedRecipe as HTMLElement, 'bg-indigo-800');
+    this.addClass(
+      this.selectedRecipe.parentElement as HTMLElement,
+      '!bg-main',
+      '!dark:bg-alt-dark'
+    );
     if (this.windowWidth < 1024) {
       this.hide(this.recipeListTarget);
       this.show(this.recipeDetailsTarget);
@@ -80,7 +88,11 @@ export default class extends Controller {
   }
 
   public backToList(): void {
-    this.removeClass(this.selectedRecipe as HTMLElement, 'bg-indigo-800');
+    this.removeClass(
+      this.selectedRecipe?.parentElement as HTMLElement,
+      '!bg-main',
+      '!dark:bg-alt-dark'
+    );
     this.selectedRecipe = null;
     this.show(this.recipeListTarget);
     this.hide(this.recipeDetailsTarget);
@@ -104,7 +116,11 @@ export default class extends Controller {
   };
 
   private initialSetup(): void {
-    this.removeClass(this.selectedRecipe as HTMLElement, 'bg-indigo-200');
+    this.removeClass(
+      this.selectedRecipe?.parentElement as HTMLElement,
+      '!bg-main',
+      '!dark:bg-alt-dark'
+    );
     this.show(this.recipeListTarget);
     this.hide(this.recipeDetailsTarget);
     this.hide(this.newRecipeTarget);

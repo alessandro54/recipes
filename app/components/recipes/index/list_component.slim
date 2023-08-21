@@ -2,26 +2,25 @@ ul
   - @recipes.each do |recipe|
     li{
       id=recipe.id
-      class='group transition duration-300 bg(dark:hover:main-dark even:dark:main-dark/20) even:my-0.5 rounded-xl'
+      class='transition duration-300 bg(hover:main even:alt/10 dark:hover:main-dark/20 even:dark:main-dark/20) even:my-0.5 rounded-xl'
       data-recipes-target='recipe'
       data-title=recipe.title
-      data-action='click->day--new#selectRecipe'
     }
       = link_to recipe_path(recipe),
                 class: 'w-full flex relative cursor-pointer w-full p-4 flex justify-between',
                 id: recipe.id,
-                data: { 'turbo-frame': 'recipe-details' } do
+                data: { 'turbo-frame': 'recipe-details', action: 'day--new#selectRecipe' } do
         .flex.w-3/4.mt-5
           - if recipe.image.attached?
             = image_tag recipe.image.variant(resize_to_limit: [100, 50]), class: 'h-12 w-12 flex-none object-cover rounded-full bg-gray-50 mr-3 dark:opacity-60'
           .min-w-0.flex-auto
             p.font-semibold.leading-6{ class='text(sm gray-900)' }
               span.text-base.absolute.inset-x-0.top-1.left-3{
-                class='text(dark:white dark:group-hover:black)'
+                class='text(dark:indigo-100)'
               }
                 = recipe.title
             p.mt-4.flex.leading-3{
-              class='text(xs gray-500 dark:gray-400 dark:group-hover:black)'
+              class='text(xs gray-500 dark:gray-200)'
             }
               = recipe.description
         .flex.justify-end.items-center.gap-x-4.w-1/4
@@ -29,9 +28,9 @@ ul
             p.text-sm.leading-6.text-gray-900
               | tags here
             .mt-1.text-xs.leading-5.text-light.flex.justify-between.items-center
-              .w-4.h-4.text-white.dark:group-hover:text-black
+              .w-4.h-4.text-black.dark:text-white
                 = svg('clock', type: :mini)
-              .text-xs.text-white.dark:group-hover:text-black
+              .text-xs.text-black.dark:text-white
                 = minutes_to_hours_and_minutes(recipe.duration)
           .h-5.w-5.text-gray-400.dark:group-hover:text-black
             = svg('chevron-right')

@@ -25,7 +25,7 @@ module Days
       def no_recipe_style
         if today? && !override_day?
           'text(alt hover:white dark:gray-200 dark:hover:layout-dark)
-          bg(main/40 hover:alt/80 dark:asset-dark dark:hover:main-dark)'
+          bg(alt/30 hover:alt/80 dark:asset-dark dark:hover:main-dark)'
         else
           'text(gray-500 dark:main-dark dark:hover:white) bg(white dark:layout-dark hover:main/40
           dark:hover:alt-dark/50)'

@@ -2,7 +2,7 @@
   - if @day.present?
     button.relative.flex.flex-col.focus:z-10.group.transition-opacity.duration-300{
       id="day-#{@day.when.day}"
-      class="bg(main/30 dark:asset-dark dark:hover:alt-dark/70) #{today? && !override_day? ? 'bg(alt/40) rounded-lg border(2 alt dark:main-dark) text(base dark dark:main-dark)' : 'text(black dark:main-dark)'}"
+      class="bg(main/10 dark:asset-dark dark:hover:alt-dark/70) #{today? && !override_day? ? 'bg(alt/40) rounded-lg border(2 alt dark:main-dark) text(base dark dark:main-dark)' : 'text(black dark:main-dark)'}"
       data-action=''
       data-tooltip-target="tooltip-#{@day.when}"
       data-tooltip-placement='bottom'
@@ -43,8 +43,8 @@
           = @date.day
 / Day not belonging to current month
 - else
-  .flex.w-full.h-28.md:h-32.flex-col.px-3.py-2.text-gray-500.focus:z-10{
-    class="group-hover:opacity-10 dark:group-hover:opacity-80 transition duration-300 bg(layout/30 dark:layout-dark/50) #{@date.month > @month ? 'cursor-e-resize' : 'cursor-w-resize'}"
+  .flex.w-full.h-28.md:h-32.flex-col.text-gray-500.focus:z-10{
+    class="group-hover:opacity-10 dark:group-hover:opacity-80 transition duration-300 bg(layout/30 dark:layout-dark/50)"
   }
-    = link_to calendar_path(@calendar_id, date: not_from_month), class: 'bg-transparent w-full h-full flex' do
+    = link_to calendar_path(@calendar_id, date: not_from_month), class: "px-3 py-2 bg-transparent w-full h-full flex #{@date.month > @month ? 'cursor-e-resize' : 'cursor-w-resize'}" do
       time.ml-auto.text-base datetime="#{@date.to_s}" = @date.day

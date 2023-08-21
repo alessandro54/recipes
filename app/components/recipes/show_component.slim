@@ -16,7 +16,7 @@ turbo-frame#recipe-details
           }
             .w-8.h-8.text-gray-300.dark:text-gray-600
               = svg('image', type: :extra)
-          = image_tag(@recipe.image, class: 'lazy-image hidden ring-4 dark:ring-main-dark w-20 h-20 rounded-full object-cover')
+          = image_tag(@recipe.image, class: 'lazy-image hidden ring(4 alt dark:main-dark) w-20 h-20 rounded-full object-cover')
       .mt-6.border-t.border-gray-100.dark:border-main-dark
         dl.divide-y.divide-gray-100
           .py-6.sm:grid.sm:grid-cols-3.px-2.sm:gap-4.sm:px-0.md:px-4

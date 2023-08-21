@@ -8,7 +8,7 @@
         .ml-3.w-0.flex-1 class="pt-0.5"
           .text-sm.font-bold{ class=icon_style(mode) }
             = title(mode)
-          .mt-1.text-sm.text-gray-500
+          .mt-1.text-sm.text-gray-500.dark:text-gray-200
             - if message.instance_of?(Array)
               ul.list-disc
                 - message.each do |message|
@@ -22,5 +22,5 @@
           }
             span.sr-only
               | Close
-            .w-5.h-5
+            .w-5.h-5.dark:text-white
               = svg 'x-mark'

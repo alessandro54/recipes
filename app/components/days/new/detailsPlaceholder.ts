@@ -9,7 +9,7 @@ export default class extends LitElement {
   static styles = css`
     :host {
       width: 100%;
-      height: 70%;
+      height: 50%;
     }
   `;
   @property()

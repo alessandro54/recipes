@@ -1,3 +1,11 @@
-turbo-stream action = 'append' target = 'notifications'
+turbo-stream{action='replace' target="d-#{params[:button]}"}
+  template
+    = render Days::Show::DesktopComponent.new(calendar_id: day.calendar_id, payload: { date: day.when, month: day.when.month, day:}, eager_load: true)
+
+turbo-stream{action='replace' target="m-#{params[:button]}"}
+  template
+    = render Days::Show::MobileComponent.new(calendar_id: day.calendar_id, payload: { date: day.when, month: day.when.month, day:}, eager_load: true)
+
+turbo-stream{action='append' target='notifications'}
   template
     = render Shared::Notifications::Simple::Component.new(mode: :success, message: 'Successfully created')

@@ -14,3 +14,12 @@
     = render Calendars::ShowComponent.new(calendar: @calendar, days: @days, date: @date)
 
   = render Days::NewComponent.new(current_user: , calendar: @calendar)
+
+javascript:
+  document.addEventListener('turbo:frame-load', () => {
+    var tables = document.querySelectorAll('.isolate');
+    tables.forEach((table) => {
+      table.children[table.children.length - 7].classList.add('rounded-bl-lg')
+      table.lastChild.classList.add('rounded-br-lg')
+    })
+  })

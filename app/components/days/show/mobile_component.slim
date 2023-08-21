@@ -2,7 +2,7 @@
   - if @day.present?
     button.relative.flex.flex-col.focus:z-10.group.transition-opacity.duration-300{
       id="day-#{@day.when.day}"
-      class="bg(main/30) #{today? && !override_day? ? 'bg(alt/40) rounded-lg border(2 alt dark:primary) text(base dark dark:primary)' : 'text-dark'}"
+      class="bg(main/30 dark:asset-dark dark:hover:alt-dark/70) #{today? && !override_day? ? 'bg(alt/40) rounded-lg border(2 alt dark:main-dark) text(base dark dark:main-dark)' : 'text(black dark:main-dark)'}"
       data-action=''
       data-tooltip-target="tooltip-#{@day.when}"
       data-tooltip-placement='bottom'
@@ -11,10 +11,13 @@
       time.ml-auto.pr-1.pt-1.z-10.text-base datetime="#{@date.to_s}"
         = @day.when.day
       .absolute.w-full.h-full.grid.place-items-center.transition.duration-300
-        .transition.duration-300.bg-gray-100.rounded-full.lazy.animate-pulse.w-20.h-20.text-gray-400.grid.place-items-center.lazy-placeholder
-          .w-8.h-8.text-gray-300.dark:text-gray-600
-            = svg('image', type: :extra)
-        = image_tag @day.recipe.image, class: 'lazy-image hidden ring(2 alt) w-20 h-20 rounded-full object-cover'
+        - unless eager_load
+          .lazy-placeholder.transition.duration-300.bg-gray-100.dark:bg-layout-dark.rounded-full.lazy.animate-pulse.text-gray-400.grid.place-items-center{
+            class='w(12 md:20) h(12 md:20)'
+          }
+            .w-8.h-8.text-gray-300.dark:text-gray-600
+              = svg('image', type: :extra)
+        = image_tag @day.recipe.image, class: "#{eager_load ? '' : 'lazy-image hidden'} ring(2 alt dark:main-dark) w(12 md:20) h(12 md:20) rounded-full object-cover"
       / Text container
       .absolute.w-full.-bottom-1.flex.flex-col.opacity-100.pointer-events-none{
       }
@@ -22,7 +25,7 @@
           class='px-2 py-1 text(gray-600 dark:white)'
         }
           = @day.recipe.title
-    .tooltip.bg-asset-dark{
+    .tooltip.bg-black{
       id="tooltip-#{@date}"
       role='tooltip'
     }
@@ -30,18 +33,18 @@
       .tooltip-arrow { data-popper-arrow }
   - else
     button.transition.duration-300.flex.items-end.h-28.md:h-32.flex-col.px-3.py-2.focus:z-10{
-      id="empty-day-#{@date.day}"
+      id="m-empty-day-#{@date.day}"
       class=no_recipe_style
       data-action='modals--new-day#show day--new#setDate'
       data-day--new-date-param=@date
     }
       .flex.flex-col
-        time.text-lg.font-bold.ml-auto datetime="#{@date.to_s}"
+        time.text-base.font-normal.ml-auto datetime="#{@date.to_s}"
           = @date.day
 / Day not belonging to current month
 - else
-  = link_to calendar_path(@calendar_id, date: not_from_month), class: '' do
-    .flex.h-28.md:h-32.flex-col.px-3.py-2.text-gray-500.focus:z-10{
-      class="group-hover:opacity-20 transition duration-300 bg(layout/30 dark:asset-dark/50) #{@date.month > @month ? 'cursor-e-resize' : 'cursor-w-resize'}"
-    }
+  .flex.w-full.h-28.md:h-32.flex-col.px-3.py-2.text-gray-500.focus:z-10{
+    class="group-hover:opacity-10 dark:group-hover:opacity-80 transition duration-300 bg(layout/30 dark:layout-dark/50) #{@date.month > @month ? 'cursor-e-resize' : 'cursor-w-resize'}"
+  }
+    = link_to calendar_path(@calendar_id, date: not_from_month), class: 'bg-transparent w-full h-full flex' do
       time.ml-auto.text-base datetime="#{@date.to_s}" = @date.day

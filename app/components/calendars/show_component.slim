@@ -1,7 +1,7 @@
 - calendar_days = calendar_days(days: @days, date: @date)
 = render Calendars::Navigator::Component.new(date: @date, calendar: @calendar)
 / Weekdays display
-.grid.grid-cols-7.font-semibold.leading-6.lg:flex-none.bg-white{
+.grid.grid-cols-7.font-semibold.leading-6.lg:flex-none{
   class='rounded-t-lg bg(gray-200 dark:main-dark) text(center xs bold)'
   data-controller='lazy-images'
 }
@@ -13,11 +13,11 @@
       span.sr-only.sm:not-sr-only = day[1..]
 / Calendar
 .text-xs.leading-6.text-gray-700.lg:flex.shadow-lg.ring-1.ring-black.ring-opacity-5.rounded-b-lg{
-  class='bg(slate-100 dark:gray-600)'
+  class='rounded-lg'
 }
   .w-full
     / Desktop calendar
-    .group.hidden.w-full.lg:grid.lg:grid-cols-7.lg:gap-px class="#{adaptive_styles(calendar_days.length)}"
+    .group.isolate.hidden.w-full.lg:grid.lg:grid-cols-7.lg:gap-px class="#{adaptive_styles(calendar_days.length)}"
       - calendar_days.each do |week|
         - week.each do |payload|
           = render Days::Show::DesktopComponent.new(calendar_id: @calendar.id, payload:)
@@ -29,9 +29,3 @@
       - calendar_days.each do |week|
         - week.each do |payload|
           = render Days::Show::MobileComponent.new(calendar_id: @calendar.id, payload:)
-
-javascript:
-    var table =  document.querySelector('.isolate');
-
-    table.children[table.children.length - 7].classList.add('rounded-bl-lg')
-    table.lastChild.classList.add('rounded-br-lg')

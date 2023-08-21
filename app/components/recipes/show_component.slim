@@ -1,52 +1,69 @@
 turbo-frame#recipe-details
-  .pb-10
-    .container.mx-auto.px-4.sm:px-6.lg:px-8.pt-4.border-1.rounded-lg
-      .px-4.sm:px-0
-        h3.text-base.font-semibold.leading-7.text-gray-900
-          | Recipe Information
-        p.mt-1.max-w-2xl.text-sm.leading-6.text-gray-500
-          | Details for the recipe
-      .mt-6.border-t.border-gray-100
+  div
+    .container.mx-auto.py-4.px-2.sm:px-6.lg:px-8.rounded-lg{
+      class='bg(white dark:layout-dark) shadow-lg border(1 dark:asset-dark)'
+      data-controller='lazy-images'
+    }
+      .px-4.sm:px-0.flex.justify-between
+        .flex.flex-col
+          h3.text-base.font-semibold.leading-7.text-gray-900.dark:text-white
+            | Recipe Information
+          p.mt-1.max-w-2xl.text-sm.leading-6.text-gray-500
+            | Details for the recipe
+        .flex
+          .lazy-placeholder.transition.duration-300.bg-gray-100.dark:bg-layout-dark.rounded-full.lazy.animate-pulse.text-gray-400.grid.place-items-center{
+            class='w(12 md:20) h(12 md:20)'
+          }
+            .w-8.h-8.text-gray-300.dark:text-gray-600
+              = svg('image', type: :extra)
+          = image_tag(@recipe.image, class: 'lazy-image hidden ring-4 dark:ring-main-dark w-20 h-20 rounded-full object-cover')
+      .mt-6.border-t.border-gray-100.dark:border-main-dark
         dl.divide-y.divide-gray-100
-          .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
-            dt.text-sm.font-medium.leading-6.text-gray-900
+          .py-6.sm:grid.sm:grid-cols-3.px-2.sm:gap-4.sm:px-0.md:px-4
+            dt.leading-6{ class='font(bold) text(base gray-900 dark:gray-300)' }
               | Title
-            dd.mt-1.text-sm.leading-6.text-gray-700.dark:text-white.sm:col-span-2.sm:mt-0
+            dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0.dark:text-indigo-200
               = @recipe.title
-      .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
-        dt.text-sm.font-medium.leading-6.text-gray-900
+      .py-6.sm:grid.sm:grid-cols-3.sm:gap-4.px-2.sm:px-0.md:px-4{ class='bg(odd:gray-50 dark:odd:main-dark/10) odd:rounded-lg' }
+        dt.leading-6{ class='font(bold) text(base gray-900 dark:gray-300)' }
           | Author
-        dd.mt-1.text-sm.leading-6.text-gray-700.dark:text-white.sm:col-span-2.sm:mt-0
+        dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0.dark:text-indigo-200
           = @recipe.author.full_name
-      .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
-        dt.text-sm.font-medium.leading-6.text-gray-900
+      .py-6.sm:grid.sm:grid-cols-3.sm:gap-4.px-2.sm:px-0.md:px-4{ class='bg(odd:gray-50 dark:odd:main-dark/10) odd:rounded-lg' }
+        dt.leading-6{ class='font(bold) text(base gray-900 dark:gray-300)' }
           | Preparation time
-        dd.mt-1.text-sm.leading-6.text-gray-700.dark:text-white.sm:col-span-2.sm:mt-0
+        dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0.dark:text-indigo-200
           = minutes_to_hours_and_minutes(@recipe.duration)
-      .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
-        dt.text-sm.font-medium.leading-6.text-gray-900
+      .py-6.sm:grid.sm:grid-cols-3.sm:gap-4.px-2.sm:px-0.md:px-4{ class='bg(odd:gray-50 dark:odd:main-dark/10) odd:rounded-lg' }
+        dt.leading-6{ class='font(bold) text(base gray-900 dark:gray-300)' }
           | Description
-        dd.mt-1.text-sm.leading-6.text-gray-700.dark:text-white.sm:col-span-2.sm:mt-0
+        dd.mt-1.text-sm.leading-6.text-gray-700.sm:col-span-2.sm:mt-0.dark:text-indigo-200
           = @recipe.description
-      .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
-        dt.text-sm.font-medium.leading-6.text-gray-900
+      .py-6.sm:grid.sm:grid-cols-3.sm:gap-4.px-2.sm:px-0.md:px-4
+        dt.leading-6{ class='font(bold) text(base gray-900 dark:gray-300)' }
           | Ingredients
         dd.mt-2.text-sm.text-gray-900.sm:col-span-2.sm:mt-0
-          ul.divide-y.divide-gray-100.rounded-md.border.border-gray-200{role="list"}
+          ul.list-disc.divide-y.divide-gray-100.rounded-md.border.border-gray-200{
+            class='border(& gray-200 dark:main-dark) divide(y gray-100 dark:main-dark'
+            role='list'
+          }
             - @recipe.ingredients.each do |ingredient|
-              li.flex.items-center.justify-between.py-1.pl-4.pr-5.text-sm.leading-6
+              li.flex.items-center.justify-between.py-1.pl-4.pr-5.text-sm.leading-6.dark:text-indigo-200
                 .flex.w-0.flex-1.items-center
                   .ml-4.flex.min-w-0.flex-1.gap-2
                     span.truncate.font-medium
                       | #{ingredient}
-      .px-4.py-6.sm:grid.sm:grid-cols-3.sm:gap-4.sm:px-0
-        dt.text-sm.font-medium.leading-6.text-gray-900
+      .py-6.sm:grid.sm:grid-cols-3.sm:gap-4.px-2.sm:px-0.md:px-4{ class='bg(odd:gray-50 dark:odd:main-dark/10) odd:rounded-lg' }
+        dt.leading-6{ class='font(bold) text(base gray-900 dark:gray-300)' }
           | Preparation
         dd.mt-2.text-sm.text-gray-900.sm:col-span-2.sm:mt-0
-          ul.divide-y.divide-gray-100.rounded-md.border.border-gray-200{role="list"}
+          ul.rounded-md{
+            class='border(& gray-200 dark:main-dark) divide(y gray-100 dark:main-dark'
+            role="list"
+          }
             - @recipe.steps.each_with_index do |ingredient, i|
-              li.flex.items-center.justify-between.py-4.pl-4.pr-5.text-sm.leading-6
+              li.flex.items-center.justify-between.py-4.pl-4.pr-5.text-sm.leading-6.dark:text-indigo-200
                 .flex.w-0.flex-1.items-center
                   .ml-4.flex.min-w-0.flex-1.gap-2
-                    span.truncate.font-medium
+                    span.truncate
                       | #{i + 1}.- #{ingredient}

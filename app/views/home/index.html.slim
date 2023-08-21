@@ -1,8 +1,8 @@
 header
-  nav.bg-white-.border-gray-200.px-4.lg:px-5.dark:bg-gray-800 { class='py-2.5' }
+  nav.bg-white-.border-gray-200.px-4.lg:px-5.dark:bg-layout-dark { class='py-2.5' }
     .flex.flex-wrap.justify-between.items-center.mx-auto.max-w-screen-xl
       / Logo here
       = link_to 'Rails Starter', root_path
       .flex.items-center.lg:order-2
-        = link_to 'Log in', login_path, class: 'mr-2 button text(white) bg(alt)'
-        = link_to 'Sign up', register_path, class: 'button ring(2 alt) text-black'
+        = link_to 'Log in', login_path, class: 'mr-2 button text(white dark:black) bg(alt main-dark)'
+        = link_to 'Sign up', register_path, class: 'button ring(2 alt main-dark) text(black dark:white)'

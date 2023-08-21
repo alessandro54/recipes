@@ -1,13 +1,15 @@
-ul.py-2
+ul
   - @recipes.each do |recipe|
-    li.relative.flex.justify-between.p-4.cursor-pointer{
+    li{
       id=recipe.id
-      class='transition duration-300 bg(dark:hover:primary-dark even:dark:tertiary-dark/30 odd:dark:secondary-dark/10) even:my-0.5 rounded-xl'
+      class='group transition duration-300 bg(dark:hover:main-dark even:dark:main-dark/20) even:my-0.5 rounded-xl'
       data-recipes-target='recipe'
       data-title=recipe.title
       data-action='click->day--new#selectRecipe'
     }
-      = link_to recipe_path(recipe), class: 'w-full flex', id: recipe.id,
+      = link_to recipe_path(recipe),
+                class: 'w-full flex relative cursor-pointer w-full p-4 flex justify-between',
+                id: recipe.id,
                 data: { 'turbo-frame': 'recipe-details' } do
         .flex.w-3/4.mt-5
           - if recipe.image.attached?
@@ -15,11 +17,11 @@ ul.py-2
           .min-w-0.flex-auto
             p.font-semibold.leading-6{ class='text(sm gray-900)' }
               span.text-base.absolute.inset-x-0.top-1.left-3{
-                class='text(dark:white)'
+                class='text(dark:white dark:group-hover:black)'
               }
                 = recipe.title
             p.mt-4.flex.leading-3{
-              class='text(xs gray-500 dark:gray-400)'
+              class='text(xs gray-500 dark:gray-400 dark:group-hover:black)'
             }
               = recipe.description
         .flex.justify-end.items-center.gap-x-4.w-1/4
@@ -27,9 +29,9 @@ ul.py-2
             p.text-sm.leading-6.text-gray-900
               | tags here
             .mt-1.text-xs.leading-5.text-light.flex.justify-between.items-center
-              .w-4.h-4.text-light
+              .w-4.h-4.text-white.dark:group-hover:text-black
                 = svg('clock', type: :mini)
-              .text-xs.text-light
+              .text-xs.text-white.dark:group-hover:text-black
                 = minutes_to_hours_and_minutes(recipe.duration)
-          .h-5.w-5.text-gray-400
+          .h-5.w-5.text-gray-400.dark:group-hover:text-black
             = svg('chevron-right')

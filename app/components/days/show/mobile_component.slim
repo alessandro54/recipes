@@ -11,7 +11,7 @@
       time.ml-auto.pr-1.pt-1.z-10.text-base datetime="#{@date.to_s}"
         = @day.when.day
       .absolute.w-full.h-full.grid.place-items-center.transition.duration-300
-        .transition.duration-300.bg-gray-100.dark:bg-layout-dark.rounded-full.lazy.animate-pulse.text-gray-400.grid.place-items-center.lazy-placeholder{
+        .lazy-placeholder.transition.duration-300.bg-gray-100.dark:bg-layout-dark.rounded-full.lazy.animate-pulse.text-gray-400.grid.place-items-center{
           class='w(12 md:20) h(12 md:20)'
         }
           .w-8.h-8.text-gray-300.dark:text-gray-600
@@ -32,7 +32,7 @@
       .tooltip-arrow { data-popper-arrow }
   - else
     button.transition.duration-300.flex.items-end.h-28.md:h-32.flex-col.px-3.py-2.focus:z-10{
-      id="empty-day-#{@date.day}"
+      id="m-empty-day-#{@date.day}"
       class=no_recipe_style
       data-action='modals--new-day#show day--new#setDate'
       data-day--new-date-param=@date

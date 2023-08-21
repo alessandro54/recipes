@@ -22,6 +22,7 @@ export default class extends Controller {
 
   declare windowWidth: number;
   declare selectedRecipe: HTMLElement | null;
+  declare selectedButton: HTMLElement | null;
   declare selectedDate: string | null;
 
   connect() {
@@ -32,7 +33,8 @@ export default class extends Controller {
     window.addEventListener('resize', this.handleResize);
   }
 
-  public setDate({ params }: ActionEvent): void {
+  public setDate({ target, params }: ActionEvent): void {
+    this.selectedButton = target as HTMLElement;
     this.selectedDate = params.date;
     this.titleTarget.innerText = `Assign recipe for ${new Date(
       params.date.replace(/-/g, '.')
@@ -63,6 +65,7 @@ export default class extends Controller {
           when: this.selectedDate,
           recipe_id: this.selectedRecipe!.id,
         },
+        button: this.selectedButton.id,
       },
       headers: {
         Accept: 'text/vnd.turbo-stream.html',
@@ -71,13 +74,6 @@ export default class extends Controller {
     })
       .then((response) => response.text())
       .then((response) => {
-        Turbo.visit(
-          `/calendars/${this.calendarIdValue}/?date=${this.selectedDate}`,
-          {
-            action: 'replace',
-            frame: 'calendar',
-          }
-        );
         Turbo.renderStreamMessage(response);
         this.initialSetup();
       });

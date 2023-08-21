@@ -22,7 +22,7 @@ class DaysController < BaseController
     redirect_to calendar_path(calendar), alert: 'There was an error with the provided date' and return unless @day
 
     respond_to do |format|
-      format.turbo_stream { render :create, status: :created }
+      format.turbo_stream { render :create, locals: {day: @day}, status: :created }
     end
   end
 

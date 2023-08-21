@@ -8,11 +8,9 @@ module Days
       #
       # @param calendar_id [String] the calendar id.
       # @param payload [{
-      #    id: [String] the day id if it has a recipe assigned.
-      #    today: [Boolean] if the day is today.
-      #    date: [Date] the day date.
-      #    current_month: [Boolean] if the day is from the current month.
-      #    recipe: [Recipe] the recipe of the day.
+      #    date: [Date] the date of the payload
+      #    month: [Integer] the issued month.
+      #    day: [Day] the day linked to the date
       # }] the day payload.
       def initialize(calendar_id:, payload:)
         @calendar_id = calendar_id

@@ -17,7 +17,7 @@ end
 When('I click on an empty calendar day') do
   @date = Date.today.beginning_of_month
 
-  click_button "empty-day-#{@date.day}"
+  click_button "m-empty-day-#{@date.day}"
 end
 
 Then('I should see the recipe list') do

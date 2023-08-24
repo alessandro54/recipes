@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe CalendarService, type: :service do
   subject { described_class.new }
-  let(:user) { create :user }
+  let(:user) { create(:user) }
 
   describe '#find' do
     it 'returns a record' do

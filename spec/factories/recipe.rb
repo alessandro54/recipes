@@ -14,7 +14,7 @@ FactoryBot.define do
       image_path { Faker::LoremFlickr.image(size: '500x300', search_terms: %w[dish food]) }
     end
 
-    association :author, factory: :user
+    author factory: %i[user]
 
     after(:create) do |recipe, evaluator|
       recipe.image.attach(io:           URI.parse(evaluator.image_path).open,

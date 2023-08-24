@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe DayService, type: :service do
   subject { described_class.new }
 
-  let(:owner) { create :user }
-  let(:calendar) { create :calendar, owners: [owner] }
+  let(:owner) { create(:user) }
+  let(:calendar) { create(:calendar, owners: [owner]) }
 
   describe '#list' do
     it 'returns the days from a calendar' do
@@ -30,7 +30,7 @@ RSpec.describe DayService, type: :service do
   end
 
   describe '#save' do
-    let(:recipe) { create :recipe, author: owner }
+    let(:recipe) { create(:recipe, author: owner) }
 
     context 'if is the owner of the calendar' do
       it 'saves a new day to the database' do
@@ -44,7 +44,7 @@ RSpec.describe DayService, type: :service do
     end
 
     context 'if is not the owner of the calendar' do
-      let(:user) { create :user }
+      let(:user) { create(:user) }
       it 'not saves a new day to the database' do
         expect {
           subject.save(user_id:     user.id,

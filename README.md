@@ -1,4 +1,5 @@
 # README
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 [![Recipes CI](https://github.com/alessandro54/recipes/actions/workflows/test.yml/badge.svg)](https://github.com/alessandro54/recipes/actions/workflows/test.yml)
 
 This application is a recipe manager, which features a calendar to plan your meals, also works as a recipe book, where you can store your recipes and share them with other users. (WIP) The name for the moment is 'Recipes' but is more a codename.

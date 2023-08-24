@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe DayHelper, type: :helper do
-  let(:user) { create :user }
-  let(:calendar) { create :calendar, owners: [user] }
+  let(:user) { create(:user) }
+  let(:calendar) { create(:calendar, owners: [user]) }
 
   describe '#display_date' do
     it 'returns today' do

@@ -12,11 +12,11 @@ FactoryBot.define do
     end
 
     trait :with_main_calendar do
-      main_calendar { create :calendar }
+      main_calendar { association(:calendar) }
     end
 
     trait :with_calendars do
-      calendars { create_list :calendar, 3 }
+      calendars { create_list(:calendar, 3) }
     end
   end
 end

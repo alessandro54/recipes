@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Days::Show::MobileComponent, type: :component do
-  let(:recipe) { create :recipe, title: 'Pho', duration: 130 }
-  let(:day) { create :day, recipe:, when: Date.new(2023, 8, 15) }
+  let(:recipe) { create(:recipe, title: 'Pho', duration: 130) }
+  let(:day) { create(:day, recipe:, when: Date.new(2023, 8, 15)) }
   it 'renders component' do
     payload = {
       date:  Date.new(2023, 8, 14),

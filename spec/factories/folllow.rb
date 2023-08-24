@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :follow do
-    association :follower, factory: :user
-    association :calendar
+    follower factory: %i[user]
+    calendar
   end
 end

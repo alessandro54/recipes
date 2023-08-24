@@ -40,11 +40,54 @@ RSpec.describe CalendarService, type: :service do
 
   describe '#delete' do
     it 'creates a delete request for calendar with 2 owners' do
-      calendar = create(:calendar)
+      calendar = create(:calendar, owners: [user, create(:user)])
 
-      result = subject.delete(calendar:)
+      result = subject.delete(calendar:, user:)
 
-      expect(result).to be_a(DeleteCalendarRequest)
+      expect(result).to be_a(Calendar::DeleteVote)
+    end
+
+    it 'discards a calendar with 1 owner' do
+      calendar = create(:calendar, owners: [user])
+
+      subject.delete(calendar:, user:)
+
+      result = calendar.send(:discarded?)
+
+      expect(result).to be_truthy
+    end
+
+    it 'discards a calendar with 4 owners' do
+      owners = create_list(:user, 4)
+      calendar = create(:calendar, owners:)
+
+      owners.each do |owner|
+        subject.delete(calendar: calendar, user: owner)
+      end
+
+      result = calendar.send(:discarded?)
+
+      expect(result).to be_truthy
+    end
+
+    it 'makes the last delete vote for a calendar' do
+      owners = create_list(:user, 2)
+      calendar = create(:calendar, owners: [*owners, user])
+      create_list(:calendar_delete_vote, 2, calendar:)
+
+      subject.delete(calendar:, user:)
+
+      result = calendar.send(:discarded?)
+
+      expect(result).to be_truthy
+    end
+
+    it 'tries to delete a discarded calendar' do
+      calendar = create(:calendar, owners: [user])
+
+      subject.delete(calendar:, user:)
+
+      expect { subject.delete(calendar:, user:) }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
@@ -89,6 +132,37 @@ RSpec.describe CalendarService, type: :service do
       subject.assign_owner(calendar:, user: user.id)
 
       expect(calendar.owners).to be_empty
+    end
+  end
+
+  describe '#deletable?' do
+    it 'returns true if calendar has 1 owner and 1 delete vote' do
+      calendar = create(:calendar, owners: [user])
+
+      result = subject.send(:deletable?, calendar)
+
+      expect(result).to be_truthy
+    end
+
+    it 'returns false if calendar has 5  owner and 1 delete votes' do
+      calendar = create(:calendar, owners: [*create_list(:user, 5), user])
+
+      create(:calendar_delete_vote, calendar:, user:)
+
+      result = subject.send(:deletable?, calendar)
+
+      expect(result).to be_falsey
+    end
+  end
+
+  describe '#create_delete_vote' do
+    it 'creates a delete vote for calendar' do
+      calendar = create(:calendar, owners: [user])
+
+      result = subject.send(:create_delete_vote, calendar, user)
+
+      expect(result).to be_a(Calendar::DeleteVote)
+      expect(calendar.delete_votes).to contain_exactly(result)
     end
   end
 end

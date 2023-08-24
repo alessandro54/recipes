@@ -18,17 +18,16 @@ class CalendarService < ApplicationService
 
   def save(calendar_params, user:)
     calendar = Calendar.create(calendar_params)
-
     assign_owner(calendar:, user:) if calendar.save
-
     calendar
   end
 
-  def delete(calendar_id:, user:)
-    calendar = Calendar.find(calendar_id)
-    return if calendar.owners.count == calendar.delete_votes.count
+  def delete(calendar:, user:)
+    raise ActiveRecord::RecordNotFound if calendar.discarded?
 
-    calendar.delete_votes << DeleteVote.create(calendar:, user:)
+    calendar.discard if deletable?(calendar)
+
+    create_delete_vote(calendar, user)
   end
 
   def assign_owners(calendar:, users:)
@@ -45,5 +44,19 @@ class CalendarService < ApplicationService
     return unless user.is_a?(User)
 
     calendar.owners << user
+  end
+
+  private
+
+  private
+
+  def deletable?(calendar)
+    calendar.owners.count <= calendar.delete_votes.count + 1
+  end
+
+  def create_delete_vote(calendar, user)
+    delete_vote = Calendar::DeleteVote.create(calendar:, user:)
+    calendar.delete_votes << delete_vote
+    delete_vote
   end
 end

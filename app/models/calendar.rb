@@ -2,6 +2,8 @@
 
 # Personal calendar is always created, but users can subscribe to another one
 class Calendar < ApplicationRecord
+  include Discard::Model
+
   before_create :create_id
 
   has_and_belongs_to_many :owners, class_name: 'User', join_table: 'user_calendars'
@@ -10,6 +12,7 @@ class Calendar < ApplicationRecord
   has_many :followers, through: :follows, source: :follower
   has_many :days, dependent: :destroy
   has_many :recipes, -> { distinct }, through: :days, source: :recipe
+  has_many :delete_votes, class_name: 'Calendar::DeleteVote', dependent: :destroy
 
   validates :title, presence: true, format: {with: /\A[a-zA-Z0-9\s\p{P}]+\z/}
 

@@ -38,6 +38,16 @@ RSpec.describe CalendarService, type: :service do
     end
   end
 
+  describe '#delete' do
+    it 'creates a delete request for calendar with 2 owners' do
+      calendar = create(:calendar)
+
+      result = subject.delete(calendar:)
+
+      expect(result).to be_a(DeleteCalendarRequest)
+    end
+  end
+
   describe '#assign_owners' do
     it 'assigns owners to calendar' do
       user_list = create_list(:user, 3)

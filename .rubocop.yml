@@ -72,6 +72,10 @@ Lint/AssignmentInCondition:
 Style/RaiseArgs:
   Enabled: false
 
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'app/models/**/*'
+
 # Indenting the chained dots beneath each other is not supported by this cop,
 # see https://github.com/bbatsov/rubocop/issues/1633
 Layout/MultilineOperationIndentation:

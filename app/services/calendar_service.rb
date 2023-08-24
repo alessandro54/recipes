@@ -24,6 +24,13 @@ class CalendarService < ApplicationService
     calendar
   end
 
+  def delete(calendar_id:, user:)
+    calendar = Calendar.find(calendar_id)
+    return if calendar.owners.count == calendar.delete_votes.count
+
+    calendar.delete_votes << DeleteVote.create(calendar:, user:)
+  end
+
   def assign_owners(calendar:, users:)
     return unless users.is_a?(Array)
 

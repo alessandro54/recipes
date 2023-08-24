@@ -16,11 +16,27 @@ class CalendarService < ApplicationService
     User.find(user_id).calendars
   end
 
-  def save(calendar_params)
+  def save(calendar_params, user:)
     calendar = Calendar.create(calendar_params)
 
-    calendar.owners << current_user if calendar.save
+    assign_owner(calendar:, user:) if calendar.save
 
     calendar
+  end
+
+  def assign_owners(calendar:, users:)
+    return unless users.is_a?(Array)
+
+    users.each do |user|
+      next unless user.is_a?(User)
+
+      assign_owner(calendar:, user:)
+    end
+  end
+
+  def assign_owner(calendar:, user:)
+    return unless user.is_a?(User)
+
+    calendar.owners << user
   end
 end

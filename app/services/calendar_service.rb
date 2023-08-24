@@ -48,8 +48,6 @@ class CalendarService < ApplicationService
 
   private
 
-  private
-
   def deletable?(calendar)
     calendar.owners.count <= calendar.delete_votes.count + 1
   end

@@ -31,7 +31,7 @@ RSpec.describe CalendarsController, type: :controller do
       let(:calendar) { create(:calendar, owners: [user]) }
 
       before do
-        delete :destroy, params: { id: calendar.id }
+        delete :destroy, params: {id: calendar.id}
       end
 
       it 'discards the calendar' do
@@ -47,7 +47,7 @@ RSpec.describe CalendarsController, type: :controller do
       let(:calendar) { create(:calendar, owners: [*create_list(:user, 3), user]) }
 
       before do
-        delete :destroy, params: { id: calendar.id }
+        delete :destroy, params: {id: calendar.id}
       end
 
       it 'creates a new delete vote' do

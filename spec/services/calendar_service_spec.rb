@@ -62,7 +62,7 @@ RSpec.describe CalendarService, type: :service do
       calendar = create(:calendar, owners:)
 
       owners.each do |owner|
-        subject.delete(calendar: calendar, user: owner)
+        subject.delete(calendar:, user: owner)
       end
 
       result = calendar.send(:discarded?)

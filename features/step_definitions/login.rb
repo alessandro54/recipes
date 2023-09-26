@@ -1,26 +1,14 @@
 # frozen_string_literal: true
 
-Given('the following user exists:') do |table|
-  attributes = table.hashes.first
-  FactoryBot.create(:user, :with_main_calendar, **attributes)
-end
+Given('I am logged in as {string} with password {string}') do |email, password|
+  @user = FactoryBot.create(:user, email:, password:)
 
-And('I am on the login page') do
   visit login_path
-  expect(page).to have_current_path('/login')
-end
 
-When('I fill in the following:') do |table|
-  table.hashes.each do |row|
-    fill_in 'Email', with: row['Email']
-    fill_in 'Password', with: row['Password']
-  end
-end
+  fill_in 'Email', with: email
+  fill_in 'Password', with: password
 
-And('I click on the {string} button') do |button_text|
-  click_button button_text
-end
+  click_on 'Sign in'
 
-Then('I should be logged in') do
-  expect(page).to have_content('Logged in successfully.')
+  expect(page).to have_text('Logged in successfully.')
 end

@@ -19,9 +19,9 @@ RSpec.describe Calendar, type: :model do
   end
 
   describe '#owned?' do
-    subject { create :calendar, :with_owners }
+    subject { create(:calendar, :with_owners) }
     let(:user) { subject.owners.first }
-    let(:user2) { create :user }
+    let(:user2) { create(:user) }
 
     it { is_expected.to be_owned user: }
     it { is_expected.not_to be_owned user: user2 }

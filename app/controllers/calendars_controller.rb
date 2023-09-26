@@ -2,7 +2,7 @@
 
 # Controller using turbo to change the calendar in the view
 class CalendarsController < BaseController
-  before_action :set_calendar, except: %i[index new create]
+  before_action :set_calendar, except: %i[index new create delete]
   before_action :set_date, only: :show
 
   def index
@@ -19,7 +19,7 @@ class CalendarsController < BaseController
   end
 
   def create
-    @calendar = calendar_service.save(calendar_params)
+    @calendar = calendar_service.save(calendar_params, user: current_user)
   end
 
   def show
@@ -32,7 +32,7 @@ class CalendarsController < BaseController
   end
 
   def destroy
-    calendar_service.remove(calendar:)
+    calendar_service.delete(calendar: @calendar, user: current_user)
   end
 
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_06_194658) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_24_153529) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,10 +42,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_194658) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "calendar_delete_votes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "calendar_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["calendar_id"], name: "index_calendar_delete_votes_on_calendar_id"
+    t.index ["user_id"], name: "index_calendar_delete_votes_on_user_id"
+  end
+
   create_table "calendars", id: :string, force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_calendars_on_discarded_at"
   end
 
   create_table "days", id: false, force: :cascade do |t|
@@ -114,6 +125,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_194658) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "calendar_delete_votes", "calendars"
+  add_foreign_key "calendar_delete_votes", "users"
   add_foreign_key "days", "calendars"
   add_foreign_key "days", "recipes"
   add_foreign_key "follows", "calendars"

@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'validations' do
-    subject { build :user }
+    subject { build(:user) }
     it { should validate_presence_of(:first_name) }
     it { should validate_presence_of(:last_name) }
     it { should validate_uniqueness_of(:email).case_insensitive }
@@ -22,23 +22,23 @@ RSpec.describe User, type: :model do
   end
 
   describe '#full_name' do
-    subject { create :user, first_name: 'Alessandro', last_name: 'Chumpitaz' }
+    subject { create(:user, first_name: 'Alessandro', last_name: 'Chumpitaz') }
     it 'returns the full name of the user' do
       expect(subject.full_name).to eq('Alessandro Chumpitaz')
     end
   end
 
   describe '#mini_name' do
-    subject { create :user, first_name: 'Alessandro', last_name: 'Chumpitaz' }
+    subject { create(:user, first_name: 'Alessandro', last_name: 'Chumpitaz') }
     it 'returns the mini name display of the name' do
       expect(subject.mini_name).to eq('AC')
     end
   end
 
   describe '#owner?' do
-    subject { create :user }
-    let(:user2) { create :user }
-    let(:calendar) { create :calendar, owners: [subject] }
+    subject { create(:user) }
+    let(:user2) { create(:user) }
+    let(:calendar) { create(:calendar, owners: [subject]) }
 
     it { is_expected.to be_owner calendar: }
 

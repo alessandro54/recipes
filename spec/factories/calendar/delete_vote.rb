@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :follow do
-    follower factory: %i[user]
+  factory :calendar_delete_vote, class: 'Calendar::DeleteVote' do
     calendar
+    user
   end
 end

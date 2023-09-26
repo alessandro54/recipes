@@ -1,4 +1,4 @@
-Feature: Manage Calendars
+Feature: Visualize calendar list
   As a registered user with calendars
   I want to manage my calendars
 
